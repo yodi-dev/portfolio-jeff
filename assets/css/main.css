@@ -1,0 +1,12 @@
+header ul li {
+    margin: 0.25rem 0;
+}
+
+header a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
