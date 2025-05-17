@@ -2,7 +2,7 @@
     <header class="container">
         <div class="header-wrapper">
             <div class="brand-section">
-                <strong class="brand-name">Jeff Photography</strong>
+                <NuxtLink to="/"><strong class="brand-name">Jeff Photography</strong></NuxtLink>
                 <nav>
                     <ul class="nav-links">
                         <li>
