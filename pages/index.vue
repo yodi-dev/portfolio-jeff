@@ -59,7 +59,6 @@
 </template>
 
 <script setup>
-// No logic needed yet for static hero and preview
 </script>
 
 <style scoped>
