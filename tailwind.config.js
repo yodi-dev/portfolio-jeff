@@ -1,6 +1,5 @@
-/** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class', // pakai class .dark untuk aktifkan dark mode
+  darkMode: 'class', 
   content: [
     './components/**/*.{vue,js}',
     './layouts/**/*.vue',
@@ -20,8 +19,8 @@ export default {
           dark: '#121212'
         },
         text: {
-          light: '#333333',
-          dark: '#e0e0e0'
+          light: '#1F2937', 
+          dark: '#F3F4F6',
         }
       }
     }

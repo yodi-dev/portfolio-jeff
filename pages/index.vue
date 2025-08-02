@@ -1,14 +1,30 @@
 <template>
-    <!-- Hero -->
-    <section class="container py-16 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-brand">Welcome to Jef Photography</h1>
-        <p class="mt-4 text-lg text-text-light dark:text-text-dark max-w-xl mx-auto">
-            Mengabadikan momen berharga Anda.
-        </p>
-        <NuxtLink to="/works"
-            class="inline-block mt-6 px-6 py-3 bg-brand text-white rounded hover:bg-brand-dark transition-colors">
-            Lihat Portfolio
-        </NuxtLink>
+    <section class="relative h-screen flex flex-col justify-center items-center text-center px-6">
+        <!-- Background Image -->
+        <div class="absolute inset-0 bg-cover bg-center w-full" style="background-image: url('/images/preview3.jpeg')">
+        </div>
+
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/40"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-3xl text-white">
+            <!-- Nama Fotografer -->
+            <p class="text-lg mb-2 mt-24">Jef Lee</p>
+
+            <!-- Headline -->
+            <h1 class="text-3xl md:text-3xl font-semibold leading-tight mb-4">
+                Telling real stories through natural light <br class="hidden md:block" />
+                and heartfelt moments.
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="text-base md:text-sm opacity-80">
+                A portrait photographer based in Australia, with over 3 years of experience.
+                Capturing timeless family moments and authentic emotions through natural light and storytelling
+                visuals.
+            </p>
+        </div>
     </section>
 
     <!-- Selected Works -->

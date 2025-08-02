@@ -1,5 +1,7 @@
 <template>
-    <div class="flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div
+        class="flex flex-col min-h-screen bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+        <!-- Global Wrapper -->
         <!-- Navbar -->
         <Navbar />
 

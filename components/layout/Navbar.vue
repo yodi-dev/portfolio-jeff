@@ -1,8 +1,12 @@
 <template>
-    <header class="bg-white dark:bg-gray-800 shadow">
-        <nav class="container flex items-center justify-between py-4">
-            <NuxtLink to="/" class="text-2xl font-bold text-brand">Jef Photography</NuxtLink>
-            <ul class="flex gap-6">
+    <header class="fixed top-0 left-0 w-full z-50">
+        <nav
+            class="flex justify-between items-center px-7 bg-white/70 dark:bg-gray-900/50 backdrop-blur-md shadow-sm rounded-full mt-4 mx-10">
+            <!-- Menu kiri -->
+            <ul class="flex gap-3 text-text-light">
+                <li>
+                    <NuxtLink to="/" class="hover:text-brand">Home</NuxtLink>
+                </li>
                 <li>
                     <NuxtLink to="/works" class="hover:text-brand">Works</NuxtLink>
                 </li>
@@ -19,23 +23,12 @@
                     <NuxtLink to="/writing" class="hover:text-brand">Writing</NuxtLink>
                 </li>
             </ul>
+
+            <!-- Tombol kanan -->
+            <NuxtLink to="/booking"
+                class="bg-brand text-sm text-white px-3 py-1.5 rounded-full hover:bg-brand-dark transition-colors">
+                Book a Session
+            </NuxtLink>
         </nav>
     </header>
 </template>
-
-
-<script setup>
-import { useRoute } from 'vue-router'
-import DarkModeToggle from '~/components/ui/DarkModeToggle.vue'
-
-const $route = useRoute()
-
-const navLinks = [
-    { label: 'Home', to: '/' },
-    { label: 'Works', to: '/works' },
-    { label: 'Writing', to: '/writing' },
-    { label: 'About', to: '/about' },
-    { label: 'Booking', to: '/booking' },
-    { label: 'Contact', to: '/contact' }
-]
-</script>
