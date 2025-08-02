@@ -10,9 +10,9 @@ export default {
     extend: {
       colors: {
         brand: {
-          light: '#a7d9a2', // hijau muda
-          DEFAULT: '#4CAF50', // hijau utama
-          dark: '#357a38' // hijau gelap
+          light: '#a7d9a2', 
+          DEFAULT: '#4CAF50', 
+          dark: '#357a38' 
         },
         background: {
           light: '#ffffff',
