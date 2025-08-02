@@ -1,5 +1,5 @@
 <template>
-    <main class="container py-16 max-w-3xl mx-auto">
+    <main class="container py-24 px-10 max-w-3xl mx-auto">
         <!-- Title -->
         <h1 class="text-3xl font-bold mb-2 text-brand">{{ post.title }}</h1>
         <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">{{ post.date }}</p>

@@ -1,5 +1,5 @@
 <template>
-    <main class="container py-16 max-w-xl mx-auto">
+    <main class="container py-24 px-10">
         <!-- Title -->
         <h2 class="text-3xl font-semibold mb-4 text-brand text-center">Contact Me</h2>
         <p class="text-center text-gray-600 dark:text-gray-400 mb-8">

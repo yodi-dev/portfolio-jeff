@@ -1,15 +1,15 @@
 <template>
-    <main class="container py-16">
+    <main class="container py-24 px-10">
         <!-- Title -->
-        <h2 class="text-3xl font-semibold mb-4 text-brand">Portfolio</h2>
-        <p class="text-gray-600 dark:text-gray-400 mb-8">
+        <h2 class="text-3xl font-semibold mb-3 text-brand">Portfolio</h2>
+        <p class="text-gray-600 dark:text-gray-400 mb-7">
             Select a category to view my work:
         </p>
 
         <!-- Categories -->
-        <ul class="flex flex-wrap gap-3 mb-10">
+        <ul class="flex flex-wrap gap-7 gap-y-3 mb-7">
             <li v-for="category in categories" :key="category"
-                class="px-4 py-2 border border-brand text-brand rounded cursor-pointer hover:bg-brand hover:text-white transition-colors">
+                class="px-2 py-1 text-sm border border-brand text-brand rounded cursor-pointer hover:bg-brand hover:text-white transition-colors">
                 {{ category }}
             </li>
         </ul>
@@ -20,7 +20,7 @@
                 class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow">
                 <img :src="work.image" :alt="work.title" class="w-full h-48 object-cover" />
                 <div class="p-4">
-                    <h3 class="text-lg font-semibold mb-2">{{ work.title }}</h3>
+                    <h3 class="text-lg text-text-light dark:text-text-dark font-semibold mb-2">{{ work.title }}</h3>
                     <p class="text-sm text-gray-600 dark:text-gray-400">{{ work.category }}</p>
                 </div>
             </div>

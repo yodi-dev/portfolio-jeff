@@ -1,5 +1,5 @@
 <template>
-    <main class="container py-16 max-w-3xl mx-auto">
+    <main class="container py-24 px-10 max-w-3xl mx-auto">
         <!-- Title -->
         <h2 class="text-3xl font-semibold mb-4 text-brand text-center">Reflections</h2>
         <p class="text-center text-gray-600 dark:text-gray-400 mb-10">
@@ -10,7 +10,7 @@
         <div class="space-y-6">
             <article v-for="(post, index) in posts" :key="index"
                 class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-shadow">
-                <h3 class="text-xl font-semibold mb-2">{{ post.title }}</h3>
+                <h3 class="text-xl text-text-light dark:text-text-dark font-semibold mb-2">{{ post.title }}</h3>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">{{ post.date }}</p>
                 <p class="text-gray-700 dark:text-gray-300 mb-4">{{ post.excerpt }}</p>
                 <NuxtLink :to="`/writing/${post.slug}`" class="text-brand hover:underline">

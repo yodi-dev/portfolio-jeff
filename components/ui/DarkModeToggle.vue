@@ -1,5 +1,5 @@
 <template>
-    <button @click="toggleDark" class="p-2 rounded bg-gray-200 dark:bg-gray-800">
+    <button @click="toggleDark" class="border-none">
         <span v-if="isDark">🌙</span>
         <span v-else>☀️</span>
     </button>
