@@ -10,7 +10,7 @@
         <!-- Content -->
         <div class="relative z-10 max-w-3xl text-white">
             <!-- Nama Fotografer -->
-            <p class="text-lg mb-2 mt-24">Jef Lee</p>
+            <p class="text-xl text-brand font-semibold mb-2 mt-24">Jef Lee</p>
 
             <!-- Headline -->
             <h1 class="text-4xl md:text-3xl font-semibold leading-tight mb-4">
@@ -91,9 +91,13 @@
             </blockquote>
         </div>
     </section>
+
+    <call-to-action />
+
 </template>
 
 <script setup>
+import CallToAction from '~/components/sections/CallToAction.vue';
 definePageMeta({
     layout: 'default'
 })

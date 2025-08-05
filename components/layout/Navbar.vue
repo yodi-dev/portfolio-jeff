@@ -21,11 +21,6 @@
                     </NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/contact" class="hover:text-brand" active-class="text-brand font-semibold">
-                        Contact
-                    </NuxtLink>
-                </li>
-                <li>
                     <NuxtLink to="/writing" class="hover:text-brand" active-class="text-brand font-semibold">
                         Writing
                     </NuxtLink>
