@@ -16,13 +16,13 @@
                     </NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/about" class="hover:text-brand" active-class="text-brand font-semibold">
-                        About
+                    <NuxtLink to="/writing" class="hover:text-brand" active-class="text-brand font-semibold">
+                        Writing
                     </NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/writing" class="hover:text-brand" active-class="text-brand font-semibold">
-                        Writing
+                    <NuxtLink to="/about" class="hover:text-brand" active-class="text-brand font-semibold">
+                        About
                     </NuxtLink>
                 </li>
                 <DarkModeToggle />

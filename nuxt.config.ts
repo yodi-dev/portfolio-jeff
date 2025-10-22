@@ -5,8 +5,16 @@ export default defineNuxtConfig({
 	compatibilityDate: "2024-11-01",
   css: [
 	"@picocss/pico",
-	'@/assets/css/main.css'
-],
+	'@/assets/styles/main.css'
+	],
+	app: {
+		head: {
+		title: 'Jef Studio — Photography Portfolio',
+		meta: [
+			{ name: 'description', content: 'Personal photography portfolio by Jef' },
+		],
+		},
+	},
 postcss: {
     plugins: {
       tailwindcss: {},

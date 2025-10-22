@@ -9,8 +9,8 @@
             <!-- Developer Credit -->
             <p class="text-sm text-center text-text-light dark:text-text-dark md:text-right">
                 Developed by
-                <a href="https://awan-dev.site" target="_blank" class="text-brand hover:underline">
-                    awan-dev.site
+                <a href="https://awanbeo.my.id" target="_blank" class="text-brand hover:underline">
+                    awanbeo
                 </a>
             </p>
         </div>
