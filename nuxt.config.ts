@@ -3,6 +3,12 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	ssr: true,
 	compatibilityDate: "2024-11-01",
+	runtimeConfig: {
+    public: {
+      supabaseUrl: process.env.SUPABASE_URL,
+      supabaseKey: process.env.SUPABASE_KEY,
+    },
+  },
   css: [
 	"@picocss/pico",
 	'@/assets/styles/main.css'
