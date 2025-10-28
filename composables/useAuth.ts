@@ -1,14 +1,16 @@
 export const useAuth = () => {
   const { $supabase } = useNuxtApp()
   const user = useState('user', () => null)
+  const loading = useState('auth_loading', () => false) // 🔹 shared loading state
+  const router = useRouter()
 
   const fetchUser = async () => {
-    if (!process.client || !$supabase) return // ⬅️ cegah error saat SSR
+    if (!process.client || !$supabase) return
     const { data } = await $supabase.auth.getUser()
     user.value = data.user
   }
 
-    const getUser = async () => {
+  const getUser = async () => {
     if (!user.value) {
       await fetchUser()
     }
@@ -22,13 +24,30 @@ export const useAuth = () => {
     await fetchUser()
   }
 
+  const handleLogin = async (email: string, password: string) => {
+    try {
+      loading.value = true
+      await login(email, password)
+      router.push('/admin')
+    } catch (err: any) {
+      throw err
+    } finally {
+      loading.value = false
+    }
+  }
+
   const logout = async () => {
-    if (!$supabase) return
-    await $supabase.auth.signOut()
-    user.value = null
+    try {
+      loading.value = true
+      await $supabase.auth.signOut()
+      user.value = null
+      router.push('/login')
+    } finally {
+      loading.value = false
+    }
   }
 
   if (process.client) onMounted(fetchUser)
 
-  return { user, login, logout, fetchUser, getUser }
+  return { user, loading, login, handleLogin, logout, fetchUser, getUser }
 }
