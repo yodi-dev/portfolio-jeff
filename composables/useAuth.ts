@@ -1,11 +1,11 @@
 export const useAuth = () => {
   const { $supabase } = useNuxtApp()
   const user = useState('user', () => null)
-  const loading = useState('auth_loading', () => false) // 🔹 shared loading state
+  const loading = useState('auth_loading', () => false)
   const router = useRouter()
 
   const fetchUser = async () => {
-    if (!process.client || !$supabase) return
+    if (!$supabase) return
     const { data } = await $supabase.auth.getUser()
     user.value = data.user
   }
@@ -29,8 +29,6 @@ export const useAuth = () => {
       loading.value = true
       await login(email, password)
       router.push('/admin')
-    } catch (err: any) {
-      throw err
     } finally {
       loading.value = false
     }
@@ -47,7 +45,9 @@ export const useAuth = () => {
     }
   }
 
-  if (process.client) onMounted(fetchUser)
+  // onMounted(() => {
+  //   fetchUser()
+  // })
 
   return { user, loading, login, handleLogin, logout, fetchUser, getUser }
 }

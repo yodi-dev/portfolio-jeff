@@ -22,7 +22,7 @@ const onSubmit = async () => {
             <h1 class="text-2xl text-brand dark:text-brand-dark font-semibold mb-4 text-center">Login</h1>
 
             <input v-model="email" type="email" placeholder="Email" class="w-full text-text-light dark:text-text-dark p-2 border rounded mb-2
-               focus:ring-2 focus:ring-brand bg-white dark:bg-gray-900 dark:border-gray-700" />
+               focus:ring-2 focus:ring-brand bg-white dark:bg-gray-900 dark:border-gray-700" autofocus />
 
             <input v-model="password" type="password" placeholder="Password" class="w-full text-text-light dark:text-text-dark p-2 border rounded mb-4
                focus:ring-2 focus:ring-brand bg-white dark:bg-gray-900 dark:border-gray-700" />
