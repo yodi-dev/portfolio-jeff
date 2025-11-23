@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-	modules: ["@nuxt/eslint", '@nuxt/devtools'],
+	modules: ["@nuxt/eslint", '@nuxt/devtools', '@nuxt/ui'],
 	devtools: { enabled: true },
 	ssr: true,
 	compatibilityDate: "2024-11-01",
@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     },
   },
   css: [
-	"@picocss/pico",
 	'@/assets/styles/main.css'
 	],
 	app: {

@@ -47,7 +47,6 @@ const categories = [
     'Travel'
 ]
 
-// Dummy data (nanti bisa diganti dari API atau Supabase)
 const works = [
     { title: 'Family Session', category: 'Family', image: '/images/preview1.jpeg' },
     { title: 'Portrait Shot', category: 'Portrait', image: '/images/preview2.jpeg' },

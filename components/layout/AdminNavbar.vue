@@ -18,10 +18,7 @@ const navLinks = [
         <nav class="flex items-center gap-6">
             <NuxtLink v-for="link in navLinks" :key="link.to" :to="link.to"
                 class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-brand dark:hover:text-brand-dark transition"
-                :class="{
-                    'text-brand dark:text-brand-dark font-semibold':
-                        route.path.startsWith(link.to)
-                }">
+                active-class="text-brand font-semibold" exact-active-class="text-brand font-semibold">
                 {{ link.name }}
             </NuxtLink>
 

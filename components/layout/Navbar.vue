@@ -1,9 +1,9 @@
 <template>
     <header class="fixed top-0 left-0 w-full z-50">
         <nav
-            class="flex justify-between items-center px-7 bg-white/70 dark:bg-gray-900/50 backdrop-blur-md shadow-md rounded-full mt-4 mx-10">
+            class="flex justify-between items-center px-10 py-2 bg-white/70 dark:bg-gray-900/50 backdrop-blur-md shadow-md rounded-full mt-4 mx-10">
             <!-- Menu kiri -->
-            <ul class="flex gap-3 text-sm text-text-light dark:text-text-dark">
+            <ul class="flex gap-3 text-md text-text-light dark:text-text-dark">
                 <li>
                     <NuxtLink to="/" class="hover:text-brand" active-class="text-brand font-semibold"
                         exact-active-class="text-brand font-semibold">
