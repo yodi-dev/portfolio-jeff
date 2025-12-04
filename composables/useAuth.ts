@@ -1,12 +1,12 @@
 export const useAuth = () => {
-  const { $supabase } = useNuxtApp()
+  const supabase = useSupabaseClient()
   const user = useState('user', () => null)
   const loading = useState('auth_loading', () => false)
   const router = useRouter()
 
   const fetchUser = async () => {
-    if (!$supabase) return
-    const { data } = await $supabase.auth.getUser()
+    if (!supabase) return
+    const { data } = await supabase.auth.getUser()
     user.value = data.user
   }
 
@@ -18,8 +18,8 @@ export const useAuth = () => {
   }
 
   const login = async (email: string, password: string) => {
-    if (!$supabase) throw new Error('Supabase client not available')
-    const { error } = await $supabase.auth.signInWithPassword({ email, password })
+    if (!supabase) throw new Error('Supabase client not available')
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) throw error
     await fetchUser()
   }
@@ -37,7 +37,7 @@ export const useAuth = () => {
   const logout = async () => {
     try {
       loading.value = true
-      await $supabase.auth.signOut()
+      await supabase.auth.signOut()
       user.value = null
       router.push('/login')
     } finally {

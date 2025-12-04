@@ -1,31 +1,31 @@
 export default defineNuxtConfig({
-	modules: ["@nuxt/eslint", '@nuxt/devtools', '@nuxt/ui'],
+	modules: ["@nuxt/eslint", '@nuxt/devtools', '@nuxtjs/supabase'],
 	devtools: { enabled: true },
 	ssr: true,
 	compatibilityDate: "2024-11-01",
 	runtimeConfig: {
-    public: {
-      supabaseUrl: process.env.SUPABASE_URL,
-      supabaseKey: process.env.SUPABASE_KEY,
-    },
-  },
-  css: [
-	'@/assets/styles/main.css'
+		public: {
+		supabaseUrl: process.env.SUPABASE_URL,
+		supabaseKey: process.env.SUPABASE_KEY,
+		},
+	},
+	css: [
+		'@/assets/styles/main.css'
 	],
 	app: {
 		head: {
-		title: 'Jef Studio — Photography Portfolio',
-		meta: [
-			{ name: 'description', content: 'Personal photography portfolio by Jef' },
-		],
+			title: 'Jef Studio — Photography Portfolio',
+			meta: [
+				{ name: 'description', content: 'Personal photography portfolio by Jef' },
+			],
 		},
 	},
-postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {}
-    }
-  },
+	postcss: {
+		plugins: {
+		tailwindcss: {},
+		autoprefixer: {}
+		}
+	},
 	eslint: {
 		config: {
 			stylistic: {
