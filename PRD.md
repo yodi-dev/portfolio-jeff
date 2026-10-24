@@ -147,12 +147,13 @@ flowchart LR
   * Konfigurasi Nuxt 3 compatibility stability (`future.compatibilityVersion: 3`).
   * Pembuatan composable `useApi.ts` dan template `.env.example`.
   * Verifikasi uji build & static prerender (18 routes sukses).
-* [ ] **Fase 2: Backend Setup & Schema Alignment (In Progress)**
-  * Inisialisasi environment Laravel `dashboard-jef` (`.env`, `APP_KEY`, database).
-  * Migration penambahan kolom `category` pada tabel `portfolios`.
-  * Update `PortfolioResource.php` dan validasi controller.
-  * Konfigurasi CORS `config/cors.php` dan `storage:link`.
-* [ ] **Fase 3: Integrasi Data Dinamis Frontend**
+* [x] **Fase 2: Backend Setup & Schema Alignment (Done)**
+  * Inisialisasi environment Laravel `dashboard-jef` (`.env`, `APP_KEY`, database MySQL DBngin).
+  * Migration penambahan kolom `category` pada tabel `portfolios` untuk 11 tema brief.
+  * Update `PortfolioResource.php`, `Portfolio.php` fillable & constants, serta API controller filter.
+  * Update form input kategori dan tabel index pada dashboard admin Laravel.
+  * Konfigurasi CORS `config/cors.php` dan symlink publik `php artisan storage:link`.
+* [ ] **Fase 3: Integrasi Data Dinamis Frontend (Next)**
   * Halaman `/works`: Fetch real data dari API, implementasi active filter, dan lightbox preview.
   * Halaman `/writing` & `/writing/[slug]`: Fetch real articles dari API.
   * Halaman `/booking`: Penambahan input WhatsApp/Phone, sinkronisasi payload field, integrasi feedback form.
@@ -161,3 +162,4 @@ flowchart LR
   * Pengayaan narasi biografi di halaman `/about`.
 * [ ] **Fase 5: Deployment & Dokumentasi Final**
   * Deploy demo frontend ke Vercel dan backend ke cloud gratis (Koyeb/Render + Neon).
+
