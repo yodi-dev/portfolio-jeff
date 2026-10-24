@@ -1,75 +1,92 @@
-# Nuxt Minimal Starter
+# Jeff Lee — Photography Portfolio (Frontend)
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Website portofolio resmi untuk fotografer **Jeff Lee**, dibangun dengan **Nuxt 3**, **Vue 3**, dan **Tailwind CSS**. Website ini berfungsi sebagai antarmuka publik yang menampilkan karya fotografi bertema, refleksi cerita di balik foto, dan sistem reservasi (*booking photoshoot*) yang terhubung langsung dengan backend **Laravel Headless API**.
 
-## Setup
+---
 
-Make sure to install dependencies:
+## 📸 Fitur Utama
 
+1. **Main Page / Home (`/`)**: Hero banner *fullscreen*, branding fotografer, cuplikan karya pilihan, cuplikan kisah, testimoni klien, dan CTA booking.
+2. **About Jeff (`/about`)**: Profil fotografer, narasi perjalanan fotografi, foto portrait, serta kontak langsung.
+3. **Works / Portfolio (`/works`)**: Galeri foto yang dikelompokkan ke dalam **11 tema**:
+   * *Family, Portrait, Couple, Newborn, Work Documentary, Animal, Plant, Sports, Event, Celebration, Travel*.
+   * Dilengkapi filter kategori interaktif dan modal preview foto.
+4. **Writing / Stories (`/writing` & `/writing/[slug]`)**: Blog untuk membagikan pemikiran dan kisah emosional di balik foto.
+5. **Booking Form (`/booking`)**: Formulir reservasi pemotretan terintegrasi dengan validasi nama, email, nomor telepon/WhatsApp, jenis paket, tanggal pemotretan, lokasi, dan catatan khusus.
+6. **Dark Mode Support**: Mode gelap dan terang yang dapat diubah secara instan.
+
+---
+
+## 🛠️ Tech Stack & Arsitektur
+
+* **Frontend:** [Nuxt 3.17](https://nuxt.com/) (Vue 3.5, Nitro 2.11, Tailwind CSS 3.4, TypeScript, pnpm).
+* **Backend API & Admin CMS:** [dashboard-jef](https://github.com/yodi-dev/dashboard-jef) (Laravel 12, Breeze, Sanctum, PostgreSQL/MySQL).
+* **Arsitektur:** *Decoupled / Headless System* (Frontend mengonsumsi data via REST API).
+* **Dokumentasi Lengkap:** Lihat [PRD.md](./PRD.md) untuk spesifikasi produk dan kontrak API lengkap.
+
+---
+
+## 🚀 Memulai (Local Development)
+
+### 1. Prasyarat
+* Node.js versi 18+ atau 20+
+* Package manager: `pnpm` (disarankan) atau `npm`
+
+### 2. Instalasi Dependensi
 ```bash
-# npm
-npm install
-
-# pnpm
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+### 3. Konfigurasi Environment (`.env`)
+Salin file `.env.example` menjadi `.env`:
 ```bash
-# npm
-npm run dev
+cp .env.example .env
+```
+Sesuaikan URL API backend Laravel kamu:
+```ini
+NUXT_PUBLIC_API_BASE=http://127.0.0.1:8000/api
+NUXT_PUBLIC_STORAGE_BASE=http://127.0.0.1:8000/storage
+```
 
-# pnpm
+### 4. Menjalankan Server Development
+```bash
 pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+Buka [http://localhost:3000](http://localhost:3000) di browser kamu.
 
-## Production
+---
 
-Build the application for production:
+## 📦 Build & Deployment
 
+### Build untuk Produksi (Node.js Server):
 ```bash
-# npm
-npm run build
-
-# pnpm
 pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
-
+### Static Site Generation (SSG untuk Vercel / Netlify / Cloudflare Pages):
 ```bash
-# npm
-npm run preview
+pnpm generate
+```
+Output static HTML akan tersedia di folder `.output/public`.
 
-# pnpm
-pnpm preview
+---
 
-# yarn
-yarn preview
-
-# bun
-bun run preview
+## 📁 Struktur Direktori
+```text
+portfolio-jeff/
+├── assets/             # Global CSS & Tailwind styles
+├── components/         # Reusable Vue components (Navbar, Footer, DarkModeToggle, UI)
+├── composables/        # Auto-imported composables (useApi.ts)
+├── layouts/            # Layout utama (default.vue)
+├── pages/              # File-based routing (index, about, works, writing, booking)
+├── public/             # Static assets (images, favicon, robots.txt)
+├── nuxt.config.ts      # Konfigurasi Nuxt 3 & API runtime config
+├── tailwind.config.js  # Konfigurasi tema Tailwind CSS
+├── PRD.md              # Product Requirements Document
+└── README.md           # Dokumentasi proyek
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+---
+
+## 📄 Lisensi
+Hak Cipta © 2026 Jeff Photography. Dikembangkan oleh [awanbeo](https://awanbeo.my.id) & yodi-dev.
