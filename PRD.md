@@ -153,13 +153,15 @@ flowchart LR
   * Update `PortfolioResource.php`, `Portfolio.php` fillable & constants, serta API controller filter.
   * Update form input kategori dan tabel index pada dashboard admin Laravel.
   * Konfigurasi CORS `config/cors.php` dan symlink publik `php artisan storage:link`.
-* [ ] **Fase 3: Integrasi Data Dinamis Frontend (Next)**
-  * Halaman `/works`: Fetch real data dari API, implementasi active filter, dan lightbox preview.
-  * Halaman `/writing` & `/writing/[slug]`: Fetch real articles dari API.
-  * Halaman `/booking`: Penambahan input WhatsApp/Phone, sinkronisasi payload field, integrasi feedback form.
-* [ ] **Fase 4: Finishing UI & Menu Contact**
-  * Pembuatan menu & halaman `/contact` khusus atau integrasi Footer & Navbar yang jelas.
-  * Pengayaan narasi biografi di halaman `/about`.
-* [ ] **Fase 5: Deployment & Dokumentasi Final**
+* [x] **Fase 3: Integrasi Data Dinamis Frontend (Done)**
+  * Halaman `/works`: Fetch real data dari API, implementasi active filter 11 tema, dan modal lightbox preview.
+  * Halaman `/writing` & `/writing/[slug]`: Fetch real articles dari API dengan rendering cover image & paragraf dinamis.
+  * Halaman `/booking`: Penambahan input WhatsApp/Phone, sinkronisasi 11 tema paket, validasi tanggal besok, dan integrasi submit `POST /api/bookings`.
+  * Halaman `/`: Hero branding Jeff Lee, integrasi cuplikan Selected Works dinamis, dan navigasi CTA.
+* [x] **Fase 4: Finishing UI & Menu Contact (Done)**
+  * Pembuatan halaman khusus `/contact` dengan tautan direct email, WhatsApp, dan sosial media (Instagram, Facebook).
+  * Pengayaan narasi biografi dan filosofi fotografi di halaman `/about`.
+  * Penambahan link Contact & DarkModeToggle responsif di `Navbar.vue` serta footer navigasi lengkap di `Footer.vue`.
+* [ ] **Fase 5: Deployment & Demo Final (Next)**
   * Deploy demo frontend ke Vercel dan backend ke cloud gratis (Koyeb/Render + Neon).
 
