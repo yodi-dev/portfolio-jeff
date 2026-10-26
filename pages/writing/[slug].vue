@@ -45,6 +45,7 @@
 					:src="resolveImageUrl(post.cover_image)"
 					:alt="post.title"
 					class="w-full h-full object-cover"
+					@error="onImageError"
 				>
 			</div>
 
@@ -116,7 +117,7 @@ definePageMeta({
 
 const route = useRoute();
 const slug = route.params.slug as string;
-const { getArticle, resolveImageUrl } = useApi();
+const { getArticle, resolveImageUrl, onImageError } = useApi();
 
 // Fallback articles
 const fallbackArticles: Record<string, ArticleItem> = {

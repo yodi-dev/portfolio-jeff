@@ -42,6 +42,7 @@
 						:alt="post.title"
 						class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 						loading="lazy"
+						@error="onImageError"
 					>
 				</div>
 
@@ -92,7 +93,7 @@ useHead({
 	],
 });
 
-const { getArticles, resolveImageUrl } = useApi();
+const { getArticles, resolveImageUrl, onImageError } = useApi();
 
 // Fallback articles
 const fallbackArticles: ArticleItem[] = [

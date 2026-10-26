@@ -63,6 +63,7 @@
 						:alt="work.title"
 						class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 						loading="lazy"
+						@error="onImageError"
 					>
 					<div class="absolute top-3 left-3">
 						<span class="px-2.5 py-1 text-xs font-medium rounded-full bg-black/60 text-white backdrop-blur-sm">
@@ -149,6 +150,7 @@
 							:src="activeModalImage"
 							:alt="activeWork.title"
 							class="max-h-[60vh] w-auto object-contain mx-auto"
+							@error="onImageError"
 						>
 					</div>
 
@@ -169,6 +171,7 @@
 							<img
 								:src="img"
 								class="w-full h-full object-cover"
+								@error="onImageError"
 							>
 						</button>
 					</div>
@@ -224,7 +227,7 @@ useHead({
 	],
 });
 
-const { getPortfolios, resolveImageUrl } = useApi();
+const { getPortfolios, resolveImageUrl, onImageError } = useApi();
 
 // Brief categories + All
 const categories = [
@@ -248,33 +251,148 @@ const activeCategory = ref("All");
 const fallbackWorks: PortfolioItem[] = [
 	{
 		id: 101,
-		title: "Golden Hour Family Warmth",
-		slug: "golden-hour-family-warmth",
+		title: "The Campbell Family at Manly Beach",
+		slug: "the-campbell-family-at-manly-beach",
 		category: "Family",
-		description: "A candid evening session capturing laughter and sunset glow with the Reynolds family.",
-		thumbnail: "/images/preview1.jpeg",
+		description: "A relaxed, barefoot late-afternoon session with the Campbell family. Golden sunlight bouncing off the pacific ocean as their two young boys played tag in the sand.",
+		thumbnail: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200&auto=format&fit=crop",
+		gallery: [
+			"https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?q=80&w=1200&auto=format&fit=crop",
+			"https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=1200&auto=format&fit=crop",
+		],
 		is_highlight: true,
 		created_at: "Oct 2026",
 	},
 	{
 		id: 102,
-		title: "Natural Light Studio Portrait",
-		slug: "natural-light-studio-portrait",
+		title: "Aria — Natural Light Golden Hour",
+		slug: "aria-natural-light-golden-hour",
 		category: "Portrait",
-		description: "Authentic expression documented with soft window light and 85mm prime lens.",
-		thumbnail: "/images/preview2.jpeg",
+		description: "Capturing candid expressions under soft 35mm lens rendering. Focused on natural skin tones, ambient rim light, and effortless gaze.",
+		thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop",
+		gallery: [
+			"https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop",
+			"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop",
+		],
 		is_highlight: true,
 		created_at: "Sep 2026",
 	},
 	{
 		id: 103,
-		title: "Whispers by the Coast",
-		slug: "whispers-by-the-coast",
+		title: "Liam & Chloe — Coastal Sunset Romance",
+		slug: "liam-chloe-coastal-sunset-romance",
 		category: "Couple",
-		description: "Intimate pre-wedding story photographed along the dramatic cliffs at dusk.",
-		thumbnail: "/images/preview3.jpeg",
+		description: "An intimate couple session along the rugged coastline of Byron Bay. Unscripted laughter, hand-in-hand seaside walks, and twilight warmth.",
+		thumbnail: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1200&auto=format&fit=crop",
+		gallery: [
+			"https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop",
+		],
 		is_highlight: true,
 		created_at: "Aug 2026",
+	},
+	{
+		id: 104,
+		title: "Baby Leo — First Two Weeks of Wonder",
+		slug: "baby-leo-first-two-weeks-of-wonder",
+		category: "Newborn",
+		description: "A quiet, gentle in-home lifestyle newborn shoot. Wrapped in organic linen next to a window casting soft diffused morning light.",
+		thumbnail: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=1200&auto=format&fit=crop",
+		gallery: [
+			"https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=1200&auto=format&fit=crop",
+		],
+		is_highlight: false,
+		created_at: "Jul 2026",
+	},
+	{
+		id: 105,
+		title: "The Artisan Ceramicist at Work",
+		slug: "the-artisan-ceramicist-at-work",
+		category: "Work Documentary",
+		description: "Documenting the tactile craft of hand-thrown stoneware pottery in an old Melbourne brick warehouse.",
+		thumbnail: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=1200&auto=format&fit=crop",
+		gallery: [
+			"https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=1200&auto=format&fit=crop",
+		],
+		is_highlight: false,
+		created_at: "Jun 2026",
+	},
+	{
+		id: 106,
+		title: "Archie — Joyful Coastal Retriever",
+		slug: "archie-joyful-coastal-retriever",
+		category: "Animal",
+		description: "Energetic dog portraiture at dawn. Catching the pure, uninhibited happiness of Archie sprinting through tidal pools.",
+		thumbnail: "https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=1200&auto=format&fit=crop",
+		gallery: [
+			"https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?q=80&w=1200&auto=format&fit=crop",
+		],
+		is_highlight: false,
+		created_at: "May 2026",
+	},
+	{
+		id: 107,
+		title: "Eucalyptus & Morning Dew",
+		slug: "eucalyptus-and-morning-dew",
+		category: "Plant",
+		description: "Macro and ambient botanical study of native Australian eucalyptus leaves backlit by early morning mist.",
+		thumbnail: "https://images.unsplash.com/photo-1457530378978-8bac673b8062?q=80&w=1200&auto=format&fit=crop",
+		gallery: [
+			"https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop",
+		],
+		is_highlight: false,
+		created_at: "Apr 2026",
+	},
+	{
+		id: 108,
+		title: "Chasing Ocean Barrels at Sunrise",
+		slug: "chasing-ocean-barrels-at-sunrise",
+		category: "Sports",
+		description: "Action surf photography at Snapper Rocks. Freezing the high-speed velocity, ocean spray, and golden water reflections.",
+		thumbnail: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=1200&auto=format&fit=crop",
+		gallery: [
+			"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+		],
+		is_highlight: false,
+		created_at: "Mar 2026",
+	},
+	{
+		id: 109,
+		title: "Acoustic Garden Gathering",
+		slug: "acoustic-garden-gathering",
+		category: "Event",
+		description: "Intimate backyard musical performance under warm string lights. Capturing the connection between musician and audience in natural ambience.",
+		thumbnail: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop",
+		gallery: [
+			"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop",
+		],
+		is_highlight: false,
+		created_at: "Feb 2026",
+	},
+	{
+		id: 110,
+		title: "The Glasshouse 30th Birthday",
+		slug: "the-glasshouse-30th-birthday",
+		category: "Celebration",
+		description: "An evening of candlelit tables, sparkling toasts, and genuine celebratory embraces in a historic glasshouse venue.",
+		thumbnail: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1200&auto=format&fit=crop",
+		gallery: [
+			"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=1200&auto=format&fit=crop",
+		],
+		is_highlight: false,
+		created_at: "Jan 2026",
+	},
+	{
+		id: 111,
+		title: "Great Ocean Road Odyssey",
+		slug: "great-ocean-road-odyssey",
+		category: "Travel",
+		description: "Winding coastal cliffs, towering sea stacks, and dramatic tempestuous skies along Victoria's world-famous coastline.",
+		thumbnail: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=1200&auto=format&fit=crop",
+		gallery: [
+			"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200&auto=format&fit=crop",
+		],
+		is_highlight: true,
+		created_at: "Jan 2026",
 	},
 ];
 

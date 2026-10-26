@@ -38,11 +38,22 @@ export const useApi = () => {
 
 	const resolveImageUrl = (path: string | null | undefined): string => {
 		if (!path) return "/images/preview1.jpeg";
+		// Normalize any legacy Herd domain to current storageBase
+		if (path.includes("dashboard-jef.test/storage")) {
+			return path.replace("http://dashboard-jef.test/storage", storageBase);
+		}
 		if (path.startsWith("http://") || path.startsWith("https://")) {
 			return path;
 		}
 		const cleanPath = path.startsWith("/") ? path : `/${path}`;
 		return `${storageBase}${cleanPath}`;
+	};
+
+	const onImageError = (e: Event, fallback = "/images/preview1.jpeg") => {
+		const target = e.target as HTMLImageElement;
+		if (target && target.src !== fallback) {
+			target.src = fallback;
+		}
 	};
 
 	const getPortfolios = async (category?: string) => {
@@ -86,6 +97,7 @@ export const useApi = () => {
 		apiBase,
 		storageBase,
 		resolveImageUrl,
+		onImageError,
 		getPortfolios,
 		getPortfolio,
 		getArticles,

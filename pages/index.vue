@@ -68,6 +68,7 @@
 						:alt="work.title"
 						class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 						loading="lazy"
+						@error="onImageError"
 					>
 					<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4 text-left">
 						<span class="text-xs text-brand font-semibold">{{ work.category || 'Portrait' }}</span>
@@ -185,7 +186,7 @@ useHead({
 	],
 });
 
-const { getPortfolios, resolveImageUrl } = useApi();
+const { getPortfolios, resolveImageUrl, onImageError } = useApi();
 
 const fallbackPreviewWorks: PortfolioItem[] = [
 	{
