@@ -4,9 +4,9 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	app: {
 		head: {
-			title: "Jef Studio — Photography Portfolio",
+			title: "Jeff Lee — Photography Portfolio",
 			meta: [
-				{ name: "description", content: "Personal photography portfolio by Jef" },
+				{ name: "description", content: "Personal photography portfolio of Jeff Lee. Telling real stories through natural light and heartfelt moments." },
 			],
 		},
 	},
