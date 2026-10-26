@@ -153,6 +153,7 @@ flowchart LR
   * Update `PortfolioResource.php`, `Portfolio.php` fillable & constants, serta API controller filter.
   * Update form input kategori dan tabel index pada dashboard admin Laravel.
   * Konfigurasi CORS `config/cors.php` dan symlink publik `php artisan storage:link`.
+  * Integrasi driver Cloudflare R2 / AWS S3 (`league/flysystem-aws-s3-v3`), resolver URL dinamis, dan `DemoDataSeeder` (11 tema foto + 4 artikel cerita).
 * [x] **Fase 3: Integrasi Data Dinamis Frontend (Done)**
   * Halaman `/works`: Fetch real data dari API, implementasi active filter 11 tema, dan modal lightbox preview.
   * Halaman `/writing` & `/writing/[slug]`: Fetch real articles dari API dengan rendering cover image & paragraf dinamis.
