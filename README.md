@@ -78,7 +78,7 @@ portfolio-jeff/
 ├── components/         # Reusable Vue components (Navbar, Footer, DarkModeToggle, UI)
 ├── composables/        # Auto-imported composables (useApi.ts)
 ├── layouts/            # Layout utama (default.vue)
-├── pages/              # File-based routing (index, about, works, writing, booking)
+├── pages/              # File-based routing (index, about, works, writing, booking, contact)
 ├── public/             # Static assets (images, favicon, robots.txt)
 ├── nuxt.config.ts      # Konfigurasi Nuxt 3 & API runtime config
 ├── tailwind.config.js  # Konfigurasi tema Tailwind CSS
