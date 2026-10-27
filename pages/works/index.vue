@@ -63,6 +63,7 @@
 						:alt="work.title"
 						class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 						loading="lazy"
+						decoding="async"
 						@error="onImageError"
 					>
 					<div class="absolute top-3 left-3">
@@ -150,6 +151,7 @@
 							:src="activeModalImage"
 							:alt="activeWork.title"
 							class="max-h-[60vh] w-auto object-contain mx-auto"
+							decoding="async"
 							@error="onImageError"
 						>
 					</div>
@@ -171,6 +173,8 @@
 							<img
 								:src="img"
 								class="w-full h-full object-cover"
+								loading="lazy"
+								decoding="async"
 								@error="onImageError"
 							>
 						</button>
@@ -396,8 +400,8 @@ const fallbackWorks: PortfolioItem[] = [
 	},
 ];
 
-// Fetch from API
-const { data, pending } = await useAsyncData("portfolios", async () => {
+// Fetch from API (non-blocking with cache)
+const { data, pending } = useLazyAsyncData("portfolios", async () => {
 	try {
 		const response = await getPortfolios();
 		return response?.data || [];
@@ -406,7 +410,10 @@ const { data, pending } = await useAsyncData("portfolios", async () => {
 		console.warn("API getPortfolios unavailable, using fallback items:", err);
 		return [];
 	}
-}, { default: () => [] });
+}, {
+	default: () => [],
+	getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
+});
 
 // Compute works (combining API items, or fallback if API items are empty)
 const worksList = computed<PortfolioItem[]>(() => {

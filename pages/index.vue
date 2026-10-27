@@ -68,6 +68,7 @@
 						:alt="work.title"
 						class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 						loading="lazy"
+						decoding="async"
 						@error="onImageError"
 					>
 					<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4 text-left">
@@ -111,6 +112,8 @@
 					src="/images/jeff-portrait.jpeg"
 					alt="Jeff Lee Portrait"
 					class="w-56 h-56 object-cover rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800"
+					loading="lazy"
+					decoding="async"
 				>
 				<div class="text-center md:text-left space-y-4 flex-1">
 					<span class="text-xs uppercase tracking-wider text-brand font-semibold">Behind the Lens</span>
@@ -218,7 +221,7 @@ const fallbackPreviewWorks: PortfolioItem[] = [
 	},
 ];
 
-const { data } = await useAsyncData("home-portfolios", async () => {
+const { data } = useLazyAsyncData("home-portfolios", async () => {
 	try {
 		const res = await getPortfolios();
 		return res?.data?.slice(0, 3) || [];
@@ -226,7 +229,10 @@ const { data } = await useAsyncData("home-portfolios", async () => {
 	catch {
 		return [];
 	}
-}, { default: () => [] });
+}, {
+	default: () => [],
+	getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
+});
 
 const selectedWorks = computed<PortfolioItem[]>(() => {
 	if (data.value && data.value.length > 0) {

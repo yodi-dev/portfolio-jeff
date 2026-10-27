@@ -7,6 +7,8 @@
 					src="/images/jeff-portrait.jpeg"
 					alt="Jeff Lee Portrait"
 					class="w-44 h-44 object-cover rounded-full mx-auto shadow-xl ring-4 ring-brand/20"
+					loading="lazy"
+					decoding="async"
 				>
 				<span class="absolute bottom-2 right-2 bg-brand text-white text-xs px-2.5 py-1 rounded-full font-medium shadow">
 					Based in Australia

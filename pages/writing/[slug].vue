@@ -45,6 +45,8 @@
 					:src="resolveImageUrl(post.cover_image)"
 					:alt="post.title"
 					class="w-full h-full object-cover"
+					loading="lazy"
+					decoding="async"
 					@error="onImageError"
 				>
 			</div>
@@ -153,8 +155,8 @@ const fallbackArticles: Record<string, ArticleItem> = {
 	},
 };
 
-// Fetch from API
-const { data, pending } = await useAsyncData(`article-${slug}`, async () => {
+// Fetch from API (non-blocking with cache)
+const { data, pending } = useLazyAsyncData(`article-${slug}`, async () => {
 	try {
 		const response = await getArticle(slug);
 		return response?.data || null;
@@ -163,7 +165,10 @@ const { data, pending } = await useAsyncData(`article-${slug}`, async () => {
 		console.warn(`API getArticle(${slug}) unavailable, falling back to local dataset:`, err);
 		return fallbackArticles[slug] || null;
 	}
-}, { default: () => null });
+}, {
+	default: () => null,
+	getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
+});
 
 const post = computed<ArticleItem | null>(() => {
 	if (data.value) return data.value;

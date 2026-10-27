@@ -42,6 +42,7 @@
 						:alt="post.title"
 						class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 						loading="lazy"
+						decoding="async"
 						@error="onImageError"
 					>
 				</div>
@@ -129,8 +130,8 @@ const fallbackArticles: ArticleItem[] = [
 	},
 ];
 
-// Fetch articles from API
-const { data, pending } = await useAsyncData("articles", async () => {
+// Fetch articles from API (non-blocking with cache)
+const { data, pending } = useLazyAsyncData("articles", async () => {
 	try {
 		const response = await getArticles();
 		return response?.data || [];
@@ -139,7 +140,10 @@ const { data, pending } = await useAsyncData("articles", async () => {
 		console.warn("API getArticles unavailable, using fallback articles:", err);
 		return [];
 	}
-}, { default: () => [] });
+}, {
+	default: () => [],
+	getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
+});
 
 const articlesList = computed<ArticleItem[]>(() => {
 	if (data.value && data.value.length > 0) {
