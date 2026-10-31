@@ -5,7 +5,7 @@
 			<!-- Quiet Editorial Statement -->
 			<div class="max-w-2xl space-y-4 mb-12 md:mb-16">
 				<p class="text-[10px] md:text-xs uppercase tracking-[0.28em] text-ink-muted">
-					Jeff Lee — Australia
+					Jef Lee — Australia
 				</p>
 				<h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-ink font-light leading-[1.18] tracking-tight">
 					Telling honest stories through natural light and quiet moments.
@@ -19,7 +19,7 @@
 			<div class="relative overflow-hidden bg-line/40 aspect-[16/9] md:aspect-[21/9]">
 				<img
 					src="/images/preview3.jpeg"
-					alt="Coastal Moment by Jeff Lee"
+					alt="Coastal Moment by Jef Lee"
 					class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.01]"
 					loading="eager"
 					decoding="async"
@@ -71,7 +71,7 @@
 
 					<!-- Minimalist Typography Caption (Clean Japanese Print Style) -->
 					<div class="space-y-1">
-						<div class="flex justify-between items-baseline text-[10px] uppercase tracking-[0.2em] text-ink-faint">
+						<div class="flex justify-between items-baseline text-[11px] uppercase tracking-[0.2em] text-ink-muted font-mono">
 							<span>{{ work.category || 'Series' }}</span>
 							<span>{{ String(index + 1).padStart(2, '0') }}</span>
 						</div>
@@ -90,7 +90,7 @@
 				"Photography is more than capturing light — it is preserving life itself, pausing the fleeting smiles and quiet touches before they fade into memory."
 			</blockquote>
 			<p class="text-xs uppercase tracking-[0.25em] text-ink-muted mt-6">
-				— Jeff Lee
+				— Jef Lee
 			</p>
 			<span class="block w-8 h-[1px] bg-ink-muted/40 mx-auto mt-10" />
 		</section>
@@ -102,7 +102,7 @@
 					<div class="overflow-hidden bg-line/40 aspect-[4/5]">
 						<img
 							src="/images/jeff-portrait.jpeg"
-							alt="Portrait of Jeff Lee"
+							alt="Portrait of Jef Lee"
 							class="w-full h-full object-cover grayscale contrast-90 transition-transform duration-700 hover:scale-[1.02]"
 							loading="lazy"
 							decoding="async"
@@ -115,7 +115,7 @@
 						A quiet observer of life’s everyday poetry.
 					</h2>
 					<p class="text-xs md:text-sm text-ink-muted font-light leading-relaxed tracking-[0.02em]">
-						Based along the Australian coast, Jeff finds meaning in genuine human moments — the gentle embrace of new parents, unposed laughter, and the serene golden light falling over everyday lives.
+						Based along the Australian coast, Jef finds meaning in genuine human moments — the gentle embrace of new parents, unposed laughter, and the serene golden light falling over everyday lives.
 					</p>
 					<p class="text-xs md:text-sm text-ink-muted font-light leading-relaxed tracking-[0.02em]">
 						Over the past three years, he has developed an aesthetic rooted in stillness, warm natural tones, and an unhurried, comfortable presence during every session.
@@ -147,9 +147,9 @@ definePageMeta({
 });
 
 useHead({
-	title: "Jeff Lee — Portrait & Documentary Photography",
+	title: "Jef Lee — Portrait & Documentary Photography",
 	meta: [
-		{ name: "description", content: "Personal photography portfolio of Jeff Lee. Telling real stories through natural light and heartfelt moments." },
+		{ name: "description", content: "Personal photography portfolio of Jef Lee. Telling real stories through natural light and heartfelt moments." },
 	],
 });
 

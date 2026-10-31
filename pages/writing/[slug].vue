@@ -28,10 +28,10 @@
 		<article v-else-if="post">
 			<!-- Article Header -->
 			<header class="mb-10 sm:mb-14">
-				<div class="flex items-center gap-3 text-xs uppercase tracking-widest text-zinc-400 mb-4 font-mono">
+				<div class="flex items-center gap-3 text-xs uppercase tracking-widest text-zinc-500 mb-4 font-mono">
 					<span>{{ post.created_at }}</span>
 					<span class="text-zinc-300">/</span>
-					<span>Jeff Lee</span>
+					<span>Jef Lee</span>
 				</div>
 				<h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-tight leading-tight">
 					{{ post.title }}
@@ -69,14 +69,14 @@
 				<div class="flex items-center gap-4">
 					<img
 						src="/images/jeff-portrait.jpeg"
-						alt="Jeff Lee"
+						alt="Jef Lee"
 						class="w-12 h-12 object-cover grayscale brightness-95"
 					>
 					<div>
 						<h3 class="font-serif text-base text-ink tracking-wide font-normal">
-							Jeff Lee
+							Jef Lee
 						</h3>
-						<p class="text-xs text-zinc-400 tracking-wider">
+						<p class="text-xs text-zinc-500 tracking-wider">
 							Natural Light & Storytelling Photographer
 						</p>
 					</div>
@@ -189,6 +189,6 @@ const paragraphs = computed(() => {
 });
 
 useHead({
-	title: computed(() => post.value ? `${post.value.title} — Jeff Lee` : "Story — Jeff Lee"),
+	title: computed(() => post.value ? `${post.value.title} — Jef Lee` : "Story — Jef Lee"),
 });
 </script>

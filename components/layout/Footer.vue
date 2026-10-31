@@ -7,7 +7,7 @@
 					to="/"
 					class="font-serif text-xl tracking-[0.08em] font-medium text-ink hover:opacity-60 transition-opacity"
 				>
-					JEFF LEE
+					JEF LEE
 				</NuxtLink>
 				<p class="text-xs text-ink-muted tracking-[0.05em] max-w-sm leading-relaxed">
 					Portrait & documentary photography grounded in natural light, stillness, and honest moments.
@@ -57,10 +57,14 @@
 			</div>
 		</div>
 
-		<!-- Bottom Copyright -->
-		<div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-line/40 flex flex-col sm:flex-row justify-between items-center text-[11px] text-ink-faint tracking-wider gap-4">
-			<p>© {{ new Date().getFullYear() }} Jeff Lee. All rights reserved.</p>
-			<p class="tracking-widest uppercase text-[10px]">Natural Light & Stories</p>
+		<!-- Bottom Copyright & Credit -->
+		<div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-line/40 flex flex-col sm:flex-row justify-between items-center text-[11px] text-ink-muted tracking-wider gap-4">
+			<p>© {{ new Date().getFullYear() }} Jef Lee. All rights reserved.</p>
+			<div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+				<span>Crafted by <a href="https://awanbeo.my.id" target="_blank" rel="noopener noreferrer" class="text-ink font-medium hover:underline underline-offset-4 transition-colors">awanbeo.my.id</a></span>
+				<span class="text-zinc-300">/</span>
+				<span class="tracking-widest uppercase text-[10px]">Natural Light & Stories</span>
+			</div>
 		</div>
 	</footer>
 </template>

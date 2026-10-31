@@ -75,7 +75,7 @@
 
 				<!-- Minimalist Details Below Image -->
 				<div class="space-y-1">
-					<div class="flex justify-between items-baseline text-[10px] uppercase tracking-[0.2em] text-ink-faint">
+					<div class="flex justify-between items-baseline text-[11px] uppercase tracking-[0.2em] text-ink-muted font-mono">
 						<span>{{ work.category || 'Series' }}</span>
 						<span>{{ String(index + 1).padStart(2, '0') }}</span>
 					</div>
@@ -115,13 +115,16 @@
 		<div
 			v-if="activeWork"
 			class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/85 backdrop-blur-sm transition-opacity"
+			role="dialog"
+			aria-modal="true"
+			:aria-label="activeWork.title"
 			@click.self="closeLightbox"
 		>
 			<div class="relative bg-canvas max-w-4xl w-full max-h-[92vh] overflow-hidden shadow-2xl flex flex-col border border-line/40">
 				<!-- Close Button -->
 				<button
-					class="absolute top-4 right-4 z-20 p-2 text-ink hover:opacity-60 transition-opacity bg-canvas/80 backdrop-blur-sm"
-					aria-label="Close modal"
+					class="absolute top-4 right-4 z-20 p-2 text-ink hover:opacity-60 transition-opacity bg-canvas/80 backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-ink"
+					aria-label="Close dialog"
 					@click="closeLightbox"
 				>
 					<svg
@@ -167,6 +170,7 @@
 						>
 							<img
 								:src="img"
+								:alt="`${activeWork.title} - view ${idx + 1}`"
 								class="w-full h-full object-cover"
 								loading="lazy"
 								decoding="async"
@@ -192,8 +196,8 @@
 						</p>
 
 						<div class="pt-6 border-t border-line/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-							<p class="text-[11px] text-ink-faint tracking-widest uppercase">
-								Jeff Lee Photography
+							<p class="text-[11px] text-ink-muted tracking-widest uppercase font-mono">
+								Jef Lee Photography
 							</p>
 							<NuxtLink
 								:to="`/booking?package=${encodeURIComponent(activeWork.category || 'Portrait')}`"
@@ -210,7 +214,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
 import { useApi, type PortfolioItem } from "~/composables/useApi";
 
 definePageMeta({
@@ -218,9 +222,9 @@ definePageMeta({
 });
 
 useHead({
-	title: "Works & Series — Jeff Lee Photography",
+	title: "Works & Series — Jef Lee Photography",
 	meta: [
-		{ name: "description", content: "Explore the photography catalog of Jeff Lee. Natural light, portraiture, family moments, and documentary series." },
+		{ name: "description", content: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series." },
 	],
 });
 
@@ -352,4 +356,38 @@ function closeLightbox() {
 	activeWork.value = null;
 	activeModalImage.value = "";
 }
+
+function handleKeydown(e: KeyboardEvent) {
+	if (!activeWork.value) return;
+	if (e.key === "Escape") {
+		closeLightbox();
+	}
+	else if (e.key === "ArrowRight" && allModalImages.value.length > 1) {
+		const currentIndex = allModalImages.value.indexOf(activeModalImage.value);
+		const nextIndex = (currentIndex + 1) % allModalImages.value.length;
+		activeModalImage.value = allModalImages.value[nextIndex];
+	}
+	else if (e.key === "ArrowLeft" && allModalImages.value.length > 1) {
+		const currentIndex = allModalImages.value.indexOf(activeModalImage.value);
+		const prevIndex = (currentIndex - 1 + allModalImages.value.length) % allModalImages.value.length;
+		activeModalImage.value = allModalImages.value[prevIndex];
+	}
+}
+
+watch(activeWork, (newVal) => {
+	if (import.meta.client) {
+		document.body.style.overflow = newVal ? "hidden" : "";
+	}
+});
+
+onMounted(() => {
+	window.addEventListener("keydown", handleKeydown);
+});
+
+onBeforeUnmount(() => {
+	window.removeEventListener("keydown", handleKeydown);
+	if (import.meta.client) {
+		document.body.style.overflow = "";
+	}
+});
 </script>

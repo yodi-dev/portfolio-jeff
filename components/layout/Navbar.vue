@@ -7,7 +7,7 @@
 				class="group flex flex-col"
 			>
 				<span class="font-serif text-xl md:text-2xl tracking-[0.08em] font-medium text-ink group-hover:opacity-60 transition-opacity">
-					JEFF LEE
+					JEF LEE
 				</span>
 				<span class="text-[9px] uppercase tracking-[0.25em] text-ink-muted">
 					Photography
@@ -66,8 +66,9 @@
 			<!-- Mobile Menu Button -->
 			<button
 				type="button"
-				class="md:hidden p-2 text-ink hover:opacity-60 transition-opacity focus:outline-none"
+				class="md:hidden p-2 text-ink hover:opacity-60 transition-opacity focus:outline-none focus:ring-1 focus:ring-ink"
 				aria-label="Toggle mobile menu"
+				:aria-expanded="mobileMenuOpen.toString()"
 				@click="mobileMenuOpen = !mobileMenuOpen"
 			>
 				<svg

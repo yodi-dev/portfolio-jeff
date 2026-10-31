@@ -2,12 +2,12 @@
 	<main class="py-16 sm:py-24 px-6 md:px-12 max-w-2xl mx-auto">
 		<!-- Title & Subtitle -->
 		<header class="mb-12 text-center sm:text-left">
-			<span class="text-xs uppercase tracking-widest text-zinc-400 font-mono block mb-3">Reservations</span>
+			<span class="text-xs uppercase tracking-widest text-zinc-500 font-mono block mb-3">Reservations</span>
 			<h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-tight mb-3">
 				Book a Photoshoot
 			</h1>
-			<p class="text-zinc-500 font-light text-sm sm:text-base leading-relaxed">
-				Please share your preferred date and session details. Jeff personally reviews each inquiry to ensure dates and creative vision align.
+			<p class="text-zinc-600 font-light text-sm sm:text-base leading-relaxed">
+				Please share your preferred date and session details. Jef personally reviews each inquiry to ensure dates and creative vision align.
 			</p>
 		</header>
 
@@ -16,12 +16,12 @@
 			v-if="submitSuccess"
 			class="border border-line p-8 sm:p-12 text-center bg-white/60 space-y-4"
 		>
-			<span class="text-xs uppercase tracking-widest text-zinc-400 font-mono block">Inquiry Submitted</span>
+			<span class="text-xs uppercase tracking-widest text-zinc-500 font-mono block">Inquiry Submitted</span>
 			<h2 class="font-serif text-2xl sm:text-3xl font-light text-ink">
 				Thank You, {{ submittedName }}
 			</h2>
 			<p class="text-xs sm:text-sm text-zinc-600 font-light leading-relaxed max-w-md mx-auto">
-				Your request has been registered. Jeff will review your schedule and reach out via email or WhatsApp within 24 hours.
+				Your request has been registered. Jef will review your schedule and reach out via email or WhatsApp within 24 hours.
 			</p>
 			<div class="pt-4">
 				<button
@@ -50,29 +50,37 @@
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 				<!-- Name -->
 				<div class="space-y-2">
-					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+					<label
+						for="booking-name"
+						class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600"
+					>
 						Full Name <span class="text-zinc-400">*</span>
 					</label>
 					<input
+						id="booking-name"
 						v-model="form.name"
 						type="text"
 						placeholder="e.g. Amanda Reynolds"
 						required
-						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-300"
+						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-400"
 					>
 				</div>
 
 				<!-- Email -->
 				<div class="space-y-2">
-					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+					<label
+						for="booking-email"
+						class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600"
+					>
 						Email Address <span class="text-zinc-400">*</span>
 					</label>
 					<input
+						id="booking-email"
 						v-model="form.email"
 						type="email"
 						placeholder="amanda@example.com"
 						required
-						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-300"
+						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-400"
 					>
 				</div>
 			</div>
@@ -80,24 +88,32 @@
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 				<!-- Phone / WhatsApp -->
 				<div class="space-y-2">
-					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+					<label
+						for="booking-phone"
+						class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600"
+					>
 						Phone / WhatsApp <span class="text-zinc-400">*</span>
 					</label>
 					<input
+						id="booking-phone"
 						v-model="form.phone"
 						type="tel"
 						placeholder="+61 400 123 456"
 						required
-						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-300"
+						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-400"
 					>
 				</div>
 
 				<!-- Package / Shoot Type -->
 				<div class="space-y-2">
-					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+					<label
+						for="booking-package"
+						class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600"
+					>
 						Session Theme <span class="text-zinc-400">*</span>
 					</label>
 					<select
+						id="booking-package"
 						v-model="form.package"
 						required
 						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors"
@@ -116,10 +132,14 @@
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 				<!-- Date -->
 				<div class="space-y-2">
-					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+					<label
+						for="booking-date"
+						class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600"
+					>
 						Preferred Date <span class="text-zinc-400">*</span>
 					</label>
 					<input
+						id="booking-date"
 						v-model="form.booking_date"
 						type="date"
 						:min="minDate"
@@ -130,29 +150,37 @@
 
 				<!-- Location -->
 				<div class="space-y-2">
-					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+					<label
+						for="booking-location"
+						class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600"
+					>
 						Location / City <span class="text-zinc-400">*</span>
 					</label>
 					<input
+						id="booking-location"
 						v-model="form.location"
 						type="text"
 						placeholder="e.g. Kyoto / Sydney / Outdoors"
 						required
-						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-300"
+						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-400"
 					>
 				</div>
 			</div>
 
 			<!-- Message -->
 			<div class="space-y-2">
-				<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+				<label
+					for="booking-message"
+					class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600"
+				>
 					Creative Vision & Notes <span class="text-zinc-400 font-sans lowercase">(optional)</span>
 				</label>
 				<textarea
+					id="booking-message"
 					v-model="form.message"
 					rows="4"
 					placeholder="Tell me about what you'd like to capture: atmosphere, participants, timing, or references..."
-					class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-300"
+					class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-400"
 				/>
 			</div>
 
@@ -161,7 +189,7 @@
 				<button
 					type="submit"
 					:disabled="isSubmitting"
-					class="w-full py-3.5 bg-ink text-white hover:bg-zinc-800 disabled:bg-zinc-300 text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed font-medium"
+					class="w-full py-3.5 bg-ink text-white hover:bg-zinc-800 disabled:bg-zinc-300 text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed font-medium focus:outline-none focus:ring-1 focus:ring-ink"
 				>
 					<span
 						v-if="isSubmitting"
@@ -184,9 +212,9 @@ definePageMeta({
 });
 
 useHead({
-	title: "Book a Photoshoot — Jeff Lee",
+	title: "Book a Photoshoot — Jef Lee",
 	meta: [
-		{ name: "description", content: "Schedule your portrait, family, or editorial session with Jeff Lee." },
+		{ name: "description", content: "Schedule your portrait, family, or editorial session with Jef Lee." },
 	],
 });
 

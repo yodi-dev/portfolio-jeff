@@ -4,9 +4,9 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	app: {
 		head: {
-			title: "Jeff Lee — Photography",
+			title: "Jef Lee — Photography",
 			meta: [
-				{ name: "description", content: "Personal photography portfolio of Jeff Lee. Natural light, portraits, and genuine human stories." },
+				{ name: "description", content: "Personal photography portfolio of Jef Lee. Natural light, portraits, and genuine human stories." },
 			],
 			link: [
 				{ rel: "preconnect", href: "https://fonts.googleapis.com" },

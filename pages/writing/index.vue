@@ -57,7 +57,7 @@
 
 					<!-- Content Info -->
 					<div :class="[post.cover_image ? 'md:col-span-7' : 'md:col-span-12', 'space-y-3']">
-						<span class="text-[10px] uppercase tracking-[0.22em] text-ink-faint block">
+						<span class="text-[11px] uppercase tracking-[0.22em] text-ink-muted font-mono block">
 							{{ post.created_at }} — Essay
 						</span>
 
@@ -95,9 +95,9 @@ definePageMeta({
 });
 
 useHead({
-	title: "Writing & Journal — Jeff Lee Photography",
+	title: "Writing & Journal — Jef Lee Photography",
 	meta: [
-		{ name: "description", content: "Reflections, essays, and notes on natural light and documentary photography by Jeff Lee." },
+		{ name: "description", content: "Reflections, essays, and notes on natural light and documentary photography by Jef Lee." },
 	],
 });
 

@@ -7,20 +7,20 @@
 				<div class="aspect-[3/4] bg-zinc-100 overflow-hidden">
 					<img
 						src="/images/jeff-portrait.jpeg"
-						alt="Jeff Lee Portrait"
+						alt="Jef Lee Portrait"
 						class="w-full h-full object-cover grayscale brightness-95"
 						loading="lazy"
 						decoding="async"
 					>
 				</div>
-				<p class="text-[11px] font-mono tracking-widest text-zinc-400 uppercase mt-3">
-					Jeff Lee — Australia / Kyoto
+				<p class="text-[11px] font-mono tracking-widest text-zinc-500 uppercase mt-3">
+					Jef Lee — Australia / Kyoto
 				</p>
 			</div>
 
 			<!-- Bio Intro -->
 			<div class="md:col-span-7 space-y-6">
-				<span class="text-xs uppercase tracking-widest text-zinc-400 font-mono block">Biography & Vision</span>
+				<span class="text-xs uppercase tracking-widest text-zinc-500 font-mono block">Biography & Vision</span>
 				<h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-tight leading-tight">
 					Documenting the quiet cadence of ordinary life.
 				</h1>
@@ -38,7 +38,7 @@
 		<!-- Philosophy / Methodology -->
 		<section class="border-t border-line pt-16 mb-24">
 			<div class="mb-12">
-				<span class="text-xs uppercase tracking-widest text-zinc-400 font-mono block mb-2">Approach</span>
+				<span class="text-xs uppercase tracking-widest text-zinc-500 font-mono block mb-2">Approach</span>
 				<h2 class="font-serif text-2xl sm:text-3xl font-light text-ink">
 					Working Philosophy
 				</h2>
@@ -46,25 +46,25 @@
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
 				<div class="space-y-3">
-					<span class="font-mono text-xs text-zinc-400">01</span>
+					<span class="font-mono text-xs text-zinc-500">01</span>
 					<h3 class="font-serif text-lg text-ink">Natural Ambient Light</h3>
-					<p class="text-xs sm:text-sm text-zinc-500 font-light leading-relaxed">
+					<p class="text-xs sm:text-sm text-zinc-600 font-light leading-relaxed">
 						Working strictly with natural morning glow and twilight to preserve the authentic mood and emotional warmth of the atmosphere.
 					</p>
 				</div>
 
 				<div class="space-y-3">
-					<span class="font-mono text-xs text-zinc-400">02</span>
+					<span class="font-mono text-xs text-zinc-500">02</span>
 					<h3 class="font-serif text-lg text-ink">The Unrehearsed Moment</h3>
-					<p class="text-xs sm:text-sm text-zinc-500 font-light leading-relaxed">
+					<p class="text-xs sm:text-sm text-zinc-600 font-light leading-relaxed">
 						Avoiding rigid posing in favor of patient observation. Allowing genuine connection, laughter, and intimacy to unfold naturally.
 					</p>
 				</div>
 
 				<div class="space-y-3">
-					<span class="font-mono text-xs text-zinc-400">03</span>
+					<span class="font-mono text-xs text-zinc-500">03</span>
 					<h3 class="font-serif text-lg text-ink">Archival Craftsmanship</h3>
-					<p class="text-xs sm:text-sm text-zinc-500 font-light leading-relaxed">
+					<p class="text-xs sm:text-sm text-zinc-600 font-light leading-relaxed">
 						Each photograph is individually graded with timeless, film-inspired tone curves suited for fine art print collections.
 					</p>
 				</div>
@@ -75,38 +75,38 @@
 		<section class="border-t border-line pt-16">
 			<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
 				<div class="md:col-span-5">
-					<span class="text-xs uppercase tracking-widest text-zinc-400 font-mono block mb-2">Commissions</span>
+					<span class="text-xs uppercase tracking-widest text-zinc-500 font-mono block mb-2">Commissions</span>
 					<h2 class="font-serif text-2xl font-light text-ink">
 						Inquiries & Sessions
 					</h2>
-					<p class="text-xs sm:text-sm text-zinc-500 font-light leading-relaxed mt-3">
+					<p class="text-xs sm:text-sm text-zinc-600 font-light leading-relaxed mt-3">
 						Available worldwide for portrait sessions, family documentary, and editorial commissions.
 					</p>
 				</div>
 
 				<div class="md:col-span-7 space-y-6 pt-2">
 					<div class="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-line text-sm">
-						<span class="text-zinc-400 text-xs uppercase tracking-widest">Email</span>
+						<span class="text-zinc-500 text-xs uppercase tracking-widest">Email</span>
 						<a
-							href="mailto:jeff@example.com"
+							href="mailto:jef@example.com"
 							class="text-ink hover:text-zinc-500 font-mono text-xs tracking-wider transition-colors mt-1 sm:mt-0"
 						>
-							jeff@example.com
+							jef@example.com
 						</a>
 					</div>
 					<div class="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-line text-sm">
-						<span class="text-zinc-400 text-xs uppercase tracking-widest">Instagram</span>
+						<span class="text-zinc-500 text-xs uppercase tracking-widest">Instagram</span>
 						<a
-							href="https://instagram.com/jeff"
+							href="https://instagram.com/jeflee"
 							target="_blank"
 							rel="noopener noreferrer"
 							class="text-ink hover:text-zinc-500 font-mono text-xs tracking-wider transition-colors mt-1 sm:mt-0"
 						>
-							@jeff
+							@jeflee
 						</a>
 					</div>
 					<div class="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-line text-sm">
-						<span class="text-zinc-400 text-xs uppercase tracking-widest">Direct Line</span>
+						<span class="text-zinc-500 text-xs uppercase tracking-widest">Direct Line</span>
 						<a
 							href="https://wa.me/61400123456"
 							target="_blank"
@@ -137,9 +137,9 @@ definePageMeta({
 });
 
 useHead({
-	title: "About — Jeff Lee",
+	title: "About — Jef Lee",
 	meta: [
-		{ name: "description", content: "Jeff Lee is a natural light and storytelling photographer capturing genuine moments across Australia and Kyoto." },
+		{ name: "description", content: "Jef Lee is a natural light and storytelling photographer capturing genuine moments across Australia and Kyoto." },
 	],
 });
 </script>
