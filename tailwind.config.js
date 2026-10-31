@@ -1,5 +1,4 @@
 export default {
-	darkMode: "class",
 	content: [
 		"./components/**/*.{vue,js}",
 		"./layouts/**/*.vue",
@@ -8,20 +7,19 @@ export default {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				serif: ['"Cormorant Garamond"', "Georgia", "serif"],
+				sans: ['"Plus Jakarta Sans"', "system-ui", "-apple-system", "sans-serif"],
+			},
 			colors: {
-				brand: {
-					light: "#a7d9a2",
-					DEFAULT: "#4CAF50",
-					dark: "#357a38",
+				canvas: "#FAF9F6", // Soft Japanese warm off-white / Washi paper tone
+				ink: {
+					DEFAULT: "#18181B", // Soft charcoal black
+					light: "#3F3F46",
+					muted: "#71717A",
+					faint: "#A1A1AA",
 				},
-				background: {
-					light: "#ffffff",
-					dark: "#121212",
-				},
-				text: {
-					light: "#1F2937",
-					dark: "#F3F4F6",
-				},
+				line: "#E4E4E7", // Soft warm border
 			},
 		},
 	},

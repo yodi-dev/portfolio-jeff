@@ -1,8 +1,6 @@
 <template>
-	<div
-		class="flex flex-col min-h-screen bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark"
-	>
-		<!-- Navbar -->
+	<div class="flex flex-col min-h-screen bg-canvas text-ink">
+		<!-- Minimalist Header -->
 		<Navbar />
 
 		<!-- Main Content -->
@@ -10,7 +8,7 @@
 			<slot />
 		</main>
 
-		<!-- Footer -->
+		<!-- Minimalist Footer -->
 		<Footer />
 	</div>
 </template>

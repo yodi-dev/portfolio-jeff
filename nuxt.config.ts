@@ -4,9 +4,17 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	app: {
 		head: {
-			title: "Jeff Lee — Photography Portfolio",
+			title: "Jeff Lee — Photography",
 			meta: [
-				{ name: "description", content: "Personal photography portfolio of Jeff Lee. Telling real stories through natural light and heartfelt moments." },
+				{ name: "description", content: "Personal photography portfolio of Jeff Lee. Natural light, portraits, and genuine human stories." },
+			],
+			link: [
+				{ rel: "preconnect", href: "https://fonts.googleapis.com" },
+				{ rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
+				{
+					rel: "stylesheet",
+					href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap",
+				},
 			],
 		},
 	},

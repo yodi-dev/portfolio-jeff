@@ -1,16 +1,16 @@
 <template>
-	<section class="bg-brand text-white py-16 text-center">
-		<h2 class="text-3xl font-semibold mb-4">
-			Ready to capture your moments?
+	<section class="max-w-4xl mx-auto py-24 px-6 md:px-12 text-center border-t border-line/60 my-12">
+		<h2 class="font-serif text-3xl md:text-4xl text-ink font-light tracking-wide mb-4">
+			Let’s capture something honest together.
 		</h2>
-		<p class="mb-6 text-lg opacity-90">
-			Book a session today and let’s create timeless memories together.
+		<p class="text-xs md:text-sm text-ink-muted tracking-[0.05em] max-w-md mx-auto mb-8 leading-relaxed font-light">
+			Available for portrait, family documentary, and commercial storytelling commissions across Australia and worldwide.
 		</p>
 		<NuxtLink
 			to="/booking"
-			class="bg-white text-brand font-semibold px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"
+			class="inline-block px-7 py-3 border border-ink text-xs uppercase tracking-[0.2em] font-medium text-ink hover:bg-ink hover:text-canvas transition-all duration-300"
 		>
-			Book Now
+			Inquire / Book a Session
 		</NuxtLink>
 	</section>
 </template>

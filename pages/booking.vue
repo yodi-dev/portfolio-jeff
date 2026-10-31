@@ -1,130 +1,106 @@
 <template>
-	<main class="container py-24 px-6 md:px-10 max-w-3xl mx-auto">
+	<main class="py-16 sm:py-24 px-6 md:px-12 max-w-2xl mx-auto">
 		<!-- Title & Subtitle -->
-		<div class="text-center mb-10">
-			<h1 class="text-3xl md:text-4xl font-semibold mb-3 text-brand">
+		<header class="mb-12 text-center sm:text-left">
+			<span class="text-xs uppercase tracking-widest text-zinc-400 font-mono block mb-3">Reservations</span>
+			<h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-tight mb-3">
 				Book a Photoshoot
 			</h1>
-			<p class="text-gray-600 dark:text-gray-400 max-w-lg mx-auto text-base">
-				Let’s create something memorable together. Fill out the details below to schedule your photoshoot session with Jeff.
+			<p class="text-zinc-500 font-light text-sm sm:text-base leading-relaxed">
+				Please share your preferred date and session details. Jeff personally reviews each inquiry to ensure dates and creative vision align.
 			</p>
-		</div>
+		</header>
 
 		<!-- Success Alert -->
 		<div
 			v-if="submitSuccess"
-			class="mb-8 p-6 bg-green-50 dark:bg-green-950/40 border border-green-300 dark:border-green-800 rounded-2xl text-center shadow-sm"
+			class="border border-line p-8 sm:p-12 text-center bg-white/60 space-y-4"
 		>
-			<div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-3 text-green-600 dark:text-green-300">
-				<svg
-					class="w-6 h-6"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M5 13l4 4L19 7"
-					/>
-				</svg>
-			</div>
-			<h2 class="text-xl font-bold text-green-900 dark:text-green-200 mb-1">
-				Booking Request Received!
+			<span class="text-xs uppercase tracking-widest text-zinc-400 font-mono block">Inquiry Submitted</span>
+			<h2 class="font-serif text-2xl sm:text-3xl font-light text-ink">
+				Thank You, {{ submittedName }}
 			</h2>
-			<p class="text-sm text-green-700 dark:text-green-400 max-w-md mx-auto mb-4">
-				Thank you, <strong>{{ submittedName }}</strong>. Jeff has received your request and will contact you via WhatsApp or Email shortly to finalize your schedule.
+			<p class="text-xs sm:text-sm text-zinc-600 font-light leading-relaxed max-w-md mx-auto">
+				Your request has been registered. Jeff will review your schedule and reach out via email or WhatsApp within 24 hours.
 			</p>
-			<button
-				class="px-5 py-2 text-xs font-semibold bg-green-600 hover:bg-green-700 text-white rounded-full transition-colors"
-				@click="resetForm"
-			>
-				Submit Another Request
-			</button>
+			<div class="pt-4">
+				<button
+					class="text-xs uppercase tracking-widest border border-ink text-ink hover:bg-ink hover:text-white px-6 py-2.5 transition-colors duration-200"
+					@click="resetForm"
+				>
+					Submit Another Request
+				</button>
+			</div>
 		</div>
 
-		<!-- Booking Form Card -->
+		<!-- Booking Form -->
 		<form
 			v-else
-			class="bg-white dark:bg-gray-800 p-6 md:p-10 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 space-y-6"
+			class="border border-line p-6 sm:p-10 bg-white/40 space-y-8"
 			@submit.prevent="submitForm"
 		>
 			<!-- Error Banner -->
 			<div
 				v-if="errorMessage"
-				class="p-4 bg-red-50 dark:bg-red-950/40 border border-red-300 dark:border-red-800 rounded-xl text-red-700 dark:text-red-300 text-sm flex items-start gap-3"
+				class="p-4 border border-red-300 bg-red-50/50 text-red-800 text-xs leading-relaxed"
 			>
-				<svg
-					class="w-5 h-5 flex-shrink-0 mt-0.5 text-red-500"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-					/>
-				</svg>
-				<span>{{ errorMessage }}</span>
+				{{ errorMessage }}
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 				<!-- Name -->
-				<div>
-					<label class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
-						Full Name <span class="text-red-500">*</span>
+				<div class="space-y-2">
+					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+						Full Name <span class="text-zinc-400">*</span>
 					</label>
 					<input
 						v-model="form.name"
 						type="text"
 						placeholder="e.g. Amanda Reynolds"
 						required
-						class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark focus:ring-2 focus:ring-brand focus:border-transparent transition-all text-sm"
+						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-300"
 					>
 				</div>
 
 				<!-- Email -->
-				<div>
-					<label class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
-						Email Address <span class="text-red-500">*</span>
+				<div class="space-y-2">
+					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+						Email Address <span class="text-zinc-400">*</span>
 					</label>
 					<input
 						v-model="form.email"
 						type="email"
-						placeholder="e.g. amanda@example.com"
+						placeholder="amanda@example.com"
 						required
-						class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark focus:ring-2 focus:ring-brand focus:border-transparent transition-all text-sm"
+						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-300"
 					>
 				</div>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 				<!-- Phone / WhatsApp -->
-				<div>
-					<label class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
-						WhatsApp / Phone Number <span class="text-red-500">*</span>
+				<div class="space-y-2">
+					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+						Phone / WhatsApp <span class="text-zinc-400">*</span>
 					</label>
 					<input
 						v-model="form.phone"
 						type="tel"
-						placeholder="e.g. +61 400 123 456"
+						placeholder="+61 400 123 456"
 						required
-						class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark focus:ring-2 focus:ring-brand focus:border-transparent transition-all text-sm"
+						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-300"
 					>
 				</div>
 
 				<!-- Package / Shoot Type -->
-				<div>
-					<label class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
-						Shoot Type / Theme <span class="text-red-500">*</span>
+				<div class="space-y-2">
+					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+						Session Theme <span class="text-zinc-400">*</span>
 					</label>
 					<select
 						v-model="form.package"
 						required
-						class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark focus:ring-2 focus:ring-brand focus:border-transparent transition-all text-sm"
+						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors"
 					>
 						<option
 							v-for="pkg in packages"
@@ -137,77 +113,63 @@
 				</div>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 				<!-- Date -->
-				<div>
-					<label class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
-						Preferred Date <span class="text-red-500">*</span>
+				<div class="space-y-2">
+					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+						Preferred Date <span class="text-zinc-400">*</span>
 					</label>
 					<input
 						v-model="form.booking_date"
 						type="date"
 						:min="minDate"
 						required
-						class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark focus:ring-2 focus:ring-brand focus:border-transparent transition-all text-sm"
+						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors"
 					>
 				</div>
 
 				<!-- Location -->
-				<div>
-					<label class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
-						Preferred Location <span class="text-red-500">*</span>
+				<div class="space-y-2">
+					<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+						Location / City <span class="text-zinc-400">*</span>
 					</label>
 					<input
 						v-model="form.location"
 						type="text"
-						placeholder="e.g. Sydney Botanical Gardens / Studio"
+						placeholder="e.g. Kyoto / Sydney / Outdoors"
 						required
-						class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark focus:ring-2 focus:ring-brand focus:border-transparent transition-all text-sm"
+						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-300"
 					>
 				</div>
 			</div>
 
-			<!-- Notes / Message -->
-			<div>
-				<label class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
-					Tell Me More About Your Vision <span class="text-xs text-gray-400 font-normal">(Optional)</span>
+			<!-- Message -->
+			<div class="space-y-2">
+				<label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-600">
+					Creative Vision & Notes <span class="text-zinc-400 font-sans lowercase">(optional)</span>
 				</label>
 				<textarea
 					v-model="form.message"
 					rows="4"
-					placeholder="Share any special moments, outfits, family members attending, or concepts you have in mind..."
-					class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark focus:ring-2 focus:ring-brand focus:border-transparent transition-all text-sm"
+					placeholder="Tell me about what you'd like to capture: atmosphere, participants, timing, or references..."
+					class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-300"
 				/>
 			</div>
 
 			<!-- Submit Button -->
-			<button
-				type="submit"
-				:disabled="isSubmitting"
-				class="w-full py-3.5 bg-brand hover:bg-brand-dark disabled:bg-gray-400 text-white font-semibold rounded-xl shadow-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
-			>
-				<svg
-					v-if="isSubmitting"
-					class="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-					fill="none"
-					viewBox="0 0 24 24"
+			<div class="pt-2">
+				<button
+					type="submit"
+					:disabled="isSubmitting"
+					class="w-full py-3.5 bg-ink text-white hover:bg-zinc-800 disabled:bg-zinc-300 text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed font-medium"
 				>
-					<circle
-						class="opacity-25"
-						cx="12"
-						cy="12"
-						r="10"
-						stroke="currentColor"
-						stroke-width="4"
+					<span
+						v-if="isSubmitting"
+						class="inline-block w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"
 					/>
-					<path
-						class="opacity-75"
-						fill="currentColor"
-						d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-					/>
-				</svg>
-				<span>{{ isSubmitting ? 'Submitting Request...' : 'Schedule Photoshoot' }}</span>
-			</button>
+					<span>{{ isSubmitting ? 'Transmitting Inquiries...' : 'Send Reservation Request' }}</span>
+				</button>
+			</div>
 		</form>
 	</main>
 </template>
@@ -222,9 +184,9 @@ definePageMeta({
 });
 
 useHead({
-	title: "Book a Photoshoot — Jeff Lee Photography",
+	title: "Book a Photoshoot — Jeff Lee",
 	meta: [
-		{ name: "description", content: "Schedule your portrait, family, or event photoshoot session with Jeff Lee." },
+		{ name: "description", content: "Schedule your portrait, family, or editorial session with Jeff Lee." },
 	],
 });
 
@@ -268,7 +230,6 @@ const submittedName = ref("");
 const errorMessage = ref("");
 
 onMounted(() => {
-	// Pre-populate package from query param (e.g. /booking?package=Couple)
 	if (route.query.package && typeof route.query.package === "string") {
 		const queryPkg = route.query.package;
 		const matched = packages.find(p => p.toLowerCase() === queryPkg.toLowerCase());
@@ -290,7 +251,6 @@ async function submitForm() {
 	catch (err: unknown) {
 		console.error("Booking submission failed:", err);
 		const errorObj = err as { data?: { message?: string; errors?: Record<string, string[]> } };
-		// If API fails or backend offline, still provide friendly feedback for demo
 		if (errorObj?.data?.message) {
 			errorMessage.value = errorObj.data.message;
 		}
@@ -299,7 +259,7 @@ async function submitForm() {
 			errorMessage.value = errorObj.data.errors[firstErrKey][0];
 		}
 		else {
-			// Friendly fallback demo confirmation
+			// Demo fallback confirmation
 			submittedName.value = form.name;
 			submitSuccess.value = true;
 		}

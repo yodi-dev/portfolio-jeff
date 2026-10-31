@@ -1,120 +1,131 @@
 <template>
-	<main class="container py-24 px-6 md:px-10 max-w-4xl mx-auto">
-		<!-- Hero Profile -->
-		<section class="text-center mb-16">
-			<div class="relative inline-block mb-6">
-				<img
-					src="/images/jeff-portrait.jpeg"
-					alt="Jeff Lee Portrait"
-					class="w-44 h-44 object-cover rounded-full mx-auto shadow-xl ring-4 ring-brand/20"
-					loading="lazy"
-					decoding="async"
-				>
-				<span class="absolute bottom-2 right-2 bg-brand text-white text-xs px-2.5 py-1 rounded-full font-medium shadow">
-					Based in Australia
-				</span>
+	<main class="py-16 sm:py-24 px-6 md:px-12 max-w-4xl mx-auto">
+		<!-- Profile Header Grid -->
+		<section class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start mb-24">
+			<!-- Portrait Photo -->
+			<div class="md:col-span-5">
+				<div class="aspect-[3/4] bg-zinc-100 overflow-hidden">
+					<img
+						src="/images/jeff-portrait.jpeg"
+						alt="Jeff Lee Portrait"
+						class="w-full h-full object-cover grayscale brightness-95"
+						loading="lazy"
+						decoding="async"
+					>
+				</div>
+				<p class="text-[11px] font-mono tracking-widest text-zinc-400 uppercase mt-3">
+					Jeff Lee — Australia / Kyoto
+				</p>
 			</div>
-			<h1 class="text-3xl md:text-4xl font-bold mb-3 text-brand">
-				About Jeff Lee
-			</h1>
-			<p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-medium">
-				Storyteller, natural light enthusiast, and documenter of genuine human connections.
-			</p>
-		</section>
 
-		<!-- Journey Story -->
-		<section class="mb-16 space-y-6 text-text-light dark:text-text-dark text-base md:text-lg leading-relaxed">
-			<h2 class="text-2xl font-bold text-brand mb-4">
-				My Journey Behind the Lens
-			</h2>
-			<p>
-				My passion for photography didn’t start in a sterile studio. It began over 3 years ago on the sun-drenched coastlines of Australia, carrying a single camera on quiet morning walks. I was captivated by the way changing light transforms ordinary moments into visual poetry.
-			</p>
-			<p>
-				Over the years, that fascination grew into an obsession with documenting people—families welcoming their newborns, couples celebrating unspoken intimacy, athletes in peak momentum, and quiet everyday work documentary. I believe the most poignant photographs happen when people forget the camera exists.
-			</p>
-			<p>
-				My philosophy is grounded in <strong>minimal gear and maximum connection</strong>. Rather than directing rigid poses, I facilitate a relaxed, unhurried space where your natural laughter, spontaneous smiles, and tender glances can unfold organically under soft ambient light.
-			</p>
-		</section>
-
-		<!-- Photography Pillars / Behind the Scenes -->
-		<section class="mb-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-			<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700">
-				<div class="text-brand font-bold text-xl mb-2">
-					01. Natural Light
+			<!-- Bio Intro -->
+			<div class="md:col-span-7 space-y-6">
+				<span class="text-xs uppercase tracking-widest text-zinc-400 font-mono block">Biography & Vision</span>
+				<h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-tight leading-tight">
+					Documenting the quiet cadence of ordinary life.
+				</h1>
+				<div class="text-zinc-600 font-light text-base leading-relaxed space-y-5 pt-2">
+					<p>
+						My journey in photography began not in a commercial studio, but on the quiet morning coastlines of Australia, carrying a single mechanical camera. I became fascinated with how fleeting ambient light turns everyday moments into enduring memories.
+					</p>
+					<p>
+						Over the past several years, that fascination evolved into an intentional practice: photographing families, quiet portraits, artisan workshops, and unscripted daily life. I believe photography reaches its highest emotional truth when the camera ceases to be an intrusion and becomes an unobtrusive observer.
+					</p>
 				</div>
-				<p class="text-sm text-gray-600 dark:text-gray-400">
-					Utilizing morning glow and golden hour sunsets to create warm, flattering, and timeless imagery.
-				</p>
-			</div>
-			<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700">
-				<div class="text-brand font-bold text-xl mb-2">
-					02. Candid Moments
-				</div>
-				<p class="text-sm text-gray-600 dark:text-gray-400">
-					Documenting honest emotions and unscripted memories rather than stiff, artificial posing.
-				</p>
-			</div>
-			<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700">
-				<div class="text-brand font-bold text-xl mb-2">
-					03. High Craftsmanship
-				</div>
-				<p class="text-sm text-gray-600 dark:text-gray-400">
-					Every image is carefully hand-graded and delivered in high resolution for archival prints.
-				</p>
 			</div>
 		</section>
 
-		<!-- Get In Touch / Contact Section (Brief Item 6) -->
-		<section class="bg-gray-50 dark:bg-gray-800/60 p-8 md:p-10 rounded-3xl border border-gray-100 dark:border-gray-700 text-center">
-			<h2 class="text-2xl md:text-3xl text-brand font-bold mb-3">
-				Get in Touch
-			</h2>
-			<p class="max-w-xl mx-auto text-gray-600 dark:text-gray-300 mb-6 text-sm md:text-base">
-				Whether you’re planning a family session, commercial documentary, or intimate couple shoot, I’d love to hear your story.
-			</p>
-
-			<div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
-				<!-- Email -->
-				<a
-					href="mailto:jeff@example.com"
-					class="flex items-center gap-2 text-text-light dark:text-text-dark hover:text-brand transition-colors font-medium text-sm md:text-base"
-				>
-					<span class="w-8 h-8 rounded-full bg-brand/10 text-brand flex items-center justify-center">✉</span>
-					jeff@example.com
-				</a>
-
-				<!-- Instagram -->
-				<a
-					href="https://instagram.com/jeff"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center gap-2 text-text-light dark:text-text-dark hover:text-brand transition-colors font-medium text-sm md:text-base"
-				>
-					<span class="w-8 h-8 rounded-full bg-brand/10 text-brand flex items-center justify-center">📷</span>
-					Instagram (@jeff)
-				</a>
-
-				<!-- Facebook -->
-				<a
-					href="https://facebook.com/jeff"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center gap-2 text-text-light dark:text-text-dark hover:text-brand transition-colors font-medium text-sm md:text-base"
-				>
-					<span class="w-8 h-8 rounded-full bg-brand/10 text-brand flex items-center justify-center">👥</span>
-					Facebook (/jeff)
-				</a>
+		<!-- Philosophy / Methodology -->
+		<section class="border-t border-line pt-16 mb-24">
+			<div class="mb-12">
+				<span class="text-xs uppercase tracking-widest text-zinc-400 font-mono block mb-2">Approach</span>
+				<h2 class="font-serif text-2xl sm:text-3xl font-light text-ink">
+					Working Philosophy
+				</h2>
 			</div>
 
-			<div>
-				<NuxtLink
-					to="/booking"
-					class="inline-block px-7 py-3 bg-brand hover:bg-brand-dark text-white rounded-full font-semibold shadow transition-colors"
-				>
-					Schedule a Photoshoot with Jeff →
-				</NuxtLink>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+				<div class="space-y-3">
+					<span class="font-mono text-xs text-zinc-400">01</span>
+					<h3 class="font-serif text-lg text-ink">Natural Ambient Light</h3>
+					<p class="text-xs sm:text-sm text-zinc-500 font-light leading-relaxed">
+						Working strictly with natural morning glow and twilight to preserve the authentic mood and emotional warmth of the atmosphere.
+					</p>
+				</div>
+
+				<div class="space-y-3">
+					<span class="font-mono text-xs text-zinc-400">02</span>
+					<h3 class="font-serif text-lg text-ink">The Unrehearsed Moment</h3>
+					<p class="text-xs sm:text-sm text-zinc-500 font-light leading-relaxed">
+						Avoiding rigid posing in favor of patient observation. Allowing genuine connection, laughter, and intimacy to unfold naturally.
+					</p>
+				</div>
+
+				<div class="space-y-3">
+					<span class="font-mono text-xs text-zinc-400">03</span>
+					<h3 class="font-serif text-lg text-ink">Archival Craftsmanship</h3>
+					<p class="text-xs sm:text-sm text-zinc-500 font-light leading-relaxed">
+						Each photograph is individually graded with timeless, film-inspired tone curves suited for fine art print collections.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Inquiries & Contact Info -->
+		<section class="border-t border-line pt-16">
+			<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+				<div class="md:col-span-5">
+					<span class="text-xs uppercase tracking-widest text-zinc-400 font-mono block mb-2">Commissions</span>
+					<h2 class="font-serif text-2xl font-light text-ink">
+						Inquiries & Sessions
+					</h2>
+					<p class="text-xs sm:text-sm text-zinc-500 font-light leading-relaxed mt-3">
+						Available worldwide for portrait sessions, family documentary, and editorial commissions.
+					</p>
+				</div>
+
+				<div class="md:col-span-7 space-y-6 pt-2">
+					<div class="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-line text-sm">
+						<span class="text-zinc-400 text-xs uppercase tracking-widest">Email</span>
+						<a
+							href="mailto:jeff@example.com"
+							class="text-ink hover:text-zinc-500 font-mono text-xs tracking-wider transition-colors mt-1 sm:mt-0"
+						>
+							jeff@example.com
+						</a>
+					</div>
+					<div class="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-line text-sm">
+						<span class="text-zinc-400 text-xs uppercase tracking-widest">Instagram</span>
+						<a
+							href="https://instagram.com/jeff"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-ink hover:text-zinc-500 font-mono text-xs tracking-wider transition-colors mt-1 sm:mt-0"
+						>
+							@jeff
+						</a>
+					</div>
+					<div class="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-line text-sm">
+						<span class="text-zinc-400 text-xs uppercase tracking-widest">Direct Line</span>
+						<a
+							href="https://wa.me/61400123456"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-ink hover:text-zinc-500 font-mono text-xs tracking-wider transition-colors mt-1 sm:mt-0"
+						>
+							+61 400 123 456
+						</a>
+					</div>
+
+					<div class="pt-4">
+						<NuxtLink
+							to="/booking"
+							class="inline-block text-xs uppercase tracking-widest border border-ink text-ink hover:bg-ink hover:text-white px-7 py-3 transition-colors duration-200"
+						>
+							Book a Photoshoot →
+						</NuxtLink>
+					</div>
+				</div>
 			</div>
 		</section>
 	</main>
@@ -126,9 +137,9 @@ definePageMeta({
 });
 
 useHead({
-	title: "About Jeff Lee — Story & Journey",
+	title: "About — Jeff Lee",
 	meta: [
-		{ name: "description", content: "Learn about Jeff Lee, a storyteller and natural light portrait photographer based in Australia." },
+		{ name: "description", content: "Jeff Lee is a natural light and storytelling photographer capturing genuine moments across Australia and Kyoto." },
 	],
 });
 </script>

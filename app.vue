@@ -1,8 +1,8 @@
 <template>
-	<div>
+	<div class="bg-canvas min-h-screen text-ink antialiased selection:bg-ink selection:text-canvas">
 		<NuxtLoadingIndicator
-			color="#8B5E3C"
-			:height="3"
+			color="#18181B"
+			:height="2"
 			:duration="2000"
 			:throttle="0"
 		/>

@@ -1,170 +1,134 @@
 <template>
-	<div>
-		<!-- Hero Section -->
-		<section class="relative h-screen flex flex-col justify-center items-center text-center px-6 mb-24">
-			<!-- Background Image -->
-			<div
-				class="absolute inset-0 bg-cover bg-center w-full"
-				style="background-image: url('/images/preview3.jpeg')"
-			/>
-
-			<!-- Overlay -->
-			<div class="absolute inset-0 bg-black/45" />
-
-			<!-- Content -->
-			<div class="relative z-10 max-w-3xl text-white">
-				<!-- Nama Fotografer -->
-				<p class="text-xl text-brand font-semibold mb-2 mt-24 tracking-wide uppercase">
-					Jeff Lee
+	<div class="space-y-24 md:space-y-36">
+		<!-- Hero Intro & Feature Photograph -->
+		<section class="max-w-6xl mx-auto px-6 md:px-12 pt-12 md:pt-20">
+			<!-- Quiet Editorial Statement -->
+			<div class="max-w-2xl space-y-4 mb-12 md:mb-16">
+				<p class="text-[10px] md:text-xs uppercase tracking-[0.28em] text-ink-muted">
+					Jeff Lee — Australia
 				</p>
-
-				<!-- Headline -->
-				<h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">
-					Telling real stories through natural light <br class="hidden md:block">
-					and heartfelt moments.
+				<h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-ink font-light leading-[1.18] tracking-tight">
+					Telling honest stories through natural light and quiet moments.
 				</h1>
-
-				<!-- Subheadline -->
-				<p class="text-base md:text-lg opacity-90 leading-relaxed max-w-2xl mx-auto mb-8">
-					A portrait and documentary photographer based in Australia, with over 3 years of experience.
-					Capturing timeless family moments and authentic emotions through natural light and storytelling visuals.
+				<p class="text-xs md:text-sm text-ink-muted tracking-[0.04em] font-light leading-relaxed pt-2">
+					A portrait and documentary photographer dedicated to capturing genuine human warmth, family milestones, and timeless atmosphere.
 				</p>
+			</div>
 
-				<div class="flex flex-wrap items-center justify-center gap-4">
-					<NuxtLink
-						to="/booking"
-						class="px-6 py-3 bg-brand hover:bg-brand-dark text-white rounded-full font-semibold shadow-lg transition-colors"
-					>
-						Book a Photoshoot
-					</NuxtLink>
-					<NuxtLink
-						to="/works"
-						class="px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full font-semibold backdrop-blur-sm transition-colors border border-white/30"
-					>
-						View Portfolio
-					</NuxtLink>
-				</div>
+			<!-- Hero Feature Image (Framed Print Aesthetic) -->
+			<div class="relative overflow-hidden bg-line/40 aspect-[16/9] md:aspect-[21/9]">
+				<img
+					src="/images/preview3.jpeg"
+					alt="Coastal Moment by Jeff Lee"
+					class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.01]"
+					loading="eager"
+					decoding="async"
+				>
+			</div>
+			<div class="flex justify-between items-center text-[11px] text-ink-faint tracking-widest uppercase mt-3">
+				<span>01 / Recent Atmosphere</span>
+				<span>Natural Light Study</span>
 			</div>
 		</section>
 
-		<!-- Selected Works -->
-		<section class="container py-16 text-center px-6 md:px-10">
-			<h2 class="text-3xl text-brand dark:text-brand-dark font-semibold mb-3">
-				Selected Works
-			</h2>
-			<p class="text-gray-600 dark:text-gray-400 max-w-xl mx-auto mb-10">
-				A preview of recent sessions captured across Australia.
-			</p>
-
-			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+		<!-- Selected Works (Japanese Exhibition Grid) -->
+		<section class="max-w-6xl mx-auto px-6 md:px-12">
+			<!-- Section Header -->
+			<div class="flex justify-between items-end border-b border-line/60 pb-4 mb-12">
+				<div>
+					<span class="text-[10px] uppercase tracking-[0.25em] text-ink-muted block mb-1">Portfolio</span>
+					<h2 class="font-serif text-2xl md:text-3xl text-ink font-light">
+						Selected Works
+					</h2>
+				</div>
 				<NuxtLink
-					v-for="work in selectedWorks"
-					:key="work.id"
 					to="/works"
-					class="group relative overflow-hidden rounded-xl aspect-[4/3] bg-gray-100 dark:bg-gray-800 shadow hover:shadow-lg transition-all"
+					class="text-xs uppercase tracking-[0.18em] text-ink-muted hover:text-ink transition-colors pb-0.5 border-b border-transparent hover:border-ink"
 				>
-					<img
-						:src="resolveImageUrl(work.thumbnail)"
-						:alt="work.title"
-						class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-						loading="lazy"
-						decoding="async"
-						@error="onImageError"
-					>
-					<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4 text-left">
-						<span class="text-xs text-brand font-semibold">{{ work.category || 'Portrait' }}</span>
-						<h3 class="text-white text-base font-bold">{{ work.title }}</h3>
-					</div>
+					View All Works →
 				</NuxtLink>
 			</div>
 
-			<NuxtLink
-				to="/works"
-				class="inline-block px-6 py-2.5 border border-brand text-brand rounded-full hover:bg-brand hover:text-white transition-colors font-medium text-sm"
-			>
-				See Full Gallery →
-			</NuxtLink>
+			<!-- Photography Exhibition Grid -->
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
+				<NuxtLink
+					v-for="(work, index) in selectedWorks"
+					:key="work.id"
+					to="/works"
+					class="group block space-y-3"
+				>
+					<!-- Image Frame -->
+					<div class="overflow-hidden bg-line/30 aspect-[4/3] relative">
+						<img
+							:src="resolveImageUrl(work.thumbnail)"
+							:alt="work.title"
+							class="w-full h-full object-cover transition-all duration-700 group-hover:opacity-90 group-hover:scale-[1.02]"
+							loading="lazy"
+							decoding="async"
+							@error="onImageError"
+						>
+					</div>
+
+					<!-- Minimalist Typography Caption (Clean Japanese Print Style) -->
+					<div class="space-y-1">
+						<div class="flex justify-between items-baseline text-[10px] uppercase tracking-[0.2em] text-ink-faint">
+							<span>{{ work.category || 'Series' }}</span>
+							<span>{{ String(index + 1).padStart(2, '0') }}</span>
+						</div>
+						<h3 class="font-serif text-lg text-ink font-normal group-hover:opacity-60 transition-opacity">
+							{{ work.title }}
+						</h3>
+					</div>
+				</NuxtLink>
+			</div>
 		</section>
 
-		<!-- Writing / Stories Teaser -->
-		<section class="container py-16 text-center px-6 md:px-10 bg-gray-50 dark:bg-gray-800/40 rounded-3xl my-10 max-w-5xl mx-auto">
-			<h2 class="text-3xl text-brand dark:text-brand-dark font-semibold mb-6">
-				Thoughts & Stories
-			</h2>
-			<blockquote class="italic text-lg md:text-xl text-text-light dark:text-text-dark max-w-2xl mx-auto mb-6 leading-relaxed">
-				"Photography is more than capturing light—it's preserving life itself, pausing the fleeting smiles and quiet touches before they fade into memory."
+		<!-- Photographer Philosophy / Quote -->
+		<section class="max-w-3xl mx-auto px-6 md:px-12 text-center py-12">
+			<span class="block w-8 h-[1px] bg-ink-muted/40 mx-auto mb-10" />
+			<blockquote class="font-serif italic text-xl md:text-2xl lg:text-3xl text-ink font-light leading-relaxed">
+				"Photography is more than capturing light — it is preserving life itself, pausing the fleeting smiles and quiet touches before they fade into memory."
 			</blockquote>
-			<p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+			<p class="text-xs uppercase tracking-[0.25em] text-ink-muted mt-6">
 				— Jeff Lee
 			</p>
-			<NuxtLink
-				to="/writing"
-				class="inline-block px-6 py-2.5 border border-brand text-brand rounded-full hover:bg-brand hover:text-white transition-colors font-medium text-sm"
-			>
-				Read Reflections →
-			</NuxtLink>
+			<span class="block w-8 h-[1px] bg-ink-muted/40 mx-auto mt-10" />
 		</section>
 
-		<!-- About Jeff Preview -->
-		<section class="container py-16 px-6 md:px-10">
-			<div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
-				<img
-					src="/images/jeff-portrait.jpeg"
-					alt="Jeff Lee Portrait"
-					class="w-56 h-56 object-cover rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800"
-					loading="lazy"
-					decoding="async"
-				>
-				<div class="text-center md:text-left space-y-4 flex-1">
-					<span class="text-xs uppercase tracking-wider text-brand font-semibold">Behind the Lens</span>
-					<h2 class="text-3xl font-bold text-text-light dark:text-text-dark">
-						About Jeff
+		<!-- About Teaser (Editorial Layout) -->
+		<section class="max-w-6xl mx-auto px-6 md:px-12">
+			<div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
+				<div class="md:col-span-5">
+					<div class="overflow-hidden bg-line/40 aspect-[4/5]">
+						<img
+							src="/images/jeff-portrait.jpeg"
+							alt="Portrait of Jeff Lee"
+							class="w-full h-full object-cover grayscale contrast-90 transition-transform duration-700 hover:scale-[1.02]"
+							loading="lazy"
+							decoding="async"
+						>
+					</div>
+				</div>
+				<div class="md:col-span-7 space-y-6">
+					<span class="text-[10px] uppercase tracking-[0.25em] text-ink-muted block">About The Photographer</span>
+					<h2 class="font-serif text-3xl md:text-4xl text-ink font-light">
+						A quiet observer of life’s everyday poetry.
 					</h2>
-					<p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-						Jeff is a photographer who finds meaning in genuine human moments—the gentle embrace of new parents, playful laughter between siblings, and quiet glances between loved ones.
+					<p class="text-xs md:text-sm text-ink-muted font-light leading-relaxed tracking-[0.02em]">
+						Based along the Australian coast, Jeff finds meaning in genuine human moments — the gentle embrace of new parents, unposed laughter, and the serene golden light falling over everyday lives.
 					</p>
-					<p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-						With over 3 years of experience in portraiture, family documentation, and intimate events across Australia, Jeff brings both relaxed professionalism and genuine heart to every shoot.
+					<p class="text-xs md:text-sm text-ink-muted font-light leading-relaxed tracking-[0.02em]">
+						Over the past three years, he has developed an aesthetic rooted in stillness, warm natural tones, and an unhurried, comfortable presence during every session.
 					</p>
 					<div class="pt-2">
 						<NuxtLink
 							to="/about"
-							class="text-brand font-semibold hover:underline inline-flex items-center gap-1"
+							class="text-xs uppercase tracking-[0.2em] font-medium text-ink hover:opacity-60 transition-opacity border-b border-ink pb-1"
 						>
-							Read Jeff's Full Journey →
+							Read Full Background →
 						</NuxtLink>
 					</div>
 				</div>
-			</div>
-		</section>
-
-		<!-- Testimonials -->
-		<section class="container py-16 text-center px-6 md:px-10">
-			<h2 class="text-3xl text-brand dark:text-brand-dark font-semibold mb-3">
-				What Clients Say
-			</h2>
-			<p class="text-gray-500 dark:text-gray-400 mb-10 text-sm">
-				Heartfelt feedback from recent photo sessions.
-			</p>
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-				<blockquote class="bg-gray-50 text-text-light dark:text-text-dark dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 italic text-left shadow-sm">
-					"Jeff made our family photo session feel so natural and effortless. The photos brought tears to my eyes when we opened the gallery!"
-					<footer class="mt-4 text-xs font-semibold not-italic text-gray-500 dark:text-gray-400">
-						— Amanda R. (Family Session)
-					</footer>
-				</blockquote>
-				<blockquote class="bg-gray-50 text-text-light dark:text-text-dark dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 italic text-left shadow-sm">
-					"His ability to capture fleeting, genuine emotions without forced poses is unmatched. Highly recommended for couples!"
-					<footer class="mt-4 text-xs font-semibold not-italic text-gray-500 dark:text-gray-400">
-						— David & Lina (Couple Story)
-					</footer>
-				</blockquote>
-				<blockquote class="bg-gray-50 text-text-light dark:text-text-dark dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 italic text-left shadow-sm">
-					"Jeff's calm demeanor and keen eye for natural light made our outdoor portrait session an absolute joy. We love every single shot."
-					<footer class="mt-4 text-xs font-semibold not-italic text-gray-500 dark:text-gray-400">
-						— Clara & Sam (Portrait Shoot)
-					</footer>
-				</blockquote>
 			</div>
 		</section>
 
@@ -183,7 +147,7 @@ definePageMeta({
 });
 
 useHead({
-	title: "Jeff Lee — Portrait & Storytelling Photography",
+	title: "Jeff Lee — Portrait & Documentary Photography",
 	meta: [
 		{ name: "description", content: "Personal photography portfolio of Jeff Lee. Telling real stories through natural light and heartfelt moments." },
 	],
@@ -224,7 +188,7 @@ const fallbackPreviewWorks: PortfolioItem[] = [
 const { data } = useLazyAsyncData("home-portfolios", async () => {
 	try {
 		const res = await getPortfolios();
-		return res?.data?.slice(0, 3) || [];
+		return res?.data?.slice(0, 6) || [];
 	}
 	catch {
 		return [];

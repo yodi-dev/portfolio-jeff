@@ -1,92 +1,91 @@
 <template>
-	<main class="container py-24 px-6 md:px-10 max-w-3xl mx-auto">
-		<!-- Title -->
-		<div class="text-center mb-12">
-			<h1 class="text-3xl md:text-4xl font-bold mb-3 text-brand">
-				Get in Touch
+	<main class="py-16 sm:py-24 px-6 md:px-12 max-w-3xl mx-auto">
+		<!-- Header -->
+		<header class="mb-14 sm:mb-20">
+			<span class="text-xs uppercase tracking-widest text-zinc-400 font-mono block mb-3">Communication</span>
+			<h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-tight mb-4">
+				Contact & Inquiries
 			</h1>
-			<p class="text-gray-600 dark:text-gray-400 max-w-lg mx-auto text-base">
-				Have a question, collaboration proposal, or interested in a photoshoot? I'd love to hear from you.
+			<p class="text-zinc-500 font-light text-sm sm:text-base leading-relaxed max-w-lg">
+				For editorial assignments, gallery print requests, or booking a portrait session, please feel free to reach out directly.
 			</p>
-		</div>
+		</header>
 
-		<!-- Contact Channels Grid -->
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-			<!-- Email Card -->
-			<a
-				href="mailto:jeff@example.com"
-				class="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-all group flex items-start gap-4"
-			>
-				<div class="w-12 h-12 rounded-xl bg-brand/10 text-brand flex items-center justify-center flex-shrink-0 text-xl group-hover:scale-110 transition-transform">
-					✉
-				</div>
+		<!-- Directory Listing -->
+		<div class="border-t border-line divide-y divide-line mb-16">
+			<!-- Email -->
+			<div class="py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
 				<div>
-					<h2 class="text-base font-semibold text-text-light dark:text-text-dark group-hover:text-brand transition-colors">Email Directly</h2>
-					<p class="text-xs text-gray-400 mb-2">Replies typically within 24 hours</p>
-					<span class="text-sm text-brand font-medium">jeff@example.com</span>
+					<span class="text-xs uppercase tracking-widest text-zinc-400 block font-mono">Electronic Mail</span>
+					<span class="text-xs text-zinc-400">General correspondence & commissions</span>
 				</div>
-			</a>
+				<a
+					href="mailto:jeff@example.com"
+					class="font-mono text-xs sm:text-sm text-ink hover:text-zinc-500 transition-colors"
+				>
+					jeff@example.com
+				</a>
+			</div>
 
-			<!-- WhatsApp / Phone Card -->
-			<a
-				href="https://wa.me/61400123456"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-all group flex items-start gap-4"
-			>
-				<div class="w-12 h-12 rounded-xl bg-brand/10 text-brand flex items-center justify-center flex-shrink-0 text-xl group-hover:scale-110 transition-transform">
-					💬
-				</div>
+			<!-- Direct Line / WhatsApp -->
+			<div class="py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
 				<div>
-					<h2 class="text-base font-semibold text-text-light dark:text-text-dark group-hover:text-brand transition-colors">WhatsApp Direct</h2>
-					<p class="text-xs text-gray-400 mb-2">Fastest for booking inquiries</p>
-					<span class="text-sm text-brand font-medium">+61 400 123 456</span>
+					<span class="text-xs uppercase tracking-widest text-zinc-400 block font-mono">Direct Line / WhatsApp</span>
+					<span class="text-xs text-zinc-400">Fastest response for scheduling</span>
 				</div>
-			</a>
-		</div>
+				<a
+					href="https://wa.me/61400123456"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="font-mono text-xs sm:text-sm text-ink hover:text-zinc-500 transition-colors"
+				>
+					+61 400 123 456
+				</a>
+			</div>
 
-		<!-- Social Media Section -->
-		<div class="bg-gray-50 dark:bg-gray-800/60 p-8 rounded-3xl border border-gray-100 dark:border-gray-700 text-center mb-12">
-			<h2 class="text-xl font-bold text-text-light dark:text-text-dark mb-2">
-				Follow My Socials
-			</h2>
-			<p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
-				See behind-the-scenes stories, daily camera rolls, and upcoming session availability.
-			</p>
-
-			<div class="flex flex-wrap justify-center gap-4">
+			<!-- Instagram -->
+			<div class="py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+				<div>
+					<span class="text-xs uppercase tracking-widest text-zinc-400 block font-mono">Visual Journal</span>
+					<span class="text-xs text-zinc-400">Daily rolls & behind-the-scenes</span>
+				</div>
 				<a
 					href="https://instagram.com/jeff"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="px-5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-semibold text-text-light dark:text-text-dark hover:border-brand hover:text-brand shadow-sm transition-all inline-flex items-center gap-2"
+					class="font-mono text-xs sm:text-sm text-ink hover:text-zinc-500 transition-colors"
 				>
-					<span>📷</span> Instagram (@jeff)
+					instagram.com/jeff
 				</a>
-				<a
-					href="https://facebook.com/jeff"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="px-5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-semibold text-text-light dark:text-text-dark hover:border-brand hover:text-brand shadow-sm transition-all inline-flex items-center gap-2"
-				>
-					<span>👥</span> Facebook (/jeff)
-				</a>
+			</div>
+
+			<!-- Location -->
+			<div class="py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+				<div>
+					<span class="text-xs uppercase tracking-widest text-zinc-400 block font-mono">Location Base</span>
+					<span class="text-xs text-zinc-400">Available for travel commissions</span>
+				</div>
+				<span class="font-mono text-xs sm:text-sm text-zinc-600">
+					Australia / Kyoto, Japan
+				</span>
 			</div>
 		</div>
 
-		<!-- Fast Booking CTA -->
-		<div class="text-center p-8 bg-brand text-white rounded-3xl shadow-lg">
-			<h2 class="text-2xl font-bold mb-2">
-				Ready to Schedule a Photoshoot?
-			</h2>
-			<p class="text-sm opacity-90 mb-6 max-w-md mx-auto">
-				Skip the back-and-forth and fill in your preferred session details directly on the booking page.
-			</p>
+		<!-- Booking Invitation Card (Minimalist Paper) -->
+		<div class="border border-line p-8 sm:p-10 bg-white/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+			<div class="space-y-1">
+				<h2 class="font-serif text-xl sm:text-2xl text-ink font-light">
+					Reserve a Session
+				</h2>
+				<p class="text-xs text-zinc-500 font-light leading-relaxed max-w-sm">
+					Skip direct email exchange and submit your shoot details through our structured reservation sheet.
+				</p>
+			</div>
 			<NuxtLink
 				to="/booking"
-				class="px-7 py-3 bg-white text-brand hover:bg-gray-100 rounded-full font-semibold transition-colors shadow inline-block"
+				class="text-xs uppercase tracking-widest bg-ink text-white hover:bg-zinc-800 px-6 py-3 transition-colors duration-200 shrink-0"
 			>
-				Open Booking Form →
+				Open Booking Sheet →
 			</NuxtLink>
 		</div>
 	</main>
@@ -98,9 +97,9 @@ definePageMeta({
 });
 
 useHead({
-	title: "Contact — Jeff Lee Photography",
+	title: "Contact — Jeff Lee",
 	meta: [
-		{ name: "description", content: "Get in touch with Jeff Lee for photography inquiries, collaborations, and bookings." },
+		{ name: "description", content: "Get in touch with Jeff Lee for photography commissions, inquiries, and bookings." },
 	],
 });
 </script>
