@@ -22,9 +22,11 @@ export default defineNuxtConfig({
 				{ name: "twitter:image", content: "/images/preview3.jpeg" },
 			],
 			link: [
-				{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-				{ rel: "alternate icon", href: "/favicon.ico" },
-				{ rel: "apple-touch-icon", href: "/favicon.svg" },
+				{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg?v=2" },
+				{ rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png?v=2" },
+				{ rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png?v=2" },
+				{ rel: "shortcut icon", href: "/favicon.ico?v=2" },
+				{ rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png?v=2" },
 				{ rel: "preconnect", href: "https://fonts.googleapis.com" },
 				{ rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
 				{
