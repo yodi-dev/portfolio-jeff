@@ -136,10 +136,15 @@ definePageMeta({
 	layout: "default",
 });
 
-useHead({
+useSeoMeta({
 	title: "About — Jef Lee",
-	meta: [
-		{ name: "description", content: "Jef Lee is a natural light and storytelling photographer capturing genuine moments across Australia and Kyoto." },
-	],
+	ogTitle: "About — Jef Lee",
+	description: "Jef Lee is a natural light and storytelling photographer capturing genuine moments across Australia and Kyoto.",
+	ogDescription: "Jef Lee is a natural light and storytelling photographer capturing genuine moments across Australia and Kyoto.",
+	ogImage: "/images/jeff-portrait.jpeg",
+	twitterCard: "summary_large_image",
+	twitterTitle: "About — Jef Lee",
+	twitterDescription: "Jef Lee is a natural light and storytelling photographer capturing genuine moments across Australia and Kyoto.",
+	twitterImage: "/images/jeff-portrait.jpeg",
 });
 </script>

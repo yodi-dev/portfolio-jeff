@@ -211,11 +211,16 @@ definePageMeta({
 	layout: "default",
 });
 
-useHead({
+useSeoMeta({
 	title: "Book a Photoshoot — Jef Lee",
-	meta: [
-		{ name: "description", content: "Schedule your portrait, family, or editorial session with Jef Lee." },
-	],
+	ogTitle: "Book a Photoshoot — Jef Lee",
+	description: "Schedule your portrait, family, or editorial session with Jef Lee. Explore 11 photography themes.",
+	ogDescription: "Schedule your portrait, family, or editorial session with Jef Lee. Explore 11 photography themes.",
+	ogImage: "/images/preview1.jpeg",
+	twitterCard: "summary_large_image",
+	twitterTitle: "Book a Photoshoot — Jef Lee",
+	twitterDescription: "Schedule your portrait, family, or editorial session with Jef Lee. Explore 11 photography themes.",
+	twitterImage: "/images/preview1.jpeg",
 });
 
 const route = useRoute();

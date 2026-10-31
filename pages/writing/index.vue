@@ -94,11 +94,16 @@ definePageMeta({
 	layout: "default",
 });
 
-useHead({
+useSeoMeta({
 	title: "Writing & Journal — Jef Lee Photography",
-	meta: [
-		{ name: "description", content: "Reflections, essays, and notes on natural light and documentary photography by Jef Lee." },
-	],
+	ogTitle: "Writing & Journal — Jef Lee Photography",
+	description: "Reflections, essays, and field notes on natural light, memory, and authentic documentary photography by Jef Lee.",
+	ogDescription: "Reflections, essays, and field notes on natural light, memory, and authentic documentary photography by Jef Lee.",
+	ogImage: "/images/preview2.jpeg",
+	twitterCard: "summary_large_image",
+	twitterTitle: "Writing & Journal — Jef Lee Photography",
+	twitterDescription: "Reflections, essays, and field notes on natural light, memory, and authentic documentary photography by Jef Lee.",
+	twitterImage: "/images/preview2.jpeg",
 });
 
 const { getArticles, resolveImageUrl, onImageError } = useApi();

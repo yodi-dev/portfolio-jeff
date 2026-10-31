@@ -258,7 +258,16 @@ const paragraphs = computed(() => {
 		.filter(p => p.length > 0);
 });
 
-useHead({
-	title: computed(() => post.value ? `${post.value.title} — Jef Lee` : "Story — Jef Lee"),
+useSeoMeta({
+	title: () => (post.value ? `${post.value.title} — Jef Lee` : "Story — Jef Lee"),
+	ogTitle: () => (post.value ? `${post.value.title} — Jef Lee` : "Story — Jef Lee"),
+	description: () => (post.value?.excerpt || post.value?.title || "Reflections on natural light and photography by Jef Lee."),
+	ogDescription: () => (post.value?.excerpt || post.value?.title || "Reflections on natural light and photography by Jef Lee."),
+	ogImage: () => (post.value?.cover_image ? resolveImageUrl(post.value.cover_image) : "/images/preview2.jpeg"),
+	ogType: "article",
+	twitterCard: "summary_large_image",
+	twitterTitle: () => (post.value ? `${post.value.title} — Jef Lee` : "Story — Jef Lee"),
+	twitterDescription: () => (post.value?.excerpt || post.value?.title || "Reflections on natural light and photography by Jef Lee."),
+	twitterImage: () => (post.value?.cover_image ? resolveImageUrl(post.value.cover_image) : "/images/preview2.jpeg"),
 });
 </script>

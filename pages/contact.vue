@@ -96,10 +96,15 @@ definePageMeta({
 	layout: "default",
 });
 
-useHead({
+useSeoMeta({
 	title: "Contact — Jef Lee",
-	meta: [
-		{ name: "description", content: "Get in touch with Jef Lee for photography commissions, inquiries, and bookings." },
-	],
+	ogTitle: "Contact — Jef Lee",
+	description: "Get in touch with Jef Lee for photography commissions, editorial assignments, and session reservations.",
+	ogDescription: "Get in touch with Jef Lee for photography commissions, editorial assignments, and session reservations.",
+	ogImage: "/images/preview3.jpeg",
+	twitterCard: "summary_large_image",
+	twitterTitle: "Contact — Jef Lee",
+	twitterDescription: "Get in touch with Jef Lee for photography commissions, editorial assignments, and session reservations.",
+	twitterImage: "/images/preview3.jpeg",
 });
 </script>

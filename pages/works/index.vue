@@ -221,11 +221,16 @@ definePageMeta({
 	layout: "default",
 });
 
-useHead({
+useSeoMeta({
 	title: "Works & Series — Jef Lee Photography",
-	meta: [
-		{ name: "description", content: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series." },
-	],
+	ogTitle: "Works & Series — Jef Lee Photography",
+	description: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia and Kyoto.",
+	ogDescription: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia and Kyoto.",
+	ogImage: "/images/preview1.jpeg",
+	twitterCard: "summary_large_image",
+	twitterTitle: "Works & Series — Jef Lee Photography",
+	twitterDescription: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia and Kyoto.",
+	twitterImage: "/images/preview1.jpeg",
 });
 
 const { getPortfolios, resolveImageUrl, onImageError } = useApi();

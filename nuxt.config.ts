@@ -4,11 +4,27 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	app: {
 		head: {
+			htmlAttrs: {
+				lang: "en",
+			},
 			title: "Jef Lee — Photography",
 			meta: [
 				{ name: "description", content: "Personal photography portfolio of Jef Lee. Natural light, portraits, and genuine human stories." },
+				{ name: "theme-color", content: "#FAF9F6" },
+				{ property: "og:site_name", content: "Jef Lee Photography" },
+				{ property: "og:type", content: "website" },
+				{ property: "og:title", content: "Jef Lee — Photography" },
+				{ property: "og:description", content: "Personal photography portfolio of Jef Lee. Natural light, portraits, and genuine human stories." },
+				{ property: "og:image", content: "/images/preview3.jpeg" },
+				{ name: "twitter:card", content: "summary_large_image" },
+				{ name: "twitter:title", content: "Jef Lee — Photography" },
+				{ name: "twitter:description", content: "Personal photography portfolio of Jef Lee. Natural light, portraits, and genuine human stories." },
+				{ name: "twitter:image", content: "/images/preview3.jpeg" },
 			],
 			link: [
+				{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+				{ rel: "alternate icon", href: "/favicon.ico" },
+				{ rel: "apple-touch-icon", href: "/favicon.svg" },
 				{ rel: "preconnect", href: "https://fonts.googleapis.com" },
 				{ rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
 				{

@@ -146,11 +146,16 @@ definePageMeta({
 	layout: "default",
 });
 
-useHead({
+useSeoMeta({
 	title: "Jef Lee — Portrait & Documentary Photography",
-	meta: [
-		{ name: "description", content: "Personal photography portfolio of Jef Lee. Telling real stories through natural light and heartfelt moments." },
-	],
+	ogTitle: "Jef Lee — Portrait & Documentary Photography",
+	description: "Personal photography portfolio of Jef Lee. Telling real stories through natural light, family milestones, and heartfelt moments.",
+	ogDescription: "Personal photography portfolio of Jef Lee. Telling real stories through natural light, family milestones, and heartfelt moments.",
+	ogImage: "/images/preview3.jpeg",
+	twitterCard: "summary_large_image",
+	twitterTitle: "Jef Lee — Portrait & Documentary Photography",
+	twitterDescription: "Personal photography portfolio of Jef Lee. Telling real stories through natural light, family milestones, and heartfelt moments.",
+	twitterImage: "/images/preview3.jpeg",
 });
 
 const { getPortfolios, resolveImageUrl, onImageError } = useApi();
