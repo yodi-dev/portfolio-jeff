@@ -60,28 +60,28 @@ export const useApi = () => {
 		const query = category && category !== "All" ? { category } : {};
 		return await $fetch<{ data: PortfolioItem[] }>(`${apiBase}/portfolios`, {
 			query,
-			timeout: 2500,
+			timeout: 5000,
 			headers: { Accept: "application/json" },
 		});
 	};
 
 	const getPortfolio = async (slug: string) => {
 		return await $fetch<{ data: PortfolioItem }>(`${apiBase}/portfolios/${slug}`, {
-			timeout: 2500,
+			timeout: 5000,
 			headers: { Accept: "application/json" },
 		});
 	};
 
 	const getArticles = async () => {
 		return await $fetch<{ data: ArticleItem[] }>(`${apiBase}/articles`, {
-			timeout: 2500,
+			timeout: 5000,
 			headers: { Accept: "application/json" },
 		});
 	};
 
 	const getArticle = async (slug: string) => {
 		return await $fetch<{ data: ArticleItem }>(`${apiBase}/articles/${slug}`, {
-			timeout: 2500,
+			timeout: 5000,
 			headers: { Accept: "application/json" },
 		});
 	};

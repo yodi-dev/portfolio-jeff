@@ -1,9 +1,9 @@
 <template>
-	<main class="py-16 sm:py-24 px-6 md:px-12 max-w-3xl mx-auto">
+	<div class="py-16 sm:py-24 px-6 md:px-12 max-w-3xl mx-auto">
 		<!-- Back to Writing -->
 		<NuxtLink
 			to="/writing"
-			class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-400 hover:text-ink transition-colors mb-12"
+			class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-500 hover:text-ink transition-colors mb-12"
 		>
 			<span class="text-sm">←</span>
 			<span>Writing & Thoughts</span>
@@ -53,8 +53,16 @@
 				>
 			</div>
 
-			<!-- Editorial Content -->
-			<div class="text-zinc-700 font-light text-base sm:text-lg leading-relaxed space-y-7">
+			<!-- Editorial Content (Formatted Rich HTML or Plain Paragraphs) -->
+			<div
+				v-if="isHtmlContent"
+				class="editorial-prose font-light text-base sm:text-lg text-zinc-700 leading-relaxed [&>p]:mb-7 [&>p]:leading-relaxed [&>p:first-of-type]:text-ink [&>p:first-of-type]:font-normal [&>h2]:font-serif [&>h2]:text-2xl sm:[&>h2]:text-3xl [&>h2]:font-light [&>h2]:text-ink [&>h2]:mt-10 [&>h2]:mb-4 [&>h3]:font-serif [&>h3]:text-xl [&>h3]:text-ink [&>h3]:font-normal [&>h3]:mt-8 [&>h3]:mb-3 [&>blockquote]:border-l-2 [&>blockquote]:border-ink/50 [&>blockquote]:pl-5 [&>blockquote]:italic [&>blockquote]:my-6 [&>blockquote]:text-ink [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:my-4 [&>ul]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:my-4 [&>ol]:space-y-2 [&>a]:text-ink [&>a]:underline [&>a]:underline-offset-4 [&>img]:my-8 [&>img]:w-full"
+				v-html="post.content"
+			/>
+			<div
+				v-else
+				class="text-zinc-700 font-light text-base sm:text-lg leading-relaxed space-y-7"
+			>
 				<p
 					v-for="(paragraph, index) in paragraphs"
 					:key="index"
@@ -98,7 +106,7 @@
 			<h2 class="font-serif text-2xl sm:text-3xl font-light text-ink">
 				Article Not Found
 			</h2>
-			<p class="text-xs uppercase tracking-widest text-zinc-400">
+			<p class="text-xs uppercase tracking-widest text-zinc-500">
 				The story you are looking for has been moved or does not exist.
 			</p>
 			<div class="pt-4">
@@ -110,7 +118,7 @@
 				</NuxtLink>
 			</div>
 		</div>
-	</main>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -123,10 +131,10 @@ definePageMeta({
 });
 
 const route = useRoute();
-const slug = route.params.slug as string;
+const currentSlug = computed(() => (route.params.slug as string) || "");
 const { getArticle, resolveImageUrl, onImageError } = useApi();
 
-// Fallback articles
+// Fallback articles with aliases for both long and short slug forms
 const fallbackArticles: Record<string, ArticleItem> = {
 	"golden-hour": {
 		id: 101,
@@ -134,9 +142,29 @@ const fallbackArticles: Record<string, ArticleItem> = {
 		slug: "golden-hour",
 		excerpt: "Golden hour is every photographer’s best friend.",
 		content: "Golden hour is a magical time for photographers. The soft, warm light can transform ordinary scenes into breathtaking images.\n\nI often schedule sessions during the 60 minutes before sunset to take advantage of the gentle contrast, golden highlights, and long, flattering shadows.\n\nIn portraiture, this light brings an emotional depth that flash photography struggles to replicate naturally.",
-		cover_image: "/images/preview1.jpeg",
+		cover_image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=1200&auto=format&fit=crop",
 		is_highlight: true,
 		created_at: "10 Jul 2026",
+	},
+	"the-magic-of-golden-hour": {
+		id: 101,
+		title: "The Magic of Golden Hour",
+		slug: "the-magic-of-golden-hour",
+		excerpt: "Golden hour is every photographer’s best friend.",
+		content: "Golden hour is a magical time for photographers. The soft, warm light can transform ordinary scenes into breathtaking images.\n\nI often schedule sessions during the 60 minutes before sunset to take advantage of the gentle contrast, golden highlights, and long, flattering shadows.\n\nIn portraiture, this light brings an emotional depth that flash photography struggles to replicate naturally.",
+		cover_image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=1200&auto=format&fit=crop",
+		is_highlight: true,
+		created_at: "10 Jul 2026",
+	},
+	"e2e-golden-hour-portrait-secrets": {
+		id: 101,
+		title: "E2E Golden Hour Portrait Secrets",
+		slug: "e2e-golden-hour-portrait-secrets",
+		excerpt: "The golden hour provides the most flattering, warm natural light for portrait photography.",
+		content: "The golden hour provides the most flattering, warm natural light for portrait photography. In this guide, we explore the essential camera settings, framing techniques, and lens recommendations to make every shot count.",
+		cover_image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&auto=format&fit=crop&q=80",
+		is_highlight: true,
+		created_at: "29 Oct 2026",
 	},
 	"family-photography": {
 		id: 102,
@@ -144,7 +172,17 @@ const fallbackArticles: Record<string, ArticleItem> = {
 		slug: "family-photography",
 		excerpt: "Family sessions are not just photos—they’re pieces of history.",
 		content: "Family photography is about more than just posed smiles. It is about capturing authentic connection, unscripted laughter, and tender glances between generations.\n\nEvery session brings something new and reminds me why I love what I do—preserving moments that families will cherish for decades to come.",
-		cover_image: "/images/preview2.jpeg",
+		cover_image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200&auto=format&fit=crop",
+		is_highlight: false,
+		created_at: "28 Jun 2026",
+	},
+	"why-i-love-family-photography": {
+		id: 102,
+		title: "Why I Love Family Photography",
+		slug: "why-i-love-family-photography",
+		excerpt: "Family sessions are not just photos—they’re pieces of history.",
+		content: "Family photography is about more than just posed smiles. It is about capturing authentic connection, unscripted laughter, and tender glances between generations.\n\nEvery session brings something new and reminds me why I love what I do—preserving moments that families will cherish for decades to come.",
+		cover_image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200&auto=format&fit=crop",
 		is_highlight: false,
 		created_at: "28 Jun 2026",
 	},
@@ -154,30 +192,62 @@ const fallbackArticles: Record<string, ArticleItem> = {
 		slug: "minimal-gear",
 		excerpt: "You don’t always need a studio full of equipment.",
 		content: "Having the most expensive camera doesn’t automatically make a great image. Sometimes, creativity matters far more than equipment.\n\nWith a simple prime lens and an observant eye, you can focus on what truly matters: the story, light, and authentic emotion behind each frame.",
-		cover_image: "/images/preview3.jpeg",
+		cover_image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop",
 		is_highlight: false,
 		created_at: "15 Jun 2026",
 	},
+	"minimal-gear-maximum-impact": {
+		id: 103,
+		title: "Minimal Gear, Maximum Impact",
+		slug: "minimal-gear-maximum-impact",
+		excerpt: "You don’t always need a studio full of equipment.",
+		content: "Having the most expensive camera doesn’t automatically make a great image. Sometimes, creativity matters far more than equipment.\n\nWith a simple prime lens and an observant eye, you can focus on what truly matters: the story, light, and authentic emotion behind each frame.",
+		cover_image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop",
+		is_highlight: false,
+		created_at: "15 Jun 2026",
+	},
+	"sydney-mornings": {
+		id: 104,
+		title: "Chasing Sydney Mornings: Coastal Walks with a Camera",
+		slug: "sydney-mornings",
+		excerpt: "Before the city awakens, the coastline belongs to the gentle roar of waves and soft pastel hues of early dawn.",
+		content: "There is a profound stillness that envelops Sydney's coastal cliffs at 5:30 in the morning. Long before the joggers and surfers pack the promenade, the sky turns shades of lilac, blush pink, and pale gold.\n\nWalking the coastal path from Bondi to Bronte with a camera in hand has been my greatest teacher.",
+		cover_image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+		is_highlight: false,
+		created_at: "26 Oct 2026",
+	},
 };
 
-// Fetch from API (non-blocking with cache)
-const { data, pending } = useLazyAsyncData(`article-${slug}`, async () => {
-	try {
-		const response = await getArticle(slug);
-		return response?.data || null;
-	}
-	catch (err) {
-		console.warn(`API getArticle(${slug}) unavailable, falling back to local dataset:`, err);
-		return fallbackArticles[slug] || null;
-	}
-}, {
-	default: () => null,
-	getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
-});
+// Fetch from API (non-blocking with cache and reactivity)
+const { data, pending } = useLazyAsyncData(
+	`article-${route.params.slug}`,
+	async () => {
+		const s = (route.params.slug as string) || "";
+		if (!s) return null;
+		try {
+			const response = await getArticle(s);
+			return response?.data || null;
+		}
+		catch (err) {
+			console.warn(`API getArticle(${s}) unavailable, falling back to local dataset:`, err);
+			return fallbackArticles[s] || null;
+		}
+	},
+	{
+		watch: [() => route.params.slug],
+		default: () => fallbackArticles[(route.params.slug as string) || ""] || null,
+		getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
+	},
+);
 
 const post = computed<ArticleItem | null>(() => {
 	if (data.value) return data.value;
-	return fallbackArticles[slug] || null;
+	return fallbackArticles[(route.params.slug as string) || ""] || null;
+});
+
+const isHtmlContent = computed(() => {
+	if (!post.value || !post.value.content) return false;
+	return /<\/?[a-z][\s\S]*>/i.test(post.value.content);
 });
 
 const paragraphs = computed(() => {
