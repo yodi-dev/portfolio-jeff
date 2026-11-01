@@ -31,13 +31,39 @@ export interface BookingPayload {
 	message?: string;
 }
 
+export interface PhotographerPhilosophy {
+	number: string;
+	title: string;
+	description: string;
+}
+
+export interface PhotographerProfile {
+	id: number;
+	name: string;
+	tagline: string;
+	headline: string;
+	sub_headline?: string;
+	quote?: string;
+	about_title?: string;
+	about_journey?: string;
+	about_philosophy?: string;
+	journey_paragraphs?: string[];
+	philosophies?: PhotographerPhilosophy[];
+	avatar?: string | null;
+	location?: string;
+	email?: string;
+	phone?: string;
+	instagram?: string;
+	instagram_url?: string;
+}
+
 export const useApi = () => {
 	const config = useRuntimeConfig();
 	const apiBase = config.public.apiBase as string;
 	const storageBase = config.public.storageBase as string;
 
-	const resolveImageUrl = (path: string | null | undefined): string => {
-		if (!path) return "/images/preview1.jpeg";
+	const resolveImageUrl = (path: string | null | undefined, fallback = "/images/preview1.jpeg"): string => {
+		if (!path) return fallback;
 		// Normalize any legacy Herd domain to current storageBase
 		if (path.includes("dashboard-jef.test/storage")) {
 			return path.replace("http://dashboard-jef.test/storage", storageBase);
@@ -86,6 +112,13 @@ export const useApi = () => {
 		});
 	};
 
+	const getProfile = async () => {
+		return await $fetch<{ data: PhotographerProfile }>(`${apiBase}/profile`, {
+			timeout: 5000,
+			headers: { Accept: "application/json" },
+		});
+	};
+
 	const createBooking = async (payload: BookingPayload) => {
 		return await $fetch(`${apiBase}/bookings`, {
 			method: "POST",
@@ -107,6 +140,7 @@ export const useApi = () => {
 		getPortfolio,
 		getArticles,
 		getArticle,
+		getProfile,
 		createBooking,
 	};
 };

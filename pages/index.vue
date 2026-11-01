@@ -5,13 +5,13 @@
 			<!-- Quiet Editorial Statement -->
 			<div class="max-w-2xl space-y-4 mb-12 md:mb-16">
 				<p class="text-[10px] md:text-xs uppercase tracking-[0.28em] text-ink-muted">
-					Jef Lee — Australia
+					{{ profile.name }} — {{ profile.location || 'Australia' }}
 				</p>
 				<h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-ink font-light leading-[1.18] tracking-tight">
-					Telling honest stories through natural light and quiet moments.
+					{{ profile.headline }}
 				</h1>
 				<p class="text-xs md:text-sm text-ink-muted tracking-[0.04em] font-light leading-relaxed pt-2">
-					A portrait and documentary photographer dedicated to capturing genuine human warmth, family milestones, and timeless atmosphere.
+					{{ profile.sub_headline }}
 				</p>
 			</div>
 
@@ -87,10 +87,10 @@
 		<section class="max-w-3xl mx-auto px-6 md:px-12 text-center py-12">
 			<span class="block w-8 h-[1px] bg-ink-muted/40 mx-auto mb-10" />
 			<blockquote class="font-serif italic text-xl md:text-2xl lg:text-3xl text-ink font-light leading-relaxed">
-				"Photography is more than capturing light — it is preserving life itself, pausing the fleeting smiles and quiet touches before they fade into memory."
+				"{{ profile.quote }}"
 			</blockquote>
 			<p class="text-xs uppercase tracking-[0.25em] text-ink-muted mt-6">
-				— Jef Lee
+				— {{ profile.name }}
 			</p>
 			<span class="block w-8 h-[1px] bg-ink-muted/40 mx-auto mt-10" />
 		</section>
@@ -101,24 +101,26 @@
 				<div class="md:col-span-5">
 					<div class="overflow-hidden bg-line/40 aspect-[4/5]">
 						<img
-							src="/images/jeff-portrait.jpeg"
-							alt="Portrait of Jef Lee"
+							:src="resolveImageUrl(profile.avatar, '/images/jeff-portrait.jpeg')"
+							:alt="`Portrait of ${profile.name}`"
 							class="w-full h-full object-cover grayscale contrast-90 transition-transform duration-700 hover:scale-[1.02]"
 							loading="lazy"
 							decoding="async"
+							@error="(e) => onImageError(e, '/images/jeff-portrait.jpeg')"
 						>
 					</div>
 				</div>
 				<div class="md:col-span-7 space-y-6">
 					<span class="text-[10px] uppercase tracking-[0.25em] text-ink-muted block">About The Photographer</span>
 					<h2 class="font-serif text-3xl md:text-4xl text-ink font-light">
-						A quiet observer of life’s everyday poetry.
+						{{ profile.about_title || 'A quiet observer of life’s everyday poetry.' }}
 					</h2>
-					<p class="text-xs md:text-sm text-ink-muted font-light leading-relaxed tracking-[0.02em]">
-						Based along the Australian coast, Jef finds meaning in genuine human moments — the gentle embrace of new parents, unposed laughter, and the serene golden light falling over everyday lives.
-					</p>
-					<p class="text-xs md:text-sm text-ink-muted font-light leading-relaxed tracking-[0.02em]">
-						Over the past three years, he has developed an aesthetic rooted in stillness, warm natural tones, and an unhurried, comfortable presence during every session.
+					<p
+						v-for="(para, idx) in aboutTeaserParagraphs"
+						:key="idx"
+						class="text-xs md:text-sm text-ink-muted font-light leading-relaxed tracking-[0.02em]"
+					>
+						{{ para }}
 					</p>
 					<div class="pt-2">
 						<NuxtLink
@@ -140,7 +142,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import CallToAction from "~/components/sections/CallToAction.vue";
-import { useApi, type PortfolioItem } from "~/composables/useApi";
+import { useApi, type PortfolioItem, type PhotographerProfile } from "~/composables/useApi";
 
 definePageMeta({
 	layout: "default",
@@ -158,7 +160,52 @@ useSeoMeta({
 	twitterImage: "/images/preview3.jpeg",
 });
 
-const { getPortfolios, resolveImageUrl, onImageError } = useApi();
+const { getPortfolios, getProfile, resolveImageUrl, onImageError } = useApi();
+
+const defaultProfile: PhotographerProfile = {
+	id: 1,
+	name: "Jef Lee",
+	tagline: "Portrait & Documentary Photographer",
+	headline: "Telling honest stories through natural light and quiet moments.",
+	sub_headline: "A portrait and documentary photographer dedicated to capturing genuine human warmth, family milestones, and timeless atmosphere.",
+	quote: "Photography is more than capturing light — it is preserving life itself, pausing the fleeting smiles and quiet touches before they fade into memory.",
+	about_title: "A quiet observer of life’s everyday poetry.",
+	about_journey: "Based along the Australian coast, Jef finds meaning in genuine human moments — the gentle embrace of new parents, unposed laughter, and the serene golden light falling over everyday lives.\n\nOver the past three years, he has developed an aesthetic rooted in stillness, warm natural tones, and an unhurried, comfortable presence during every session.",
+	journey_paragraphs: [
+		"Based along the Australian coast, Jef finds meaning in genuine human moments — the gentle embrace of new parents, unposed laughter, and the serene golden light falling over everyday lives.",
+		"Over the past three years, he has developed an aesthetic rooted in stillness, warm natural tones, and an unhurried, comfortable presence during every session.",
+	],
+	avatar: "/images/jeff-portrait.jpeg",
+	location: "Australia",
+	email: "jef@example.com",
+	phone: "+61 400 123 456",
+	instagram: "@jeflee",
+	instagram_url: "https://instagram.com/jeflee",
+};
+
+const { data: profileData } = useLazyAsyncData("photographer-profile", async () => {
+	try {
+		const res = await getProfile();
+		return res?.data || null;
+	}
+	catch {
+		return null;
+	}
+}, {
+	default: () => null,
+	getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
+});
+
+const profile = computed<PhotographerProfile>(() => {
+	return profileData.value || defaultProfile;
+});
+
+const aboutTeaserParagraphs = computed<string[]>(() => {
+	if (profile.value.journey_paragraphs && profile.value.journey_paragraphs.length > 0) {
+		return profile.value.journey_paragraphs.slice(0, 2);
+	}
+	return defaultProfile.journey_paragraphs || [];
+});
 
 const fallbackPreviewWorks: PortfolioItem[] = [
 	{
