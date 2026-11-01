@@ -76,16 +76,17 @@
 			<footer class="mt-20 pt-10 border-t border-line flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
 				<div class="flex items-center gap-4">
 					<img
-						src="/images/jeff-portrait.jpeg"
-						alt="Jef Lee"
+						:src="resolveImageUrl(profile.avatar, '/images/jeff-portrait.jpeg')"
+						:alt="profile.name"
 						class="w-12 h-12 object-cover grayscale brightness-95"
+						@error="(e) => onImageError(e, '/images/jeff-portrait.jpeg')"
 					>
 					<div>
 						<h3 class="font-serif text-base text-ink tracking-wide font-normal">
-							Jef Lee
+							{{ profile.name }}
 						</h3>
 						<p class="text-xs text-zinc-500 tracking-wider">
-							Natural Light & Storytelling Photographer
+							{{ profile.tagline || 'Natural Light & Storytelling Photographer' }}
 						</p>
 					</div>
 				</div>
@@ -124,7 +125,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { useApi, type ArticleItem } from "~/composables/useApi";
+import { useApi, type ArticleItem, type PhotographerProfile } from "~/composables/useApi";
 
 definePageMeta({
 	layout: "default",
@@ -132,7 +133,32 @@ definePageMeta({
 
 const route = useRoute();
 const currentSlug = computed(() => (route.params.slug as string) || "");
-const { getArticle, resolveImageUrl, onImageError } = useApi();
+const { getArticle, getProfile, resolveImageUrl, onImageError } = useApi();
+
+const defaultProfile: PhotographerProfile = {
+	id: 1,
+	name: "Jef Lee",
+	tagline: "Natural Light & Storytelling Photographer",
+	headline: "Telling honest stories through natural light and quiet moments.",
+	avatar: "/images/jeff-portrait.jpeg",
+};
+
+const { data: profileData } = useLazyAsyncData("photographer-profile-writing", async () => {
+	try {
+		const res = await getProfile();
+		return res?.data || null;
+	}
+	catch {
+		return null;
+	}
+}, {
+	default: () => null,
+	getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
+});
+
+const profile = computed<PhotographerProfile>(() => {
+	return profileData.value || defaultProfile;
+});
 
 // Fallback articles with aliases for both long and short slug forms
 const fallbackArticles: Record<string, ArticleItem> = {
