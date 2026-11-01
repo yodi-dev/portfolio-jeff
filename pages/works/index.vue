@@ -1,5 +1,5 @@
 <template>
-	<main class="max-w-6xl mx-auto py-16 md:py-24 px-6 md:px-12">
+	<div class="max-w-6xl mx-auto py-16 md:py-24 px-6 md:px-12">
 		<!-- Title & Subtitle -->
 		<div class="max-w-2xl mb-12 space-y-3">
 			<span class="text-[10px] uppercase tracking-[0.25em] text-ink-muted block">Portfolio Archive</span>
@@ -210,7 +210,7 @@
 				</div>
 			</div>
 		</div>
-	</main>
+	</div>
 </template>
 
 <script setup lang="ts">

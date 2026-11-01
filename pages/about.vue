@@ -1,5 +1,5 @@
 <template>
-	<main class="py-16 sm:py-24 px-6 md:px-12 max-w-4xl mx-auto">
+	<div class="py-16 sm:py-24 px-6 md:px-12 max-w-4xl mx-auto">
 		<!-- Profile Header Grid -->
 		<section class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start mb-24">
 			<!-- Portrait Photo -->
@@ -8,7 +8,7 @@
 					<img
 						:src="resolveImageUrl(profile.avatar, '/images/jeff-portrait.jpeg')"
 						:alt="`${profile.name} Portrait`"
-						class="w-full h-full object-cover grayscale brightness-95"
+						class="w-full h-full object-cover grayscale contrast-90 hover:grayscale-0 transition-all duration-700"
 						loading="lazy"
 						decoding="async"
 						@error="(e) => onImageError(e, '/images/jeff-portrait.jpeg')"
@@ -134,7 +134,7 @@
 				</div>
 			</div>
 		</section>
-	</main>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -143,18 +143,6 @@ import { useApi, type PhotographerProfile, type PhotographerPhilosophy } from "~
 
 definePageMeta({
 	layout: "default",
-});
-
-useSeoMeta({
-	title: "About — Jef Lee",
-	ogTitle: "About — Jef Lee",
-	description: "Jef Lee is a natural light and storytelling photographer capturing genuine moments across Australia and Kyoto.",
-	ogDescription: "Jef Lee is a natural light and storytelling photographer capturing genuine moments across Australia and Kyoto.",
-	ogImage: "/images/jeff-portrait.jpeg",
-	twitterCard: "summary_large_image",
-	twitterTitle: "About — Jef Lee",
-	twitterDescription: "Jef Lee is a natural light and storytelling photographer capturing genuine moments across Australia and Kyoto.",
-	twitterImage: "/images/jeff-portrait.jpeg",
 });
 
 const { getProfile, resolveImageUrl, onImageError } = useApi();
@@ -213,6 +201,18 @@ const { data: profileData } = useLazyAsyncData("photographer-profile-about", asy
 
 const profile = computed<PhotographerProfile>(() => {
 	return profileData.value || defaultProfile;
+});
+
+useSeoMeta({
+	title: () => `About — ${profile.value.name}`,
+	ogTitle: () => `About — ${profile.value.name}`,
+	description: () => profile.value.about_title || "Documenting the quiet cadence of ordinary life.",
+	ogDescription: () => profile.value.about_title || "Documenting the quiet cadence of ordinary life.",
+	ogImage: () => resolveImageUrl(profile.value.avatar, "/images/jeff-portrait.jpeg"),
+	twitterCard: "summary_large_image",
+	twitterTitle: () => `About — ${profile.value.name}`,
+	twitterDescription: () => profile.value.about_title || "Documenting the quiet cadence of ordinary life.",
+	twitterImage: () => resolveImageUrl(profile.value.avatar, "/images/jeff-portrait.jpeg"),
 });
 
 const journeyParagraphs = computed<string[]>(() => {

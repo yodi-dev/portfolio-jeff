@@ -1,5 +1,5 @@
 <template>
-	<main class="py-16 sm:py-24 px-6 md:px-12 max-w-3xl mx-auto">
+	<div class="py-16 sm:py-24 px-6 md:px-12 max-w-3xl mx-auto">
 		<!-- Header -->
 		<header class="mb-14 sm:mb-20">
 			<span class="text-xs uppercase tracking-widest text-zinc-500 font-mono block mb-3">Communication</span>
@@ -100,7 +100,7 @@
 				Open Booking Sheet →
 			</NuxtLink>
 		</div>
-	</main>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -109,18 +109,6 @@ import { useApi, type PhotographerProfile } from "~/composables/useApi";
 
 definePageMeta({
 	layout: "default",
-});
-
-useSeoMeta({
-	title: "Contact — Jef Lee",
-	ogTitle: "Contact — Jef Lee",
-	description: "Get in touch with Jef Lee for photography commissions, editorial assignments, and session reservations.",
-	ogDescription: "Get in touch with Jef Lee for photography commissions, editorial assignments, and session reservations.",
-	ogImage: "/images/preview3.jpeg",
-	twitterCard: "summary_large_image",
-	twitterTitle: "Contact — Jef Lee",
-	twitterDescription: "Get in touch with Jef Lee for photography commissions, editorial assignments, and session reservations.",
-	twitterImage: "/images/preview3.jpeg",
 });
 
 const { getProfile } = useApi();
@@ -153,5 +141,17 @@ const { data: profileData } = useLazyAsyncData("photographer-profile-contact", a
 
 const profile = computed<PhotographerProfile>(() => {
 	return profileData.value || defaultProfile;
+});
+
+useSeoMeta({
+	title: () => `Contact — ${profile.value.name}`,
+	ogTitle: () => `Contact — ${profile.value.name}`,
+	description: () => `Get in touch with ${profile.value.name} for photography commissions, editorial assignments, and session reservations.`,
+	ogDescription: () => `Get in touch with ${profile.value.name} for photography commissions, editorial assignments, and session reservations.`,
+	ogImage: "/images/preview3.jpeg",
+	twitterCard: "summary_large_image",
+	twitterTitle: () => `Contact — ${profile.value.name}`,
+	twitterDescription: () => `Get in touch with ${profile.value.name} for photography commissions, editorial assignments, and session reservations.`,
+	twitterImage: "/images/preview3.jpeg",
 });
 </script>

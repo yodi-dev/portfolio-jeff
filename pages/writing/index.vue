@@ -1,5 +1,5 @@
 <template>
-	<main class="max-w-4xl mx-auto py-16 md:py-24 px-6 md:px-12">
+	<div class="max-w-4xl mx-auto py-16 md:py-24 px-6 md:px-12">
 		<!-- Header -->
 		<div class="mb-16 space-y-3">
 			<span class="text-[10px] uppercase tracking-[0.25em] text-ink-muted block">Journal & Essays</span>
@@ -83,7 +83,7 @@
 				</div>
 			</article>
 		</div>
-	</main>
+	</div>
 </template>
 
 <script setup lang="ts">

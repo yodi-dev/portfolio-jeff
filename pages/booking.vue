@@ -1,5 +1,5 @@
 <template>
-	<main class="py-16 sm:py-24 px-6 md:px-12 max-w-2xl mx-auto">
+	<div class="py-16 sm:py-24 px-6 md:px-12 max-w-2xl mx-auto">
 		<!-- Title & Subtitle -->
 		<header class="mb-12 text-center sm:text-left">
 			<span class="text-xs uppercase tracking-widest text-zinc-500 font-mono block mb-3">Reservations</span>
@@ -199,7 +199,7 @@
 				</button>
 			</div>
 		</form>
-	</main>
+	</div>
 </template>
 
 <script setup lang="ts">
