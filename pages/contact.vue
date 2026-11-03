@@ -106,12 +106,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useApi, type PhotographerProfile } from "~/composables/useApi";
+import { useSeo } from "~/composables/useSeo";
 
 definePageMeta({
 	layout: "default",
 });
 
 const { getProfile } = useApi();
+const { toAbsoluteUrl, setSchema, buildContactPageSchema } = useSeo();
 
 const defaultProfile: PhotographerProfile = {
 	id: 1,
@@ -143,15 +145,17 @@ const profile = computed<PhotographerProfile>(() => {
 	return profileData.value || defaultProfile;
 });
 
+setSchema(computed(() => buildContactPageSchema(profile.value)));
+
 useSeoMeta({
 	title: () => `Contact — ${profile.value.name}`,
 	ogTitle: () => `Contact — ${profile.value.name}`,
 	description: () => `Get in touch with ${profile.value.name} for photography commissions, editorial assignments, and session reservations.`,
 	ogDescription: () => `Get in touch with ${profile.value.name} for photography commissions, editorial assignments, and session reservations.`,
-	ogImage: "/images/preview3.jpeg",
+	ogImage: toAbsoluteUrl("/images/preview3.jpeg"),
 	twitterCard: "summary_large_image",
 	twitterTitle: () => `Contact — ${profile.value.name}`,
 	twitterDescription: () => `Get in touch with ${profile.value.name} for photography commissions, editorial assignments, and session reservations.`,
-	twitterImage: "/images/preview3.jpeg",
+	twitterImage: toAbsoluteUrl("/images/preview3.jpeg"),
 });
 </script>

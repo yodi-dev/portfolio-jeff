@@ -126,6 +126,7 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { useApi, type ArticleItem, type PhotographerProfile } from "~/composables/useApi";
+import { useSeo } from "~/composables/useSeo";
 
 definePageMeta({
 	layout: "default",
@@ -134,6 +135,7 @@ definePageMeta({
 const route = useRoute();
 const currentSlug = computed(() => (route.params.slug as string) || "");
 const { getArticle, getProfile, resolveImageUrl, onImageError } = useApi();
+const { toAbsoluteUrl, setSchema, buildBlogPostingSchema } = useSeo();
 
 const defaultProfile: PhotographerProfile = {
 	id: 1,
@@ -284,16 +286,21 @@ const paragraphs = computed(() => {
 		.filter(p => p.length > 0);
 });
 
+setSchema(computed(() => {
+	if (!post.value) return {};
+	return buildBlogPostingSchema(post.value, profile.value);
+}));
+
 useSeoMeta({
 	title: () => (post.value ? `${post.value.title} — Jef Lee` : "Story — Jef Lee"),
 	ogTitle: () => (post.value ? `${post.value.title} — Jef Lee` : "Story — Jef Lee"),
 	description: () => (post.value?.excerpt || post.value?.title || "Reflections on natural light and photography by Jef Lee."),
 	ogDescription: () => (post.value?.excerpt || post.value?.title || "Reflections on natural light and photography by Jef Lee."),
-	ogImage: () => (post.value?.cover_image ? resolveImageUrl(post.value.cover_image) : "/images/preview2.jpeg"),
+	ogImage: () => toAbsoluteUrl(post.value?.cover_image ? resolveImageUrl(post.value.cover_image) : "/images/preview2.jpeg"),
 	ogType: "article",
 	twitterCard: "summary_large_image",
 	twitterTitle: () => (post.value ? `${post.value.title} — Jef Lee` : "Story — Jef Lee"),
 	twitterDescription: () => (post.value?.excerpt || post.value?.title || "Reflections on natural light and photography by Jef Lee."),
-	twitterImage: () => (post.value?.cover_image ? resolveImageUrl(post.value.cover_image) : "/images/preview2.jpeg"),
+	twitterImage: () => toAbsoluteUrl(post.value?.cover_image ? resolveImageUrl(post.value.cover_image) : "/images/preview2.jpeg"),
 });
 </script>

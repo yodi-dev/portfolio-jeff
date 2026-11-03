@@ -143,21 +143,24 @@
 import { computed } from "vue";
 import CallToAction from "~/components/sections/CallToAction.vue";
 import { useApi, type PortfolioItem, type PhotographerProfile } from "~/composables/useApi";
+import { useSeo } from "~/composables/useSeo";
 
 definePageMeta({
 	layout: "default",
 });
+
+const { toAbsoluteUrl, setSchema, buildPhotographerSchema, buildWebSiteSchema } = useSeo();
 
 useSeoMeta({
 	title: "Jef Lee — Portrait & Documentary Photography",
 	ogTitle: "Jef Lee — Portrait & Documentary Photography",
 	description: "Personal photography portfolio of Jef Lee. Telling real stories through natural light, family milestones, and heartfelt moments.",
 	ogDescription: "Personal photography portfolio of Jef Lee. Telling real stories through natural light, family milestones, and heartfelt moments.",
-	ogImage: "/images/preview3.jpeg",
+	ogImage: toAbsoluteUrl("/images/preview3.jpeg"),
 	twitterCard: "summary_large_image",
 	twitterTitle: "Jef Lee — Portrait & Documentary Photography",
 	twitterDescription: "Personal photography portfolio of Jef Lee. Telling real stories through natural light, family milestones, and heartfelt moments.",
-	twitterImage: "/images/preview3.jpeg",
+	twitterImage: toAbsoluteUrl("/images/preview3.jpeg"),
 });
 
 const { getPortfolios, getProfile, resolveImageUrl, onImageError } = useApi();
@@ -199,6 +202,11 @@ const { data: profileData } = useLazyAsyncData("photographer-profile", async () 
 const profile = computed<PhotographerProfile>(() => {
 	return profileData.value || defaultProfile;
 });
+
+setSchema(computed(() => [
+	buildPhotographerSchema(profile.value),
+	buildWebSiteSchema(profile.value),
+]));
 
 const aboutTeaserParagraphs = computed<string[]>(() => {
 	if (profile.value.journey_paragraphs && profile.value.journey_paragraphs.length > 0) {

@@ -89,22 +89,31 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useApi, type ArticleItem } from "~/composables/useApi";
+import { useSeo } from "~/composables/useSeo";
 
 definePageMeta({
 	layout: "default",
 });
+
+const { toAbsoluteUrl, setSchema, buildCollectionSchema } = useSeo();
 
 useSeoMeta({
 	title: "Writing & Journal — Jef Lee Photography",
 	ogTitle: "Writing & Journal — Jef Lee Photography",
 	description: "Reflections, essays, and field notes on natural light, memory, and authentic documentary photography by Jef Lee.",
 	ogDescription: "Reflections, essays, and field notes on natural light, memory, and authentic documentary photography by Jef Lee.",
-	ogImage: "/images/preview2.jpeg",
+	ogImage: toAbsoluteUrl("/images/preview2.jpeg"),
 	twitterCard: "summary_large_image",
 	twitterTitle: "Writing & Journal — Jef Lee Photography",
 	twitterDescription: "Reflections, essays, and field notes on natural light, memory, and authentic documentary photography by Jef Lee.",
-	twitterImage: "/images/preview2.jpeg",
+	twitterImage: toAbsoluteUrl("/images/preview2.jpeg"),
 });
+
+setSchema(buildCollectionSchema({
+	name: "Writing & Journal — Jef Lee Photography",
+	description: "Reflections, essays, and field notes on natural light, memory, and authentic documentary photography by Jef Lee.",
+	path: "/writing",
+}));
 
 const { getArticles, resolveImageUrl, onImageError } = useApi();
 

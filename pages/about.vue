@@ -140,12 +140,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useApi, type PhotographerProfile, type PhotographerPhilosophy } from "~/composables/useApi";
+import { useSeo } from "~/composables/useSeo";
 
 definePageMeta({
 	layout: "default",
 });
 
 const { getProfile, resolveImageUrl, onImageError } = useApi();
+const { toAbsoluteUrl, setSchema, buildPhotographerSchema, buildProfilePageSchema } = useSeo();
 
 const defaultProfile: PhotographerProfile = {
 	id: 1,
@@ -203,16 +205,21 @@ const profile = computed<PhotographerProfile>(() => {
 	return profileData.value || defaultProfile;
 });
 
+setSchema(computed(() => [
+	buildPhotographerSchema(profile.value),
+	buildProfilePageSchema(profile.value),
+]));
+
 useSeoMeta({
 	title: () => `About — ${profile.value.name}`,
 	ogTitle: () => `About — ${profile.value.name}`,
 	description: () => profile.value.about_title || "Documenting the quiet cadence of ordinary life.",
 	ogDescription: () => profile.value.about_title || "Documenting the quiet cadence of ordinary life.",
-	ogImage: () => resolveImageUrl(profile.value.avatar, "/images/jeff-portrait.jpeg"),
+	ogImage: () => toAbsoluteUrl(resolveImageUrl(profile.value.avatar, "/images/jeff-portrait.jpeg")),
 	twitterCard: "summary_large_image",
 	twitterTitle: () => `About — ${profile.value.name}`,
 	twitterDescription: () => profile.value.about_title || "Documenting the quiet cadence of ordinary life.",
-	twitterImage: () => resolveImageUrl(profile.value.avatar, "/images/jeff-portrait.jpeg"),
+	twitterImage: () => toAbsoluteUrl(resolveImageUrl(profile.value.avatar, "/images/jeff-portrait.jpeg")),
 });
 
 const journeyParagraphs = computed<string[]>(() => {

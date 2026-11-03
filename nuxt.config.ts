@@ -8,6 +8,10 @@ export default defineNuxtConfig({
 				lang: "en",
 			},
 			title: "Jef Lee — Photography",
+			titleTemplate: (chunk?: string) => {
+				if (!chunk) return "Jef Lee — Portrait & Documentary Photography";
+				return chunk.includes("Jef Lee") ? chunk : `${chunk} — Jef Lee Photography`;
+			},
 			meta: [
 				{ name: "description", content: "Personal photography portfolio of Jef Lee. Natural light, portraits, and genuine human stories." },
 				{ name: "theme-color", content: "#FAF9F6" },
@@ -15,11 +19,11 @@ export default defineNuxtConfig({
 				{ property: "og:type", content: "website" },
 				{ property: "og:title", content: "Jef Lee — Photography" },
 				{ property: "og:description", content: "Personal photography portfolio of Jef Lee. Natural light, portraits, and genuine human stories." },
-				{ property: "og:image", content: "/images/preview3.jpeg" },
+				{ property: "og:image", content: "https://jeflee.photography/images/preview3.jpeg" },
 				{ name: "twitter:card", content: "summary_large_image" },
 				{ name: "twitter:title", content: "Jef Lee — Photography" },
 				{ name: "twitter:description", content: "Personal photography portfolio of Jef Lee. Natural light, portraits, and genuine human stories." },
-				{ name: "twitter:image", content: "/images/preview3.jpeg" },
+				{ name: "twitter:image", content: "https://jeflee.photography/images/preview3.jpeg" },
 			],
 			link: [
 				{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg?v=3" },
@@ -41,6 +45,7 @@ export default defineNuxtConfig({
 	],
 	runtimeConfig: {
 		public: {
+			siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://jeflee.photography",
 			apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://127.0.0.1:8000/api",
 			storageBase: process.env.NUXT_PUBLIC_STORAGE_BASE || "http://127.0.0.1:8000/storage",
 		},

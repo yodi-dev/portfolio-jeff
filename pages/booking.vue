@@ -206,22 +206,27 @@
 import { reactive, ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useApi, type BookingPayload } from "~/composables/useApi";
+import { useSeo } from "~/composables/useSeo";
 
 definePageMeta({
 	layout: "default",
 });
+
+const { toAbsoluteUrl, setSchema, buildServiceSchema } = useSeo();
 
 useSeoMeta({
 	title: "Book a Photoshoot — Jef Lee",
 	ogTitle: "Book a Photoshoot — Jef Lee",
 	description: "Schedule your portrait, family, or editorial session with Jef Lee. Explore 11 photography themes.",
 	ogDescription: "Schedule your portrait, family, or editorial session with Jef Lee. Explore 11 photography themes.",
-	ogImage: "/images/preview1.jpeg",
+	ogImage: toAbsoluteUrl("/images/preview1.jpeg"),
 	twitterCard: "summary_large_image",
 	twitterTitle: "Book a Photoshoot — Jef Lee",
 	twitterDescription: "Schedule your portrait, family, or editorial session with Jef Lee. Explore 11 photography themes.",
-	twitterImage: "/images/preview1.jpeg",
+	twitterImage: toAbsoluteUrl("/images/preview1.jpeg"),
 });
+
+setSchema(buildServiceSchema());
 
 const route = useRoute();
 const { createBooking } = useApi();

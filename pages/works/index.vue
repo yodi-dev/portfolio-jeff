@@ -216,22 +216,31 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
 import { useApi, type PortfolioItem } from "~/composables/useApi";
+import { useSeo } from "~/composables/useSeo";
 
 definePageMeta({
 	layout: "default",
 });
+
+const { toAbsoluteUrl, setSchema, buildCollectionSchema } = useSeo();
 
 useSeoMeta({
 	title: "Works & Series — Jef Lee Photography",
 	ogTitle: "Works & Series — Jef Lee Photography",
 	description: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia and Kyoto.",
 	ogDescription: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia and Kyoto.",
-	ogImage: "/images/preview1.jpeg",
+	ogImage: toAbsoluteUrl("/images/preview1.jpeg"),
 	twitterCard: "summary_large_image",
 	twitterTitle: "Works & Series — Jef Lee Photography",
 	twitterDescription: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia and Kyoto.",
-	twitterImage: "/images/preview1.jpeg",
+	twitterImage: toAbsoluteUrl("/images/preview1.jpeg"),
 });
+
+setSchema(buildCollectionSchema({
+	name: "Works & Series — Jef Lee Photography",
+	description: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia and Kyoto.",
+	path: "/works",
+}));
 
 const { getPortfolios, resolveImageUrl, onImageError } = useApi();
 
