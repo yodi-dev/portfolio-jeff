@@ -29,6 +29,16 @@ export const useSeo = () => {
 					href: canonicalUrl,
 				},
 			],
+			meta: [
+				{
+					property: "og:url",
+					content: canonicalUrl,
+				},
+				{
+					name: "twitter:url",
+					content: canonicalUrl,
+				},
+			],
 		});
 	};
 
@@ -37,7 +47,13 @@ export const useSeo = () => {
 			script: [
 				{
 					type: "application/ld+json",
-					children: () => JSON.stringify(toValue(schema)),
+					children: () => {
+						const val = toValue(schema);
+						if (!val || (typeof val === "object" && Object.keys(val).length === 0)) {
+							return "";
+						}
+						return JSON.stringify(val);
+					},
 				},
 			],
 		});
@@ -118,6 +134,7 @@ export const useSeo = () => {
 			"description": post.excerpt || post.title || "",
 			"image": toAbsoluteUrl(post.cover_image, "/images/preview2.jpeg"),
 			"datePublished": post.created_at || new Date().toISOString(),
+			"dateModified": (post as Record<string, unknown>)?.updated_at ? String((post as Record<string, unknown>).updated_at) : (post.created_at || new Date().toISOString()),
 			"author": {
 				"@type": "Person",
 				"name": profile?.name || "Jef Lee",

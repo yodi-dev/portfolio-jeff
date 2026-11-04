@@ -14,9 +14,13 @@ export default defineNuxtConfig({
 			},
 			meta: [
 				{ name: "description", content: "Personal photography portfolio of Jef Lee. Natural light, portraits, and genuine human stories." },
+				{ name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+				{ name: "author", content: "Jef Lee" },
+				{ name: "publisher", content: "Jef Lee Photography" },
 				{ name: "theme-color", content: "#FAF9F6" },
 				{ property: "og:site_name", content: "Jef Lee Photography" },
 				{ property: "og:type", content: "website" },
+				{ property: "og:locale", content: "en_US" },
 				{ property: "og:title", content: "Jef Lee — Photography" },
 				{ property: "og:description", content: "Personal photography portfolio of Jef Lee. Natural light, portraits, and genuine human stories." },
 				{ property: "og:image", content: "https://jeflee.photography/images/preview3.jpeg" },
@@ -46,8 +50,8 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://jeflee.photography",
-			apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://127.0.0.1:8000/api",
-			storageBase: process.env.NUXT_PUBLIC_STORAGE_BASE || "http://127.0.0.1:8000/storage",
+			apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://localhost:8000/api",
+			storageBase: process.env.NUXT_PUBLIC_STORAGE_BASE || "http://localhost:8000/storage",
 		},
 	},
 	future: {

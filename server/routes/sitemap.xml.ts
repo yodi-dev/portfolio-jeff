@@ -17,7 +17,7 @@ interface ApiArticle {
 export default defineEventHandler(async (event) => {
 	const config = useRuntimeConfig(event);
 	const siteUrl = ((config.public?.siteUrl as string) || "https://jeflee.photography").replace(/\/+$/, "");
-	const apiBase = ((config.public?.apiBase as string) || "http://127.0.0.1:8000/api").replace(/\/+$/, "");
+	const apiBase = ((config.public?.apiBase as string) || "http://localhost:8000/api").replace(/\/+$/, "");
 
 	const today = new Date().toISOString().split("T")[0];
 
@@ -98,3 +98,4 @@ ${allRoutes
 
 	return xml;
 });
+
