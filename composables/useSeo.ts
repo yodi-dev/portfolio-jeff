@@ -1,6 +1,6 @@
 import { computed, toValue, type MaybeRefOrGetter } from "vue";
-import { useRoute, useRuntimeConfig, useHead } from "#imports";
 import type { ArticleItem, PhotographerProfile } from "./useApi";
+import { useRoute, useRuntimeConfig, useHead } from "#imports";
 
 export const useSeo = () => {
 	const config = useRuntimeConfig();

@@ -55,7 +55,12 @@
 		<div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-line/40 flex flex-col sm:flex-row justify-between items-center text-[11px] text-ink-muted tracking-wider gap-4">
 			<p>© {{ new Date().getFullYear() }} {{ profile.name }}. All rights reserved.</p>
 			<div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-				<span>Crafted by <a href="https://awanbeo.my.id" target="_blank" rel="noopener noreferrer" class="text-ink font-medium hover:underline underline-offset-4 transition-colors">awanbeo.my.id</a></span>
+				<span>Crafted by <a
+					href="https://awanbeo.my.id"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-ink font-medium hover:underline underline-offset-4 transition-colors"
+				>awanbeo.my.id</a></span>
 				<span class="text-zinc-300">/</span>
 				<span class="tracking-widest uppercase text-[10px]">Natural Light & Stories</span>
 			</div>

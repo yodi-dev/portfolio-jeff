@@ -8,8 +8,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				serif: ['"Cormorant Garamond"', "Georgia", "serif"],
-				sans: ['"Plus Jakarta Sans"', "system-ui", "-apple-system", "sans-serif"],
+				serif: ["\"Cormorant Garamond\"", "Georgia", "serif"],
+				sans: ["\"Plus Jakarta Sans\"", "system-ui", "-apple-system", "sans-serif"],
 			},
 			colors: {
 				canvas: "#FAF9F6", // Soft Japanese warm off-white / Washi paper tone

@@ -137,7 +137,6 @@ definePageMeta({
 });
 
 const route = useRoute();
-const currentSlug = computed(() => (route.params.slug as string) || "");
 const { getArticle, getProfile, resolveImageUrl, onImageError } = useApi();
 const { toAbsoluteUrl, setSchema, buildBlogPostingSchema } = useSeo();
 

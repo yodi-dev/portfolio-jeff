@@ -15,18 +15,30 @@
 		<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 border-b border-line pb-10 text-xs">
 			<div class="space-y-1">
 				<span class="font-mono text-[10px] text-ink-muted uppercase tracking-widest block">01 / Inquiry</span>
-				<h3 class="font-serif text-base text-ink font-normal">Choose Theme & Date</h3>
-				<p class="text-ink-muted font-light leading-relaxed">Share your preferred date, location, and creative ideas.</p>
+				<h3 class="font-serif text-base text-ink font-normal">
+					Choose Theme & Date
+				</h3>
+				<p class="text-ink-muted font-light leading-relaxed">
+					Share your preferred date, location, and creative ideas.
+				</p>
 			</div>
 			<div class="space-y-1">
 				<span class="font-mono text-[10px] text-ink-muted uppercase tracking-widest block">02 / Consultation</span>
-				<h3 class="font-serif text-base text-ink font-normal">Creative Alignment</h3>
-				<p class="text-ink-muted font-light leading-relaxed">Jef reviews schedule & coordinates styling and lighting plan.</p>
+				<h3 class="font-serif text-base text-ink font-normal">
+					Creative Alignment
+				</h3>
+				<p class="text-ink-muted font-light leading-relaxed">
+					Jef reviews schedule & coordinates styling and lighting plan.
+				</p>
 			</div>
 			<div class="space-y-1">
 				<span class="font-mono text-[10px] text-ink-muted uppercase tracking-widest block">03 / The Session</span>
-				<h3 class="font-serif text-base text-ink font-normal">Natural Storytelling</h3>
-				<p class="text-ink-muted font-light leading-relaxed">An unhurried experience under gentle ambient light.</p>
+				<h3 class="font-serif text-base text-ink font-normal">
+					Natural Storytelling
+				</h3>
+				<p class="text-ink-muted font-light leading-relaxed">
+					An unhurried experience under gentle ambient light.
+				</p>
 			</div>
 		</div>
 
@@ -367,9 +379,9 @@ onMounted(() => {
 	if (route.query.package && typeof route.query.package === "string") {
 		const queryPkg = route.query.package.toLowerCase();
 		const matched = packages.find(p =>
-			p.toLowerCase() === queryPkg ||
-			p.toLowerCase().includes(queryPkg) ||
-			queryPkg.includes(p.toLowerCase().split(" ")[0]),
+			p.toLowerCase() === queryPkg
+			|| p.toLowerCase().includes(queryPkg)
+			|| queryPkg.includes(p.toLowerCase().split(" ")[0]),
 		);
 		if (matched) {
 			form.package = matched;
