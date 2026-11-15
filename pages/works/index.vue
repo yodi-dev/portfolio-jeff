@@ -69,6 +69,8 @@
 						class="w-full h-full object-cover transition-all duration-700 group-hover:opacity-90 group-hover:scale-[1.02]"
 						loading="lazy"
 						decoding="async"
+						width="800"
+						height="600"
 						@error="onImageError"
 					>
 				</div>
@@ -148,6 +150,8 @@
 						<img
 							:src="activeModalImage"
 							:alt="activeWork.title"
+							width="1200"
+							height="800"
 							class="max-h-[62vh] w-auto object-contain mx-auto"
 							decoding="async"
 							@error="onImageError"
@@ -171,6 +175,8 @@
 							<img
 								:src="img"
 								:alt="`${activeWork.title} - view ${idx + 1}`"
+								width="64"
+								height="64"
 								class="w-full h-full object-cover"
 								loading="lazy"
 								decoding="async"

@@ -27,7 +27,6 @@ export default defineEventHandler(async (event) => {
 		{ loc: `${siteUrl}/about`, lastmod: today, changefreq: "monthly", priority: "0.8" },
 		{ loc: `${siteUrl}/writing`, lastmod: today, changefreq: "weekly", priority: "0.8" },
 		{ loc: `${siteUrl}/booking`, lastmod: today, changefreq: "monthly", priority: "0.8" },
-		{ loc: `${siteUrl}/contact`, lastmod: today, changefreq: "monthly", priority: "0.7" },
 	];
 
 	const dynamicRoutes: SitemapEntry[] = [];

@@ -47,6 +47,8 @@
 							<img
 								:src="resolveImageUrl(post.cover_image)"
 								:alt="post.title"
+								width="800"
+								height="500"
 								class="w-full h-full object-cover transition-all duration-700 group-hover:scale-[1.02] group-hover:opacity-90"
 								loading="lazy"
 								decoding="async"

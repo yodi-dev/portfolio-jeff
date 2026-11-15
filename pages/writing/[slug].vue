@@ -46,6 +46,8 @@
 				<img
 					:src="resolveImageUrl(post.cover_image)"
 					:alt="post.title"
+					width="1200"
+					height="750"
 					class="w-full h-full object-cover"
 					loading="lazy"
 					decoding="async"
@@ -78,6 +80,8 @@
 					<img
 						:src="resolveImageUrl(profile.avatar, '/images/jeff-portrait.jpeg')"
 						:alt="profile.name"
+						width="48"
+						height="48"
 						class="w-12 h-12 object-cover grayscale brightness-95"
 						@error="(e) => onImageError(e, '/images/jeff-portrait.jpeg')"
 					>

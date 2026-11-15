@@ -68,6 +68,8 @@
 							class="w-full h-full object-cover transition-all duration-700 group-hover:opacity-90 group-hover:scale-[1.02]"
 							loading="lazy"
 							decoding="async"
+							width="800"
+							height="600"
 							@error="onImageError"
 						>
 					</div>
@@ -109,6 +111,8 @@
 							class="w-full h-full object-cover grayscale contrast-90 transition-transform duration-700 hover:scale-[1.02]"
 							loading="lazy"
 							decoding="async"
+							width="600"
+							height="750"
 							@error="(e) => onImageError(e, '/images/jeff-portrait.jpeg')"
 						>
 					</div>

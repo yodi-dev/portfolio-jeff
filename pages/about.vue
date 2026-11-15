@@ -11,6 +11,8 @@
 						class="w-full h-full object-cover grayscale contrast-90 hover:grayscale-0 transition-all duration-700"
 						loading="lazy"
 						decoding="async"
+						width="600"
+						height="800"
 						@error="(e) => onImageError(e, '/images/jeff-portrait.jpeg')"
 					>
 				</div>
