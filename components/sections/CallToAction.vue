@@ -10,7 +10,7 @@
 			to="/booking"
 			class="inline-block px-7 py-3 border border-ink text-xs uppercase tracking-[0.2em] font-medium text-ink hover:bg-ink hover:text-canvas transition-all duration-300"
 		>
-			Inquire / Book a Session
+			Book a Session
 		</NuxtLink>
 	</section>
 </template>

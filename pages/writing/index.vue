@@ -74,6 +74,7 @@
 						<div class="pt-2">
 							<NuxtLink
 								:to="`/writing/${post.slug}`"
+								:aria-label="`Read story: ${post.title}`"
 								class="text-xs uppercase tracking-[0.18em] font-medium text-ink hover:opacity-60 transition-opacity inline-flex items-center gap-1 border-b border-ink pb-0.5"
 							>
 								Read Story →

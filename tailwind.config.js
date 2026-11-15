@@ -17,7 +17,7 @@ export default {
 					DEFAULT: "#18181B", // Soft charcoal black
 					light: "#3F3F46",
 					muted: "#71717A",
-					faint: "#A1A1AA",
+					faint: "#52525B", // Zinc-600, WCAG AAA compliant contrast against #FAF9F6
 				},
 				line: "#E4E4E7", // Soft warm border
 			},

@@ -66,7 +66,7 @@
 			<!-- Mobile Menu Button -->
 			<button
 				type="button"
-				class="md:hidden p-2 text-ink hover:opacity-60 transition-opacity focus:outline-none focus:ring-1 focus:ring-ink"
+				class="md:hidden min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 text-ink hover:opacity-60 transition-opacity focus:outline-none focus:ring-1 focus:ring-ink"
 				aria-label="Toggle mobile menu"
 				:aria-expanded="mobileMenuOpen.toString()"
 				@click="mobileMenuOpen = !mobileMenuOpen"

@@ -42,6 +42,8 @@
 			<!-- Error Banner -->
 			<div
 				v-if="errorMessage"
+				role="alert"
+				aria-live="assertive"
 				class="p-4 border border-red-300 bg-red-50/50 text-red-800 text-xs leading-relaxed"
 			>
 				{{ errorMessage }}
@@ -60,6 +62,7 @@
 						id="booking-name"
 						v-model="form.name"
 						type="text"
+						autocomplete="name"
 						placeholder="e.g. Amanda Reynolds"
 						required
 						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-400"
@@ -78,6 +81,8 @@
 						id="booking-email"
 						v-model="form.email"
 						type="email"
+						inputmode="email"
+						autocomplete="email"
 						placeholder="amanda@example.com"
 						required
 						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-400"
@@ -98,6 +103,8 @@
 						id="booking-phone"
 						v-model="form.phone"
 						type="tel"
+						inputmode="tel"
+						autocomplete="tel"
 						placeholder="+61 400 123 456"
 						required
 						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-400"
@@ -160,6 +167,7 @@
 						id="booking-location"
 						v-model="form.location"
 						type="text"
+						autocomplete="address-level2"
 						placeholder="e.g. Kyoto / Sydney / Outdoors"
 						required
 						class="w-full px-3.5 py-2.5 border border-line bg-canvas focus:bg-white text-ink text-sm outline-none focus:border-ink transition-colors placeholder:text-zinc-400"
@@ -195,7 +203,7 @@
 						v-if="isSubmitting"
 						class="inline-block w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"
 					/>
-					<span>{{ isSubmitting ? 'Transmitting Inquiries...' : 'Send Reservation Request' }}</span>
+					<span>{{ isSubmitting ? 'Submitting Reservation...' : 'Send Reservation Request' }}</span>
 				</button>
 			</div>
 		</form>

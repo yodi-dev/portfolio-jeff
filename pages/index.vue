@@ -22,7 +22,10 @@
 					alt="Coastal Moment by Jef Lee"
 					class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.01]"
 					loading="eager"
+					fetchpriority="high"
 					decoding="async"
+					width="1200"
+					height="675"
 				>
 			</div>
 			<div class="flex justify-between items-center text-[11px] text-ink-faint tracking-widest uppercase mt-3">
