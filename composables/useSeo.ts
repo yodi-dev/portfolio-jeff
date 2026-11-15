@@ -73,7 +73,7 @@ export const useSeo = () => {
 			"address": {
 				"@type": "PostalAddress",
 				"addressCountry": "Australia",
-				"addressLocality": profile?.location || "Australia / Kyoto, Japan",
+				"addressLocality": profile?.location || "Australia",
 			},
 			"sameAs": [
 				profile?.instagram_url || "https://instagram.com/jeflee",

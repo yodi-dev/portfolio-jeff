@@ -15,7 +15,7 @@
 					>
 				</div>
 				<p class="text-[11px] font-mono tracking-widest text-zinc-500 uppercase mt-3">
-					{{ profile.name }} — {{ profile.location || 'Australia / Kyoto' }}
+					{{ profile.name }} — {{ profile.location || 'Australia' }}
 				</p>
 			</div>
 
@@ -65,6 +65,33 @@
 						{{ phil.description }}
 					</p>
 				</div>
+			</div>
+		</section>
+
+		<!-- Client Words / Testimonials (Ready for Client Quotes) -->
+		<section
+			v-if="testimonials && testimonials.length > 0"
+			class="border-t border-line pt-16 mb-24"
+		>
+			<div class="mb-12 max-w-2xl">
+				<span class="text-xs uppercase tracking-widest text-zinc-500 font-mono block mb-2">Reflections</span>
+				<h2 class="font-serif text-2xl sm:text-3xl font-light text-ink mb-4">
+					Client Words
+				</h2>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+				<blockquote
+					v-for="(t, idx) in testimonials"
+					:key="idx"
+					class="space-y-4 border-l border-line pl-6"
+				>
+					<p class="font-serif italic text-base sm:text-lg text-ink font-light leading-relaxed">
+						“{{ t.quote }}”
+					</p>
+					<cite class="block text-xs uppercase tracking-widest text-zinc-500 font-mono not-italic">
+						— {{ t.client }}, {{ t.session }}
+					</cite>
+				</blockquote>
 			</div>
 		</section>
 
@@ -138,7 +165,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useApi, type PhotographerProfile, type PhotographerPhilosophy } from "~/composables/useApi";
 import { useSeo } from "~/composables/useSeo";
 
@@ -181,7 +208,7 @@ const defaultProfile: PhotographerProfile = {
 		},
 	],
 	avatar: "/images/jeff-portrait.jpeg",
-	location: "Australia / Kyoto, Japan",
+	location: "Australia",
 	email: "jef@example.com",
 	phone: "+61 400 123 456",
 	instagram: "@jeflee",
@@ -238,4 +265,7 @@ const philosophies = computed<PhotographerPhilosophy[]>(() => {
 	}
 	return defaultProfile.philosophies || [];
 });
+
+// Client testimonials (populated when client quotes are available)
+const testimonials = ref<Array<{ quote: string; client: string; session: string }>>([]);
 </script>

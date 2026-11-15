@@ -227,12 +227,12 @@ const { toAbsoluteUrl, setSchema, buildCollectionSchema } = useSeo();
 useSeoMeta({
 	title: "Works & Series — Jef Lee Photography",
 	ogTitle: "Works & Series — Jef Lee Photography",
-	description: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia and Kyoto.",
-	ogDescription: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia and Kyoto.",
+	description: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia.",
+	ogDescription: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia.",
 	ogImage: toAbsoluteUrl("/images/preview1.jpeg"),
 	twitterCard: "summary_large_image",
 	twitterTitle: "Works & Series — Jef Lee Photography",
-	twitterDescription: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia and Kyoto.",
+	twitterDescription: "Explore the photography catalog of Jef Lee. Natural light, portraiture, family moments, and documentary series across Australia.",
 	twitterImage: toAbsoluteUrl("/images/preview1.jpeg"),
 });
 

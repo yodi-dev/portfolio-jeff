@@ -45,15 +45,6 @@
 				</li>
 				<li>
 					<NuxtLink
-						to="/contact"
-						class="text-ink-muted hover:text-ink transition-colors pb-1"
-						active-class="!text-ink font-semibold border-b border-ink"
-					>
-						Contact
-					</NuxtLink>
-				</li>
-				<li>
-					<NuxtLink
 						to="/booking"
 						class="px-4 py-1.5 border border-ink/80 text-ink hover:bg-ink hover:text-canvas transition-all duration-300 font-medium"
 						active-class="bg-ink !text-canvas"
@@ -133,16 +124,6 @@
 					@click="mobileMenuOpen = false"
 				>
 					About
-				</NuxtLink>
-			</div>
-			<div>
-				<NuxtLink
-					to="/contact"
-					class="block text-ink-muted hover:text-ink transition-colors py-1.5"
-					active-class="!text-ink font-semibold"
-					@click="mobileMenuOpen = false"
-				>
-					Contact
 				</NuxtLink>
 			</div>
 			<div class="pt-2">

@@ -35,16 +35,10 @@
 					About
 				</NuxtLink>
 				<NuxtLink
-					to="/contact"
-					class="hover:text-ink transition-colors"
-				>
-					Contact
-				</NuxtLink>
-				<NuxtLink
 					to="/booking"
 					class="hover:text-ink transition-colors"
 				>
-					Booking
+					Book a Session
 				</NuxtLink>
 				<a
 					:href="profile.instagram_url || 'https://instagram.com'"

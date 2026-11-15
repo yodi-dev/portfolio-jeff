@@ -112,6 +112,8 @@ definePageMeta({
 	layout: "default",
 });
 
+await navigateTo("/booking", { redirectCode: 301 });
+
 const { getProfile } = useApi();
 const { toAbsoluteUrl, setSchema, buildContactPageSchema } = useSeo();
 
@@ -121,7 +123,7 @@ const defaultProfile: PhotographerProfile = {
 	tagline: "Portrait & Documentary Photographer",
 	headline: "Telling honest stories through natural light and quiet moments.",
 	avatar: "/images/jeff-portrait.jpeg",
-	location: "Australia / Kyoto, Japan",
+	location: "Australia",
 	email: "jef@example.com",
 	phone: "+61 400 123 456",
 	instagram: "@jeflee",
