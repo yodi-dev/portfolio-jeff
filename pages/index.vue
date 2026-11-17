@@ -23,7 +23,7 @@
 				>
 					<img
 						:src="heroBannerImage"
-						alt="Recent Atmosphere — Natural Light Study"
+						alt="Hero Feature"
 						class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.01]"
 						:class="heroBannerPositionClass"
 						loading="eager"
@@ -34,10 +34,6 @@
 						@error="onImageError"
 					>
 				</NuxtLink>
-			</div>
-			<div class="flex justify-between items-center text-[11px] text-ink-faint tracking-widest uppercase mt-3">
-				<span>01 / Recent Atmosphere</span>
-				<span>Natural Light Study</span>
 			</div>
 		</section>
 
