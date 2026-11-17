@@ -77,7 +77,8 @@ export default defineEventHandler(async (event) => {
 				});
 			}
 		}
-	} else {
+	}
+	else {
 		// Use fallback articles when running without live remote backend
 		const fallbackSlugs = [
 			"golden-hour",

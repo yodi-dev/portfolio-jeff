@@ -17,20 +17,26 @@
 
 			<!-- Hero Feature Image (Framed Print Aesthetic) -->
 			<div class="relative overflow-hidden bg-line/40 aspect-[16/9] md:aspect-[21/9]">
-				<img
-					src="/images/preview3.jpeg"
-					alt="Coastal Moment by Jef Lee"
-					class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.01]"
-					loading="eager"
-					fetchpriority="high"
-					decoding="async"
-					width="1200"
-					height="675"
+				<NuxtLink
+					to="/works"
+					class="group block w-full h-full"
 				>
+					<img
+						:src="heroBannerImage"
+						:alt="heroBannerTitle"
+						class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.01]"
+						loading="eager"
+						fetchpriority="high"
+						decoding="async"
+						width="1200"
+						height="675"
+						@error="onImageError"
+					>
+				</NuxtLink>
 			</div>
 			<div class="flex justify-between items-center text-[11px] text-ink-faint tracking-widest uppercase mt-3">
-				<span>01 / Recent Atmosphere</span>
-				<span>Natural Light Study</span>
+				<span>{{ heroBannerCategory }}</span>
+				<span class="font-serif italic capitalize">{{ heroBannerTitle }}</span>
 			</div>
 		</section>
 
@@ -255,7 +261,7 @@ const fallbackPreviewWorks: PortfolioItem[] = [
 const { data } = useLazyAsyncData("home-portfolios", async () => {
 	try {
 		const res = await getPortfolios();
-		return res?.data?.slice(0, 6) || [];
+		return res?.data || [];
 	}
 	catch {
 		return [];
@@ -265,10 +271,44 @@ const { data } = useLazyAsyncData("home-portfolios", async () => {
 	getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
 });
 
-const selectedWorks = computed<PortfolioItem[]>(() => {
-	if (data.value && data.value.length > 0) {
-		return data.value;
+// Hero Banner: dynamically driven by top highlighted portfolio or latest work
+const heroWork = computed<PortfolioItem | null>(() => {
+	const list = data.value;
+	if (!list || list.length === 0) return null;
+	return list.find(item => item.is_highlight) || list[0] || null;
+});
+
+const heroBannerImage = computed<string>(() => {
+	if (heroWork.value?.thumbnail) {
+		return resolveImageUrl(heroWork.value.thumbnail);
 	}
-	return fallbackPreviewWorks;
+	return "/images/preview3.jpeg";
+});
+
+const heroBannerCategory = computed<string>(() => {
+	if (heroWork.value?.category) {
+		return `01 / ${heroWork.value.category}`;
+	}
+	return "01 / Recent Atmosphere";
+});
+
+const heroBannerTitle = computed<string>(() => {
+	if (heroWork.value?.title) {
+		return heroWork.value.title;
+	}
+	return "Natural Light Study";
+});
+
+// Selected Works: Option 1 (Highlighted items first, then filled up to 6 with recent works)
+const selectedWorks = computed<PortfolioItem[]>(() => {
+	const list = data.value;
+	if (!list || list.length === 0) {
+		return fallbackPreviewWorks;
+	}
+
+	const highlighted = list.filter(item => item.is_highlight);
+	const regular = list.filter(item => !item.is_highlight);
+
+	return [...highlighted, ...regular].slice(0, 6);
 });
 </script>

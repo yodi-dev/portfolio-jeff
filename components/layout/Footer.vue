@@ -60,7 +60,7 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					class="text-ink font-medium hover:underline underline-offset-4 transition-colors"
-				>awanbeo.my.id</a></span>
+				>awanbeo</a></span>
 				<span class="text-zinc-300">/</span>
 				<span class="tracking-widest uppercase text-[10px]">Natural Light & Stories</span>
 			</div>
