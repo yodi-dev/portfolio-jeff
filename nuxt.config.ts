@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
 	modules: ["@nuxt/eslint", "@nuxt/devtools"],
 	ssr: true,
-	devtools: { enabled: true },
+	devtools: { enabled: process.env.NODE_ENV === "development" },
 	app: {
 		head: {
 			htmlAttrs: {

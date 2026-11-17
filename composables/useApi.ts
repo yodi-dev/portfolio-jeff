@@ -62,6 +62,17 @@ export const useApi = () => {
 	const apiBase = config.public.apiBase as string;
 	const storageBase = config.public.storageBase as string;
 
+	// Guard against public web apps trying to ping local network / localhost,
+	// which triggers browser security warnings (Chrome Private Network Access) and Mixed Content blocks.
+	const isLocalHostTargetBlockedOnPublic = (): boolean => {
+		if (import.meta.client && typeof window !== "undefined") {
+			const isPublicHost = window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1";
+			const isLocalApi = apiBase.includes("localhost") || apiBase.includes("127.0.0.1");
+			return isPublicHost && isLocalApi;
+		}
+		return false;
+	};
+
 	const resolveImageUrl = (path: string | null | undefined, fallback = "/images/preview1.jpeg"): string => {
 		if (!path) return fallback;
 		// Normalize any legacy Herd domain to current storageBase
@@ -83,6 +94,9 @@ export const useApi = () => {
 	};
 
 	const getPortfolios = async (category?: string) => {
+		if (isLocalHostTargetBlockedOnPublic()) {
+			throw new Error("Local backend API not accessible from public host");
+		}
 		const query = category && category !== "All" ? { category } : {};
 		return await $fetch<{ data: PortfolioItem[] }>(`${apiBase}/portfolios`, {
 			query,
@@ -92,6 +106,9 @@ export const useApi = () => {
 	};
 
 	const getPortfolio = async (slug: string) => {
+		if (isLocalHostTargetBlockedOnPublic()) {
+			throw new Error("Local backend API not accessible from public host");
+		}
 		return await $fetch<{ data: PortfolioItem }>(`${apiBase}/portfolios/${slug}`, {
 			timeout: 5000,
 			headers: { Accept: "application/json" },
@@ -99,6 +116,9 @@ export const useApi = () => {
 	};
 
 	const getArticles = async () => {
+		if (isLocalHostTargetBlockedOnPublic()) {
+			throw new Error("Local backend API not accessible from public host");
+		}
 		return await $fetch<{ data: ArticleItem[] }>(`${apiBase}/articles`, {
 			timeout: 5000,
 			headers: { Accept: "application/json" },
@@ -106,6 +126,9 @@ export const useApi = () => {
 	};
 
 	const getArticle = async (slug: string) => {
+		if (isLocalHostTargetBlockedOnPublic()) {
+			throw new Error("Local backend API not accessible from public host");
+		}
 		return await $fetch<{ data: ArticleItem }>(`${apiBase}/articles/${slug}`, {
 			timeout: 5000,
 			headers: { Accept: "application/json" },
@@ -113,6 +136,9 @@ export const useApi = () => {
 	};
 
 	const getProfile = async () => {
+		if (isLocalHostTargetBlockedOnPublic()) {
+			throw new Error("Local backend API not accessible from public host");
+		}
 		return await $fetch<{ data: PhotographerProfile }>(`${apiBase}/profile`, {
 			timeout: 5000,
 			headers: { Accept: "application/json" },
@@ -120,6 +146,9 @@ export const useApi = () => {
 	};
 
 	const createBooking = async (payload: BookingPayload) => {
+		if (isLocalHostTargetBlockedOnPublic()) {
+			throw new Error("Backend API URL not yet configured on production environment");
+		}
 		return await $fetch(`${apiBase}/bookings`, {
 			method: "POST",
 			body: payload,
