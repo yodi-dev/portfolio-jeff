@@ -44,8 +44,8 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://jeflee.photography",
-			apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://localhost:8000/api",
-			storageBase: process.env.NUXT_PUBLIC_STORAGE_BASE || "http://localhost:8000/storage",
+			apiBase: process.env.NUXT_PUBLIC_API_BASE || (process.env.NODE_ENV === "production" ? "" : "http://localhost:8000/api"),
+			storageBase: process.env.NUXT_PUBLIC_STORAGE_BASE || (process.env.NODE_ENV === "production" ? "" : "http://localhost:8000/storage"),
 		},
 	},
 	future: {

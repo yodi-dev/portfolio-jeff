@@ -17,7 +17,7 @@ interface ApiArticle {
 export default defineEventHandler(async (event) => {
 	const config = useRuntimeConfig(event);
 	const siteUrl = ((config.public?.siteUrl as string) || "https://jeflee.photography").replace(/\/+$/, "");
-	const apiBase = ((config.public?.apiBase as string) || "http://localhost:8000/api").replace(/\/+$/, "");
+	const apiBase = ((config.public?.apiBase as string) || "").replace(/\/+$/, "");
 
 	const today = new Date().toISOString().split("T")[0];
 
@@ -31,33 +31,54 @@ export default defineEventHandler(async (event) => {
 
 	const dynamicRoutes: SitemapEntry[] = [];
 
-	// Fetch dynamic articles
-	try {
-		const controller = new AbortController();
-		const timeout = setTimeout(() => controller.abort(), 2000);
-		const res = await fetch(`${apiBase}/articles`, {
-			headers: { Accept: "application/json" },
-			signal: controller.signal,
-		});
-		clearTimeout(timeout);
+	// Fetch dynamic articles (only if public API base is configured and not pointing to localhost)
+	if (apiBase && !apiBase.includes("localhost") && !apiBase.includes("127.0.0.1")) {
+		try {
+			const controller = new AbortController();
+			const timeout = setTimeout(() => controller.abort(), 2000);
+			const res = await fetch(`${apiBase}/articles`, {
+				headers: { Accept: "application/json" },
+				signal: controller.signal,
+			});
+			clearTimeout(timeout);
 
-		if (res.ok) {
-			const json = await res.json();
-			const articles: ApiArticle[] = Array.isArray(json?.data) ? json.data : [];
-			for (const article of articles) {
-				if (article.slug) {
-					dynamicRoutes.push({
-						loc: `${siteUrl}/writing/${article.slug}`,
-						lastmod: article.updated_at ? new Date(article.updated_at).toISOString().split("T")[0] : today,
-						changefreq: "monthly",
-						priority: "0.7",
-					});
+			if (res.ok) {
+				const json = await res.json();
+				const articles: ApiArticle[] = Array.isArray(json?.data) ? json.data : [];
+				for (const article of articles) {
+					if (article.slug) {
+						dynamicRoutes.push({
+							loc: `${siteUrl}/writing/${article.slug}`,
+							lastmod: article.updated_at ? new Date(article.updated_at).toISOString().split("T")[0] : today,
+							changefreq: "monthly",
+							priority: "0.7",
+						});
+					}
 				}
 			}
 		}
-	}
-	catch {
-		// Fallback articles if API is down during sitemap generation
+		catch {
+			// Fallback articles if API is down during sitemap generation
+			const fallbackSlugs = [
+				"golden-hour",
+				"the-magic-of-golden-hour",
+				"family-photography",
+				"why-i-love-family-photography",
+				"minimal-gear",
+				"minimal-gear-maximum-impact",
+				"sydney-mornings",
+			];
+			for (const slug of fallbackSlugs) {
+				dynamicRoutes.push({
+					loc: `${siteUrl}/writing/${slug}`,
+					lastmod: today,
+					changefreq: "monthly",
+					priority: "0.7",
+				});
+			}
+		}
+	} else {
+		// Use fallback articles when running without live remote backend
 		const fallbackSlugs = [
 			"golden-hour",
 			"the-magic-of-golden-hour",

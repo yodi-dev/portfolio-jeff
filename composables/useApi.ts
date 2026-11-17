@@ -59,29 +59,51 @@ export interface PhotographerProfile {
 
 export const useApi = () => {
 	const config = useRuntimeConfig();
-	const apiBase = config.public.apiBase as string;
-	const storageBase = config.public.storageBase as string;
+	const apiBase = (config.public.apiBase as string) || "";
+	const storageBase = (config.public.storageBase as string) || "";
 
-	// Guard against public web apps trying to ping local network / localhost,
-	// which triggers browser security warnings (Chrome Private Network Access) and Mixed Content blocks.
-	const isLocalHostTargetBlockedOnPublic = (): boolean => {
-		if (import.meta.client && typeof window !== "undefined") {
-			const isPublicHost = window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1";
-			const isLocalApi = apiBase.includes("localhost") || apiBase.includes("127.0.0.1");
-			return isPublicHost && isLocalApi;
+	// Check if API endpoint is valid and safe to call without triggering Chrome Private Network Access prompts
+	const isSafeToCallApi = (): boolean => {
+		if (!apiBase) return false;
+		const isLocalApi = apiBase.includes("localhost") || apiBase.includes("127.0.0.1");
+		if (isLocalApi) {
+			if (import.meta.client && typeof window !== "undefined") {
+				return window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+			}
+			return process.env.NODE_ENV !== "production";
 		}
-		return false;
+		return true;
 	};
 
 	const resolveImageUrl = (path: string | null | undefined, fallback = "/images/preview1.jpeg"): string => {
 		if (!path) return fallback;
+
+		// Local static assets in public directory (e.g. /images/jeff-portrait.jpeg)
+		if (path.startsWith("/images/") || path.startsWith("images/")) {
+			return path.startsWith("/") ? path : `/${path}`;
+		}
+
 		// Normalize any legacy Herd domain to current storageBase
 		if (path.includes("dashboard-jef.test/storage")) {
+			if (!storageBase || storageBase.includes("localhost") || storageBase.includes("127.0.0.1")) {
+				return fallback;
+			}
 			return path.replace("http://dashboard-jef.test/storage", storageBase);
 		}
+
+		// Full remote URLs (Unsplash, Cloudinary, Cloudflare R2, S3, etc.)
 		if (path.startsWith("http://") || path.startsWith("https://")) {
+			if (path.includes("localhost") || path.includes("127.0.0.1")) {
+				return fallback;
+			}
 			return path;
 		}
+
+		// Guard: If storageBase is empty or points to localhost in a public environment, safely use fallback
+		if (!storageBase || storageBase.includes("localhost") || storageBase.includes("127.0.0.1")) {
+			return fallback;
+		}
+
 		const cleanPath = path.startsWith("/") ? path : `/${path}`;
 		return `${storageBase}${cleanPath}`;
 	};
@@ -94,7 +116,7 @@ export const useApi = () => {
 	};
 
 	const getPortfolios = async (category?: string) => {
-		if (isLocalHostTargetBlockedOnPublic()) {
+		if (!isSafeToCallApi()) {
 			throw new Error("Local backend API not accessible from public host");
 		}
 		const query = category && category !== "All" ? { category } : {};
@@ -106,7 +128,7 @@ export const useApi = () => {
 	};
 
 	const getPortfolio = async (slug: string) => {
-		if (isLocalHostTargetBlockedOnPublic()) {
+		if (!isSafeToCallApi()) {
 			throw new Error("Local backend API not accessible from public host");
 		}
 		return await $fetch<{ data: PortfolioItem }>(`${apiBase}/portfolios/${slug}`, {
@@ -116,7 +138,7 @@ export const useApi = () => {
 	};
 
 	const getArticles = async () => {
-		if (isLocalHostTargetBlockedOnPublic()) {
+		if (!isSafeToCallApi()) {
 			throw new Error("Local backend API not accessible from public host");
 		}
 		return await $fetch<{ data: ArticleItem[] }>(`${apiBase}/articles`, {
@@ -126,7 +148,7 @@ export const useApi = () => {
 	};
 
 	const getArticle = async (slug: string) => {
-		if (isLocalHostTargetBlockedOnPublic()) {
+		if (!isSafeToCallApi()) {
 			throw new Error("Local backend API not accessible from public host");
 		}
 		return await $fetch<{ data: ArticleItem }>(`${apiBase}/articles/${slug}`, {
@@ -136,7 +158,7 @@ export const useApi = () => {
 	};
 
 	const getProfile = async () => {
-		if (isLocalHostTargetBlockedOnPublic()) {
+		if (!isSafeToCallApi()) {
 			throw new Error("Local backend API not accessible from public host");
 		}
 		return await $fetch<{ data: PhotographerProfile }>(`${apiBase}/profile`, {
@@ -146,7 +168,7 @@ export const useApi = () => {
 	};
 
 	const createBooking = async (payload: BookingPayload) => {
-		if (isLocalHostTargetBlockedOnPublic()) {
+		if (!isSafeToCallApi()) {
 			throw new Error("Backend API URL not yet configured on production environment");
 		}
 		return await $fetch(`${apiBase}/bookings`, {
