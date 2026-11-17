@@ -96,6 +96,11 @@ export const useApi = () => {
 		// Full remote URLs (Unsplash, Cloudinary, Cloudflare R2, S3, etc.)
 		if (path.startsWith("http://") || path.startsWith("https://")) {
 			if (path.includes("localhost") || path.includes("127.0.0.1")) {
+				// Normalize any legacy localhost/storage URL to the production storageBase
+				if (storageBase && !storageBase.includes("localhost") && !storageBase.includes("127.0.0.1") && path.includes("/storage/")) {
+					const relativeStorage = path.substring(path.indexOf("/storage/") + 9);
+					return `${storageBase.replace(/\/+$/, "")}/${relativeStorage}`;
+				}
 				return fallback;
 			}
 			return path;
