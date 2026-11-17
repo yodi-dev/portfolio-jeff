@@ -52,6 +52,7 @@ export interface PhotographerProfile {
 	avatar?: string | null;
 	hero_image?: string | null;
 	hero_position?: string;
+	hero_portfolio_id?: number | null;
 	location?: string;
 	email?: string;
 	phone?: string;

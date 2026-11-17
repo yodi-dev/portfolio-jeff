@@ -272,6 +272,10 @@ const { data } = useLazyAsyncData("home-portfolios", async () => {
 const heroWork = computed<PortfolioItem | null>(() => {
 	const list = data.value;
 	if (!list || list.length === 0) return null;
+	if (profile.value?.hero_portfolio_id) {
+		const selected = list.find(item => item.id === profile.value.hero_portfolio_id);
+		if (selected) return selected;
+	}
 	return list.find(item => item.is_highlight) || list[0] || null;
 });
 
