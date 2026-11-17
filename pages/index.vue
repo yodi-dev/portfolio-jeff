@@ -292,7 +292,7 @@ const heroBannerPositionClass = computed<string>(() => {
 	return "object-center";
 });
 
-// Selected Works: Option 1 (Highlighted items first, then filled up to 6 with recent works)
+// Selected Works: Dynamic multiples of 3 based on highlighted works count
 const selectedWorks = computed<PortfolioItem[]>(() => {
 	const list = data.value;
 	if (!list || list.length === 0) {
@@ -302,6 +302,10 @@ const selectedWorks = computed<PortfolioItem[]>(() => {
 	const highlighted = list.filter(item => item.is_highlight);
 	const regular = list.filter(item => !item.is_highlight);
 
-	return [...highlighted, ...regular].slice(0, 6);
+	const targetCount = highlighted.length > 0
+		? Math.max(3, Math.ceil(highlighted.length / 3) * 3)
+		: 6;
+
+	return [...highlighted, ...regular].slice(0, targetCount);
 });
 </script>
