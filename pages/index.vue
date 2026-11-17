@@ -25,7 +25,7 @@
 						:src="heroBannerImage"
 						alt="Hero Feature"
 						class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.01]"
-						:class="heroBannerPositionClass"
+						:style="heroBannerPositionStyle"
 						loading="eager"
 						fetchpriority="high"
 						decoding="async"
@@ -289,11 +289,14 @@ const heroBannerImage = computed<string>(() => {
 	return "/images/preview3.jpeg";
 });
 
-const heroBannerPositionClass = computed<string>(() => {
+const heroBannerPositionStyle = computed(() => {
 	const pos = profile.value?.hero_position;
-	if (pos === "top") return "object-top";
-	if (pos === "bottom") return "object-bottom";
-	return "object-center";
+	if (!pos || pos === "center") return { objectPosition: "50% 50%" };
+	if (pos === "top") return { objectPosition: "50% 15%" };
+	if (pos === "bottom") return { objectPosition: "50% 85%" };
+	if (typeof pos === "string" && pos.endsWith("%")) return { objectPosition: `50% ${pos}` };
+	if (!isNaN(Number(pos))) return { objectPosition: `50% ${pos}%` };
+	return { objectPosition: pos };
 });
 
 // Selected Works: Dynamic multiples of 3 based on highlighted works count
