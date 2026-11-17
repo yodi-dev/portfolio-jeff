@@ -55,11 +55,11 @@
 			v-else-if="filteredWorks.length > 0"
 			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-14"
 		>
-			<div
+			<NuxtLink
 				v-for="(work, index) in filteredWorks"
 				:key="work.id"
-				class="group cursor-pointer space-y-3"
-				@click="openLightbox(work)"
+				:to="work.slug ? `/works/${work.slug}` : '/works'"
+				class="group block space-y-3"
 			>
 				<!-- Thumbnail Frame -->
 				<div class="relative overflow-hidden aspect-[4/3] bg-line/30">
@@ -91,7 +91,7 @@
 						{{ work.description }}
 					</p>
 				</div>
-			</div>
+			</NuxtLink>
 		</div>
 
 		<!-- Empty State -->
@@ -112,115 +112,11 @@
 				View All Works
 			</button>
 		</div>
-
-		<!-- Lightbox / Exhibition View Modal -->
-		<div
-			v-if="activeWork"
-			class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/85 backdrop-blur-sm transition-opacity"
-			role="dialog"
-			aria-modal="true"
-			:aria-label="activeWork.title"
-			@click.self="closeLightbox"
-		>
-			<div class="relative bg-canvas max-w-4xl w-full max-h-[92vh] overflow-hidden shadow-2xl flex flex-col border border-line/40">
-				<!-- Close Button -->
-				<button
-					class="absolute top-4 right-4 z-20 min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 text-ink hover:opacity-60 transition-opacity bg-canvas/80 backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-ink"
-					aria-label="Close dialog"
-					@click="closeLightbox"
-				>
-					<svg
-						class="w-5 h-5 stroke-[1.5]"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M6 18L18 6M6 6l12 12"
-						/>
-					</svg>
-				</button>
-
-				<!-- Modal Scrollable Content -->
-				<div class="overflow-y-auto">
-					<!-- Main High-Res Preview -->
-					<div class="bg-black/5 flex items-center justify-center max-h-[62vh] overflow-hidden">
-						<img
-							:src="activeModalImage"
-							:alt="activeWork.title"
-							width="1200"
-							height="800"
-							class="max-h-[62vh] w-auto object-contain mx-auto"
-							decoding="async"
-							@error="onImageError"
-						>
-					</div>
-
-					<!-- Gallery Thumbnails (if multiple images exist) -->
-					<div
-						v-if="allModalImages.length > 1"
-						class="flex gap-2 p-4 bg-canvas border-b border-line/50 overflow-x-auto"
-					>
-						<button
-							v-for="(img, idx) in allModalImages"
-							:key="idx"
-							:class="[
-								'relative overflow-hidden flex-shrink-0 w-16 h-16 border transition-all',
-								activeModalImage === img ? 'border-ink opacity-100' : 'border-transparent opacity-50 hover:opacity-100',
-							]"
-							@click="activeModalImage = img"
-						>
-							<img
-								:src="img"
-								:alt="`${activeWork.title} - view ${idx + 1}`"
-								width="64"
-								height="64"
-								class="w-full h-full object-cover"
-								loading="lazy"
-								decoding="async"
-								@error="onImageError"
-							>
-						</button>
-					</div>
-
-					<!-- Exhibition Details -->
-					<div class="p-6 md:p-8 space-y-4">
-						<div class="flex items-center justify-between text-[11px] uppercase tracking-[0.2em] text-ink-muted">
-							<span>{{ activeWork.category || 'Series' }}</span>
-							<span>{{ activeWork.created_at }}</span>
-						</div>
-						<h2 class="font-serif text-2xl md:text-3xl text-ink font-light">
-							{{ activeWork.title }}
-						</h2>
-						<p
-							v-if="activeWork.description"
-							class="text-xs md:text-sm text-ink-muted font-light leading-relaxed tracking-[0.02em] max-w-2xl"
-						>
-							{{ activeWork.description }}
-						</p>
-
-						<div class="pt-6 border-t border-line/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-							<p class="text-[11px] text-ink-muted tracking-widest uppercase font-mono">
-								Jef Lee Photography
-							</p>
-							<NuxtLink
-								:to="`/booking?package=${encodeURIComponent(activeWork.category || 'Portrait')}`"
-								class="px-5 py-2.5 border border-ink text-ink text-xs uppercase tracking-[0.2em] font-medium hover:bg-ink hover:text-canvas transition-colors"
-							>
-								Inquire About This Theme →
-							</NuxtLink>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
+import { ref, computed } from "vue";
 import { useApi, type PortfolioItem } from "~/composables/useApi";
 import { useSeo } from "~/composables/useSeo";
 
@@ -345,69 +241,4 @@ const filteredWorks = computed(() => {
 function selectCategory(cat: string) {
 	activeCategory.value = cat;
 }
-
-// Lightbox state
-const activeWork = ref<PortfolioItem | null>(null);
-const activeModalImage = ref<string>("");
-
-const allModalImages = computed(() => {
-	if (!activeWork.value) return [];
-	const images: string[] = [];
-	if (activeWork.value.thumbnail) {
-		images.push(resolveImageUrl(activeWork.value.thumbnail));
-	}
-	if (Array.isArray(activeWork.value.gallery)) {
-		activeWork.value.gallery.forEach((img) => {
-			const resolved = resolveImageUrl(img);
-			if (!images.includes(resolved)) {
-				images.push(resolved);
-			}
-		});
-	}
-	return images;
-});
-
-function openLightbox(work: PortfolioItem) {
-	activeWork.value = work;
-	activeModalImage.value = resolveImageUrl(work.thumbnail);
-}
-
-function closeLightbox() {
-	activeWork.value = null;
-	activeModalImage.value = "";
-}
-
-function handleKeydown(e: KeyboardEvent) {
-	if (!activeWork.value) return;
-	if (e.key === "Escape") {
-		closeLightbox();
-	}
-	else if (e.key === "ArrowRight" && allModalImages.value.length > 1) {
-		const currentIndex = allModalImages.value.indexOf(activeModalImage.value);
-		const nextIndex = (currentIndex + 1) % allModalImages.value.length;
-		activeModalImage.value = allModalImages.value[nextIndex];
-	}
-	else if (e.key === "ArrowLeft" && allModalImages.value.length > 1) {
-		const currentIndex = allModalImages.value.indexOf(activeModalImage.value);
-		const prevIndex = (currentIndex - 1 + allModalImages.value.length) % allModalImages.value.length;
-		activeModalImage.value = allModalImages.value[prevIndex];
-	}
-}
-
-watch(activeWork, (newVal) => {
-	if (import.meta.client) {
-		document.body.style.overflow = newVal ? "hidden" : "";
-	}
-});
-
-onMounted(() => {
-	window.addEventListener("keydown", handleKeydown);
-});
-
-onBeforeUnmount(() => {
-	window.removeEventListener("keydown", handleKeydown);
-	if (import.meta.client) {
-		document.body.style.overflow = "";
-	}
-});
 </script>

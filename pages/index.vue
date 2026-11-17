@@ -18,7 +18,7 @@
 			<!-- Hero Feature Image (Framed Print Aesthetic) -->
 			<div class="relative overflow-hidden bg-line/40 aspect-[16/9] md:aspect-[21/9]">
 				<NuxtLink
-					to="/works"
+					:to="heroWork?.slug ? `/works/${heroWork.slug}` : '/works'"
 					class="group block w-full h-full"
 				>
 					<img
@@ -60,7 +60,7 @@
 				<NuxtLink
 					v-for="(work, index) in selectedWorks"
 					:key="work.id"
-					to="/works"
+					:to="work.slug ? `/works/${work.slug}` : '/works'"
 					class="group block space-y-3"
 				>
 					<!-- Image Frame -->
