@@ -23,8 +23,9 @@
 				>
 					<img
 						:src="heroBannerImage"
-						:alt="heroBannerTitle"
-						class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.01]"
+						alt="Recent Atmosphere — Natural Light Study"
+						class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+						:class="heroBannerPositionClass"
 						loading="eager"
 						fetchpriority="high"
 						decoding="async"
@@ -35,8 +36,8 @@
 				</NuxtLink>
 			</div>
 			<div class="flex justify-between items-center text-[11px] text-ink-faint tracking-widest uppercase mt-3">
-				<span>{{ heroBannerCategory }}</span>
-				<span class="font-serif italic capitalize">{{ heroBannerTitle }}</span>
+				<span>01 / Recent Atmosphere</span>
+				<span>Natural Light Study</span>
 			</div>
 		</section>
 
@@ -271,7 +272,7 @@ const { data } = useLazyAsyncData("home-portfolios", async () => {
 	getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
 });
 
-// Hero Banner: dynamically driven by top highlighted portfolio or latest work
+// Hero Banner: dynamically driven by custom hero banner or top highlighted portfolio
 const heroWork = computed<PortfolioItem | null>(() => {
 	const list = data.value;
 	if (!list || list.length === 0) return null;
@@ -279,24 +280,20 @@ const heroWork = computed<PortfolioItem | null>(() => {
 });
 
 const heroBannerImage = computed<string>(() => {
+	if (profile.value?.hero_image) {
+		return resolveImageUrl(profile.value.hero_image);
+	}
 	if (heroWork.value?.thumbnail) {
 		return resolveImageUrl(heroWork.value.thumbnail);
 	}
 	return "/images/preview3.jpeg";
 });
 
-const heroBannerCategory = computed<string>(() => {
-	if (heroWork.value?.category) {
-		return `01 / ${heroWork.value.category}`;
-	}
-	return "01 / Recent Atmosphere";
-});
-
-const heroBannerTitle = computed<string>(() => {
-	if (heroWork.value?.title) {
-		return heroWork.value.title;
-	}
-	return "Natural Light Study";
+const heroBannerPositionClass = computed<string>(() => {
+	const pos = profile.value?.hero_position;
+	if (pos === "top") return "object-top";
+	if (pos === "bottom") return "object-bottom";
+	return "object-center";
 });
 
 // Selected Works: Option 1 (Highlighted items first, then filled up to 6 with recent works)

@@ -50,6 +50,8 @@ export interface PhotographerProfile {
 	journey_paragraphs?: string[];
 	philosophies?: PhotographerPhilosophy[];
 	avatar?: string | null;
+	hero_image?: string | null;
+	hero_position?: string;
 	location?: string;
 	email?: string;
 	phone?: string;
