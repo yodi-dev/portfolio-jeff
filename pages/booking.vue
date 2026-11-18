@@ -437,11 +437,7 @@ async function submitForm() {
 			errorMessage.value = errorObj.data.errors[firstErrKey][0];
 		}
 		else {
-			// Demo fallback confirmation
-			submittedName.value = form.name;
-			submittedPackage.value = form.package;
-			submittedDate.value = form.booking_date;
-			submitSuccess.value = true;
+			errorMessage.value = "Unable to connect to the reservation service. Please check your connection or reach out to Jef directly via WhatsApp below.";
 		}
 	}
 	finally {

@@ -182,7 +182,7 @@ export const useApi = () => {
 		return await $fetch(`${apiBase}/bookings`, {
 			method: "POST",
 			body: payload,
-			timeout: 5000,
+			timeout: 15000,
 			headers: {
 				"Accept": "application/json",
 				"Content-Type": "application/json",
